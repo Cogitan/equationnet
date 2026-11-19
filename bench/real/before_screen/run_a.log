@@ -1,0 +1,70 @@
+
+== yeast / u_t = r*u*(1 - u/K) / random
+equation: u_t = r*u*(1 - u/K)
+          target u(t); fit K, r
+split: random, 15 points to train, 4 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = Neural network (data only)                  2.391    3.2s   -
+2  = Equation fit (classical)                    2.961    2.0s   K=663.1, r=0.5465
+3    Smoothing spline (data only)                3.714    0.6s   -
+4    Polynomial (data only)                      4.559    0.0s   -
+5    Polynomial + equation                       124.9    3.7s   K=1.597, r=-0.0002579
+6    PINN (neural network + equation)            127.1    5.6s   K=1.567, r=-0.000248
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+=     2 models are within the noise of the lowest error on these 4 held-out points, so the data cannot tell them apart.
+      The one with the fewest free numbers is returned; pick="lowest" would return Neural network (data only).
+
+== yeast / u_t = r*u*(1 - u/K) / forecast
+equation: u_t = r*u*(1 - u/K)
+          target u(t); fit K, r
+split: forecast, 15 points to train, 4 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Equation fit (classical)                     3.11    1.7s   K=660.5, r=0.5507
+2    Neural network (data only)                  13.17    2.8s   -
+3    Smoothing spline (data only)                178.9    0.0s   -
+4    PINN (neural network + equation)             1039    6.6s   K=1.527, r=-0.0003996
+5    Polynomial + equation                        1480    2.7s   K=1.584, r=-0.0004434
+6    Polynomial (data only)                       4904    0.0s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+
+== rlc_series / u_tt + c*u_t + k*u = 0 / random
+equation: u_tt + c*u_t + k*u = 0
+          target u(t); fit c, k
+split: random, 7 points to train, 2 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = Equation fit (classical)                0.0004678    1.8s   c=3226, k=3.357e+05
+2  = Polynomial + equation                     0.00095    3.3s   c=1167, k=1.189e+05
+3  = PINN (neural network + equation)         0.001195    9.6s   c=133, k=0.4385
+4  = Neural network (data only)               0.001263    3.2s   -
+5    Polynomial (data only)                   0.005344    0.0s   -
+6    Smoothing spline (data only)              0.02373    0.0s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+=     4 models are within the noise of the lowest error on these 2 held-out points, so the data cannot tell them apart.
+      The lowest is also the one with the fewest free numbers.
+
+== rlc_series / u_tt + c*u_t + k*u = 0 / forecast
+equation: u_tt + c*u_t + k*u = 0
+          target u(t); fit c, k
+split: forecast, 7 points to train, 2 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = Equation fit (classical)                0.0002111    1.6s   c=2768, k=2.874e+05
+2  = Polynomial + equation                   0.0002658    3.1s   c=1116, k=1.117e+05
+3    Neural network (data only)               0.001528    3.0s   -
+4    PINN (neural network + equation)         0.003698    7.6s   c=99.96, k=-4097
+5    Smoothing spline (data only)              0.06373    0.0s   -
+6    Polynomial (data only)                     0.0773    0.0s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+=     2 models are within the noise of the lowest error on these 2 held-out points, so the data cannot tell them apart.
+      The lowest is also the one with the fewest free numbers.

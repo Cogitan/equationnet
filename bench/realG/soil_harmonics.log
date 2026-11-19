@@ -1,0 +1,57 @@
+
+whole week: daily amplitude (C) and phase (rad) by depth
+   0.05 m   1.770   -1.779   hourly residual lag-1 correlation 0.96
+   0.10 m   0.629   -0.882   hourly residual lag-1 correlation 0.98
+   0.20 m   0.412   -0.490   hourly residual lag-1 correlation 0.97
+   0.50 m   0.155    0.433   hourly residual lag-1 correlation 0.91
+   1.00 m   0.023    2.328   hourly residual lag-1 correlation 0.53
+  depths (m)     a from amplitude   a from phase   (m^2/day)
+  0.05-0.10         0.0073           0.0098
+  0.05-0.20         0.0332           0.0425
+  0.05-0.50         0.1073           0.1300
+  0.05-1.00         0.1505           0.1681
+  0.10-0.20         0.1753           0.2036
+  0.10-0.50         0.2566           0.2906
+  0.10-1.00         0.2329           0.2469
+  0.20-0.50         0.2966           0.3323
+  0.20-1.00         0.2421           0.2533
+  0.50-1.00         0.2163           0.2187
+
+days 0-3.5: daily amplitude (C) and phase (rad) by depth
+   0.05 m   1.363   -1.707   hourly residual lag-1 correlation 0.95
+   0.10 m   0.473   -0.801   hourly residual lag-1 correlation 0.97
+   0.20 m   0.294   -0.258   hourly residual lag-1 correlation 0.96
+   0.50 m   0.123    0.669   hourly residual lag-1 correlation 0.88
+   1.00 m   0.013    2.245   hourly residual lag-1 correlation 0.40
+  depths (m)     a from amplitude   a from phase   (m^2/day)
+  0.05-0.10         0.0070           0.0096
+  0.05-0.20         0.0301           0.0337
+  0.05-0.50         0.1102           0.1127
+  0.05-1.00         0.1310           0.1815
+  0.10-0.20         0.1388           0.1066
+  0.10-0.50         0.2777           0.2325
+  0.10-1.00         0.1970           0.2743
+  0.20-0.50         0.3740           0.3287
+  0.20-1.00         0.2068           0.3209
+  0.50-1.00         0.1554           0.3164
+
+days 3.5-7: daily amplitude (C) and phase (rad) by depth
+   0.05 m   2.121   -1.836   hourly residual lag-1 correlation 0.95
+   0.10 m   0.701   -0.858   hourly residual lag-1 correlation 0.96
+   0.20 m   0.511   -0.544   hourly residual lag-1 correlation 0.94
+   0.50 m   0.201    0.450   hourly residual lag-1 correlation 0.85
+   1.00 m   0.033    2.369   hourly residual lag-1 correlation 0.62
+  depths (m)     a from amplitude   a from phase   (m^2/day)
+  0.05-0.10         0.0064           0.0082
+  0.05-0.20         0.0349           0.0423
+  0.05-0.50         0.1147           0.1218
+  0.05-1.00         0.1627           0.1603
+  0.10-0.20         0.3134           0.3172
+  0.10-0.50         0.3226           0.2938
+  0.10-1.00         0.2704           0.2443
+  0.20-0.50         0.3258           0.2866
+  0.20-1.00         0.2657           0.2370
+  0.50-1.00         0.2373           0.2132
+
+forecast: last training time t = 5.5833 days (14:00 local), top edge held at 10.2 C; RMS of that held value against the 5 cm data after it: 3.34 C over 34 hours
+spread (SD) of the 10 cm data in the held-out time: 0.52 C

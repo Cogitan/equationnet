@@ -1,0 +1,80 @@
+{"problem": "gompertz", "seed": 600, "status": "ok", "z": {"r": 1.668120711705261, "K": -2.9919561876696332}}
+{"problem": "gompertz", "seed": 601, "status": "ok", "z": {"r": 0.9078468425420121, "K": -1.4942647338570065}}
+{"problem": "gompertz", "seed": 602, "status": "ok", "z": {"r": -0.11248560561791361, "K": 0.506608724794033}}
+{"problem": "gompertz", "seed": 603, "status": "ok", "z": {"r": 1.0600305651436195, "K": -0.3293506163351467}}
+{"problem": "gompertz", "seed": 604, "status": "ok", "z": {"r": -0.6715273451550938, "K": 0.19041882564964957}}
+{"problem": "gompertz", "seed": 605, "status": "ok", "z": {"r": 0.2003777952308942, "K": -0.06773941852211345}}
+{"problem": "gompertz", "seed": 606, "status": "ok", "z": {"r": -0.06985194898812891, "K": -1.1262888970264573}}
+{"problem": "gompertz", "seed": 607, "status": "ok", "z": {"r": -0.15842085568853279, "K": 0.7408231315906291}}
+{"problem": "gompertz", "seed": 608, "status": "ok", "z": {"r": 1.2955134846545782, "K": -1.2220129343155954}}
+{"problem": "gompertz", "seed": 609, "status": "ok", "z": {"r": -0.4657596339284531, "K": -1.0126297899058039}}
+{"problem": "gompertz", "seed": 610, "status": "ok", "z": {"r": -1.872810811156404, "K": 1.5573074169102072}}
+{"problem": "gompertz", "seed": 611, "status": "ok", "z": {"r": 0.3622095471037985, "K": -1.349694786025932}}
+{"problem": "gompertz", "seed": 612, "status": "ok", "z": {"r": -0.4966064401950085, "K": -1.5272296246880714}}
+{"problem": "gompertz", "seed": 613, "status": "ok", "z": {"r": -0.28130313859299444, "K": -0.37297416185228754}}
+{"problem": "gompertz", "seed": 614, "status": "ok", "z": {"r": 2.3761588382729606, "K": -0.5724520499800595}}
+{"problem": "gompertz", "seed": 615, "status": "ok", "z": {"r": -0.0892827125873807, "K": 0.6834797277523353}}
+{"problem": "gompertz", "seed": 616, "status": "ok", "z": {"r": -0.10321418258479031, "K": 0.5885842697089289}}
+{"problem": "gompertz", "seed": 617, "status": "ok", "z": {"r": -0.07597503602628837, "K": -0.23318369898805494}}
+{"problem": "gompertz", "seed": 618, "status": "ok", "z": {"r": -1.403836698770651, "K": 1.2040483990884756}}
+{"problem": "gompertz", "seed": 619, "status": "ok", "z": {"r": 0.2651572564800375, "K": -0.10245923509831355}}
+{"problem": "duffing_uneven", "seed": 600, "status": "ok", "z": {"c": -2.381129671171608, "a": -2.23650076054125, "b": 2.209103990344911}}
+{"problem": "duffing_uneven", "seed": 601, "status": "ok", "z": {"c": -1.3225861839431252, "a": -1.0938492662024093, "b": 1.3305282036083528}}
+{"problem": "duffing_uneven", "seed": 602, "status": "ok", "z": {"c": -0.04854008902357158, "a": 0.1633684030969509, "b": -0.8218965672576523}}
+{"problem": "duffing_uneven", "seed": 603, "status": "ok", "z": {"c": 2.4449188628160834, "a": -1.5848860642700924, "b": 1.4738719913140947}}
+{"problem": "duffing_uneven", "seed": 604, "status": "ok", "z": {"c": -0.9528619921510982, "a": -0.8073192756391778, "b": -0.14818482343096587}}
+{"problem": "duffing_uneven", "seed": 605, "status": "ok", "z": {"c": -0.5032240048812728, "a": -0.29221716847675605, "b": -0.20680818669823717}}
+{"problem": "duffing_uneven", "seed": 606, "status": "ok", "z": {"c": -1.2693660177195896, "a": -1.4976538308768053, "b": 0.8275270197663658}}
+{"problem": "duffing_uneven", "seed": 607, "status": "ok", "z": {"c": 0.9717423652421449, "a": 0.39918682142064343, "b": -1.3044691421669337}}
+{"problem": "duffing_uneven", "seed": 608, "status": "ok", "z": {"c": -0.4670236604948566, "a": -0.3400013332370335, "b": 0.37908735176790304}}
+{"problem": "duffing_uneven", "seed": 609, "status": "ok", "z": {"c": -0.33093945830201266, "a": -0.6558415947209892, "b": 0.12045602527497236}}
+{"problem": "duffing_uneven", "seed": 610, "status": "ok", "z": {"c": -0.8205335343276512, "a": -1.0771422571211011, "b": 0.47656462568685426}}
+{"problem": "duffing_uneven", "seed": 611, "status": "ok", "z": {"c": -0.30929865621484676, "a": 0.2948987649959725, "b": -0.21629981153956465}}
+{"problem": "duffing_uneven", "seed": 612, "status": "ok", "z": {"c": 0.560914314211439, "a": 0.08494855198195086, "b": 0.26577991395343026}}
+{"problem": "duffing_uneven", "seed": 613, "status": "ok", "z": {"c": 1.3645587659986602, "a": 1.717830225597221, "b": -1.8676688013522877}}
+{"problem": "duffing_uneven", "seed": 614, "status": "ok", "z": {"c": 1.3065974595347254, "a": 1.0240338821924186, "b": -0.6310193512635579}}
+{"problem": "duffing_uneven", "seed": 615, "status": "ok", "z": {"c": 1.2780221514342813, "a": 1.0325120199233249, "b": -1.9900335112776077}}
+{"problem": "duffing_uneven", "seed": 616, "status": "ok", "z": {"c": 0.18385384598978688, "a": 0.35298400257688545, "b": -0.7016852497597665}}
+{"problem": "duffing_uneven", "seed": 617, "status": "ok", "z": {"c": -1.2324406990880548, "a": -1.2217603793145844, "b": 1.4159908531700134}}
+{"problem": "duffing_uneven", "seed": 618, "status": "ok", "z": {"c": 6.015053657998447, "a": 1.9893785424557908, "b": -0.5214851989746743}}
+{"problem": "duffing_uneven", "seed": 619, "status": "ok", "z": {"c": -1.4574465326939845, "a": -1.6978425751813044, "b": 1.4950420557317665}}
+{"problem": "advection_diffusion", "seed": 600, "status": "ok", "z": {"v": 0.07160931377838403, "D": -0.3844100354580108}}
+{"problem": "advection_diffusion", "seed": 601, "status": "ok", "z": {"v": 0.12886188307700627, "D": -0.9364917435682215}}
+{"problem": "advection_diffusion", "seed": 602, "status": "ok", "z": {"v": 1.14449636086314, "D": -1.02169787134691}}
+{"problem": "advection_diffusion", "seed": 603, "status": "ok", "z": {"v": 0.7313419440187522, "D": -2.0133767744584925}}
+{"problem": "advection_diffusion", "seed": 604, "status": "ok", "z": {"v": -0.08978899488022557, "D": -1.9670112985042398}}
+{"problem": "advection_diffusion", "seed": 605, "status": "ok", "z": {"v": 0.6185841565888638, "D": -0.5017241020570162}}
+{"problem": "advection_diffusion", "seed": 606, "status": "ok", "z": {"v": 0.1278165535454941, "D": 0.04235216756782964}}
+{"problem": "advection_diffusion", "seed": 607, "status": "ok", "z": {"v": 0.48553664558069226, "D": -0.4088343010214847}}
+{"problem": "advection_diffusion", "seed": 608, "status": "ok", "z": {"v": 0.10656204590695967, "D": -1.5451018139970498}}
+{"problem": "advection_diffusion", "seed": 609, "status": "ok", "z": {"v": 0.17450397340446902, "D": 0.05838796308980457}}
+{"problem": "advection_diffusion", "seed": 610, "status": "ok", "z": {"v": -0.5842889264825831, "D": -0.784557954217697}}
+{"problem": "advection_diffusion", "seed": 611, "status": "ok", "z": {"v": 0.9841512330739408, "D": -0.22472986109070364}}
+{"problem": "advection_diffusion", "seed": 612, "status": "ok", "z": {"v": 0.2571092431461294, "D": -1.1667356564478646}}
+{"problem": "advection_diffusion", "seed": 613, "status": "ok", "z": {"v": -0.6821835820987028, "D": -1.111761765079118}}
+{"problem": "advection_diffusion", "seed": 614, "status": "ok", "z": {"v": 0.6567891801600587, "D": -0.5513162708792435}}
+{"problem": "advection_diffusion", "seed": 615, "status": "ok", "z": {"v": 0.42530695800738383, "D": -0.7571667699189841}}
+{"problem": "advection_diffusion", "seed": 616, "status": "ok", "z": {"v": 0.7787624259867448, "D": 0.17247345557450613}}
+{"problem": "advection_diffusion", "seed": 617, "status": "ok", "z": {"v": 0.8945775646217894, "D": -1.1374373800570055}}
+{"problem": "advection_diffusion", "seed": 618, "status": "ok", "z": {"v": -0.11473523462161211, "D": -0.4013362867019785}}
+{"problem": "advection_diffusion", "seed": 619, "status": "ok", "z": {"v": 0.14262717461418128, "D": -0.6205639083803137}}
+{"problem": "burgers", "seed": 600, "status": "ok", "z": {"nu": 0.44927837376032337}}
+{"problem": "burgers", "seed": 601, "status": "ok", "z": {"nu": 0.7773013905725412}}
+{"problem": "burgers", "seed": 602, "status": "ok", "z": {"nu": -0.7979683530070636}}
+{"problem": "burgers", "seed": 603, "status": "ok", "z": {"nu": -1.9052315092042966}}
+{"problem": "burgers", "seed": 604, "status": "ok", "z": {"nu": 0.9863376073583136}}
+{"problem": "burgers", "seed": 605, "status": "ok", "z": {"nu": 0.23985639417042148}}
+{"problem": "burgers", "seed": 606, "status": "ok", "z": {"nu": 0.6465560749330955}}
+{"problem": "burgers", "seed": 607, "status": "ok", "z": {"nu": -1.289923136160885}}
+{"problem": "burgers", "seed": 608, "status": "ok", "z": {"nu": 0.5320816859354015}}
+{"problem": "burgers", "seed": 609, "status": "ok", "z": {"nu": 0.6871125762448318}}
+{"problem": "burgers", "seed": 610, "status": "ok", "z": {"nu": -0.562256712848099}}
+{"problem": "burgers", "seed": 611, "status": "ok", "z": {"nu": 0.25514498386499246}}
+{"problem": "burgers", "seed": 612, "status": "ok", "z": {"nu": -0.21675742156416136}}
+{"problem": "burgers", "seed": 613, "status": "ok", "z": {"nu": -0.7847147340676689}}
+{"problem": "burgers", "seed": 614, "status": "ok", "z": {"nu": 0.042127282228378984}}
+{"problem": "burgers", "seed": 615, "status": "ok", "z": {"nu": -0.10279396757294645}}
+{"problem": "burgers", "seed": 616, "status": "ok", "z": {"nu": 0.5107672114878193}}
+{"problem": "burgers", "seed": 617, "status": "ok", "z": {"nu": 0.22414557576361901}}
+{"problem": "burgers", "seed": 618, "status": "ok", "z": {"nu": 1.1261759239737161}}
+{"problem": "burgers", "seed": 619, "status": "ok", "z": {"nu": -0.0006880293781125196}}

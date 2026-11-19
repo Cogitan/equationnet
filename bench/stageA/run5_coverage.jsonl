@@ -1,0 +1,80 @@
+{"problem": "gompertz", "seed": 1000, "status": "ok", "z": {"r": -0.3422307897500319, "K": -0.49645608882456804}}
+{"problem": "gompertz", "seed": 1001, "status": "ok", "z": {"r": 0.26428568016694026, "K": 1.2061230033359076}}
+{"problem": "gompertz", "seed": 1002, "status": "ok", "z": {"r": -0.12272613922471375, "K": -0.8266783348208301}}
+{"problem": "gompertz", "seed": 1003, "status": "ok", "z": {"r": 1.498643537766593, "K": -2.102335843760002}}
+{"problem": "gompertz", "seed": 1004, "status": "ok", "z": {"r": -0.8322441984201732, "K": -0.21309733782368603}}
+{"problem": "gompertz", "seed": 1005, "status": "ok", "z": {"r": -0.5218024232012486, "K": -0.6981594288183836}}
+{"problem": "gompertz", "seed": 1006, "status": "ok", "z": {"r": 0.4967086038869716, "K": -0.5058967411695171}}
+{"problem": "gompertz", "seed": 1007, "status": "ok", "z": {"r": 0.6772663440835723, "K": -0.6678679156964608}}
+{"problem": "gompertz", "seed": 1008, "status": "ok", "z": {"r": -1.0804424336408058, "K": -0.15960655019127315}}
+{"problem": "gompertz", "seed": 1009, "status": "ok", "z": {"r": -0.43333067666940644, "K": -1.345527898259517}}
+{"problem": "gompertz", "seed": 1010, "status": "ok", "z": {"r": -0.5487750570619405, "K": 0.9323849892763815}}
+{"problem": "gompertz", "seed": 1011, "status": "ok", "z": {"r": 0.9246085672677682, "K": -0.7621525611204666}}
+{"problem": "gompertz", "seed": 1012, "status": "ok", "z": {"r": 0.49985481946167826, "K": -0.4463380544226983}}
+{"problem": "gompertz", "seed": 1013, "status": "ok", "z": {"r": -1.2186574220721946, "K": -0.5694014216432275}}
+{"problem": "gompertz", "seed": 1014, "status": "ok", "z": {"r": 1.4647871861972572, "K": -1.340475650955463}}
+{"problem": "gompertz", "seed": 1015, "status": "ok", "z": {"r": -1.1466923730236336, "K": 0.07326876856297176}}
+{"problem": "gompertz", "seed": 1016, "status": "ok", "z": {"r": -1.2332427482471395, "K": 1.1815717531741805}}
+{"problem": "gompertz", "seed": 1017, "status": "ok", "z": {"r": 0.0951747855189859, "K": 0.16039983196099372}}
+{"problem": "gompertz", "seed": 1018, "status": "ok", "z": {"r": -0.01882844787165237, "K": -1.100009103454718}}
+{"problem": "gompertz", "seed": 1019, "status": "ok", "z": {"r": -1.0166206067361492, "K": 2.9104101544792944}}
+{"problem": "duffing_uneven", "seed": 1000, "status": "ok", "z": {"c": 1.6277684497166343, "a": 1.7621464337871946, "b": -1.8157679691249322}}
+{"problem": "duffing_uneven", "seed": 1001, "status": "ok", "z": {"c": 2.0988104191355568, "a": 1.729059803656349, "b": -1.8346553499598461}}
+{"problem": "duffing_uneven", "seed": 1002, "status": "ok", "z": {"c": -0.9729768026513768, "a": -0.16713225370806845, "b": -0.17960571855711818}}
+{"problem": "duffing_uneven", "seed": 1003, "status": "ok", "z": {"c": -0.02173977997655996, "a": 0.7821709199058922, "b": -1.14490145593918}}
+{"problem": "duffing_uneven", "seed": 1004, "status": "ok", "z": {"c": -0.12027963612038944, "a": -0.8411246209731145, "b": 0.7228124627694031}}
+{"problem": "duffing_uneven", "seed": 1005, "status": "ok", "z": {"c": -0.35867757154470453, "a": -0.05971800427748212, "b": 0.4417399670129355}}
+{"problem": "duffing_uneven", "seed": 1006, "status": "ok", "z": {"c": -0.3312927770321156, "a": 0.6626534910304731, "b": -1.2608687943567791}}
+{"problem": "duffing_uneven", "seed": 1007, "status": "ok", "z": {"c": 1.2284506218171536, "a": 1.2800574520894705, "b": -1.37674144080873}}
+{"problem": "duffing_uneven", "seed": 1008, "status": "ok", "z": {"c": 0.6500146114321264, "a": 0.5205220763505992, "b": -0.8443766277357201}}
+{"problem": "duffing_uneven", "seed": 1009, "status": "ok", "z": {"c": 1.7567319250846771, "a": 1.2628385592019855, "b": -1.3011469368776987}}
+{"problem": "duffing_uneven", "seed": 1010, "status": "ok", "z": {"c": -1.501544937949311, "a": -1.4616507317258922, "b": 0.965715583090331}}
+{"problem": "duffing_uneven", "seed": 1011, "status": "ok", "z": {"c": 0.13876486560608509, "a": -0.05832849934600684, "b": 0.24937353986308206}}
+{"problem": "duffing_uneven", "seed": 1012, "status": "ok", "z": {"c": -0.7772344163672238, "a": -0.19953111366982332, "b": 0.19529040336618278}}
+{"problem": "duffing_uneven", "seed": 1013, "status": "ok", "z": {"c": -1.910586516570789, "a": -1.6848045417472612, "b": 0.8631665138873594}}
+{"problem": "duffing_uneven", "seed": 1014, "status": "ok", "z": {"c": 0.5743010220584783, "a": 0.8052033401540035, "b": -0.9133420558392316}}
+{"problem": "duffing_uneven", "seed": 1015, "status": "ok", "z": {"c": -0.2528314006709163, "a": -0.20631991751617765, "b": 0.5340240660926513}}
+{"problem": "duffing_uneven", "seed": 1016, "status": "ok", "z": {"c": 0.2730400925404179, "a": -0.4136266450307174, "b": 0.8542136922069655}}
+{"problem": "duffing_uneven", "seed": 1017, "status": "ok", "z": {"c": -0.1103535146752914, "a": 0.07161536873879569, "b": -0.3736135423330992}}
+{"problem": "duffing_uneven", "seed": 1018, "status": "ok", "z": {"c": 2.102477561148922, "a": 2.423348900737571, "b": -2.874315487842227}}
+{"problem": "duffing_uneven", "seed": 1019, "status": "ok", "z": {"c": 0.49560066821781484, "a": -0.056731887256562516, "b": 0.16031567778589698}}
+{"problem": "advection_diffusion", "seed": 1000, "status": "ok", "z": {"v": 1.759916564804137, "D": -0.8572333425635665}}
+{"problem": "advection_diffusion", "seed": 1001, "status": "ok", "z": {"v": 0.8082765291871444, "D": -0.13435826163821643}}
+{"problem": "advection_diffusion", "seed": 1002, "status": "ok", "z": {"v": -1.7061312177562304, "D": -0.7262352766455639}}
+{"problem": "advection_diffusion", "seed": 1003, "status": "ok", "z": {"v": 0.3125167695169314, "D": -0.44619094790906666}}
+{"problem": "advection_diffusion", "seed": 1004, "status": "ok", "z": {"v": -0.038359837445683054, "D": -0.35342319976720715}}
+{"problem": "advection_diffusion", "seed": 1005, "status": "ok", "z": {"v": 0.11830964565456625, "D": -0.6754125388641354}}
+{"problem": "advection_diffusion", "seed": 1006, "status": "ok", "z": {"v": 0.33341744454326067, "D": -1.191507893474903}}
+{"problem": "advection_diffusion", "seed": 1007, "status": "ok", "z": {"v": 1.2136817278726628, "D": 0.1645839589751352}}
+{"problem": "advection_diffusion", "seed": 1008, "status": "ok", "z": {"v": 0.47767068728466733, "D": -1.2060105593189108}}
+{"problem": "advection_diffusion", "seed": 1009, "status": "ok", "z": {"v": -2.216209976225154, "D": -1.2978926444739056}}
+{"problem": "advection_diffusion", "seed": 1010, "status": "ok", "z": {"v": -1.3567199939191237, "D": -1.7064382013702615}}
+{"problem": "advection_diffusion", "seed": 1011, "status": "ok", "z": {"v": -1.4337408030454464, "D": -1.7187966408010935}}
+{"problem": "advection_diffusion", "seed": 1012, "status": "ok", "z": {"v": -1.41721939451062, "D": -0.10822359614220972}}
+{"problem": "advection_diffusion", "seed": 1013, "status": "ok", "z": {"v": 0.1739619013599156, "D": -0.5206425092011645}}
+{"problem": "advection_diffusion", "seed": 1014, "status": "ok", "z": {"v": -0.9651688350375875, "D": 1.3789760021378983}}
+{"problem": "advection_diffusion", "seed": 1015, "status": "ok", "z": {"v": 1.0518730429112253, "D": -2.680725500686716}}
+{"problem": "advection_diffusion", "seed": 1016, "status": "ok", "z": {"v": 0.5844272978611691, "D": -0.9437864293558592}}
+{"problem": "advection_diffusion", "seed": 1017, "status": "ok", "z": {"v": 1.6731285646881362, "D": -0.14303149077891206}}
+{"problem": "advection_diffusion", "seed": 1018, "status": "ok", "z": {"v": -0.25034097138952005, "D": -1.1401197377666747}}
+{"problem": "advection_diffusion", "seed": 1019, "status": "ok", "z": {"v": -0.6210859562649989, "D": 0.02539456366913529}}
+{"problem": "burgers", "seed": 1000, "status": "ok", "z": {"nu": 0.11208986210614588}}
+{"problem": "burgers", "seed": 1001, "status": "ok", "z": {"nu": 1.7178993109292842}}
+{"problem": "burgers", "seed": 1002, "status": "ok", "z": {"nu": 1.4078493553128266}}
+{"problem": "burgers", "seed": 1003, "status": "ok", "z": {"nu": -0.22316438352665874}}
+{"problem": "burgers", "seed": 1004, "status": "ok", "z": {"nu": 0.6289910924606736}}
+{"problem": "burgers", "seed": 1005, "status": "ok", "z": {"nu": 0.5254714437539886}}
+{"problem": "burgers", "seed": 1006, "status": "ok", "z": {"nu": -1.7351106159943217}}
+{"problem": "burgers", "seed": 1007, "status": "ok", "z": {"nu": 1.2332108410895803}}
+{"problem": "burgers", "seed": 1008, "status": "ok", "z": {"nu": -0.6467534013715198}}
+{"problem": "burgers", "seed": 1009, "status": "ok", "z": {"nu": 1.7709731438181047}}
+{"problem": "burgers", "seed": 1010, "status": "ok", "z": {"nu": -0.9419790327790506}}
+{"problem": "burgers", "seed": 1011, "status": "ok", "z": {"nu": 0.8865188375661344}}
+{"problem": "burgers", "seed": 1012, "status": "ok", "z": {"nu": -2.5350843573035755}}
+{"problem": "burgers", "seed": 1013, "status": "ok", "z": {"nu": -2.9472342374924616}}
+{"problem": "burgers", "seed": 1014, "status": "ok", "z": {"nu": 0.554275094860237}}
+{"problem": "burgers", "seed": 1015, "status": "ok", "z": {"nu": -0.13205965002240566}}
+{"problem": "burgers", "seed": 1016, "status": "ok", "z": {"nu": 0.563579642017583}}
+{"problem": "burgers", "seed": 1017, "status": "ok", "z": {"nu": -1.7208539940279528}}
+{"problem": "burgers", "seed": 1018, "status": "ok", "z": {"nu": 1.0817791864757211}}
+{"problem": "burgers", "seed": 1019, "status": "ok", "z": {"nu": -1.2077645205304042}}

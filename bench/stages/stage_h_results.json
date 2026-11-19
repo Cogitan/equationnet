@@ -1,0 +1,318 @@
+{
+ "H1": [
+  {
+   "equation": "u_t = -k*u",
+   "identical": true
+  },
+  {
+   "equation": "u_t = r*u*(1 - u/K)",
+   "identical": true
+  },
+  {
+   "equation": "u_tt + c*u_t + k*u = 0",
+   "identical": true
+  },
+  {
+   "equation": "u'' + c*u' + f(u) = 0",
+   "identical": true
+  },
+  {
+   "equation": "u_t = D*u_xx",
+   "identical": true
+  },
+  {
+   "equation": "u_t = D*u_xx + r*u*(1 - u)",
+   "identical": true
+  }
+ ],
+ "H2": [
+  {
+   "equation": "u_t = -k*u",
+   "threads": 4,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 0.0,
+   "ranking_a": [
+    "poly_physics",
+    "pinn",
+    "equation_fit",
+    "poly",
+    "spline",
+    "nn"
+   ],
+   "ranking_other": [
+    "poly_physics",
+    "pinn",
+    "equation_fit",
+    "poly",
+    "spline",
+    "nn"
+   ]
+  },
+  {
+   "equation": "u_t = -k*u",
+   "threads": 16,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 0.0,
+   "ranking_a": [
+    "poly_physics",
+    "pinn",
+    "equation_fit",
+    "poly",
+    "spline",
+    "nn"
+   ],
+   "ranking_other": [
+    "poly_physics",
+    "pinn",
+    "equation_fit",
+    "poly",
+    "spline",
+    "nn"
+   ]
+  },
+  {
+   "equation": "u_t = r*u*(1 - u/K)",
+   "threads": 4,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 0.0,
+   "ranking_a": [
+    "equation_fit",
+    "poly_physics",
+    "pinn",
+    "nn",
+    "spline",
+    "poly"
+   ],
+   "ranking_other": [
+    "equation_fit",
+    "poly_physics",
+    "pinn",
+    "nn",
+    "spline",
+    "poly"
+   ]
+  },
+  {
+   "equation": "u_t = r*u*(1 - u/K)",
+   "threads": 16,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 0.0,
+   "ranking_a": [
+    "equation_fit",
+    "poly_physics",
+    "pinn",
+    "nn",
+    "spline",
+    "poly"
+   ],
+   "ranking_other": [
+    "equation_fit",
+    "poly_physics",
+    "pinn",
+    "nn",
+    "spline",
+    "poly"
+   ]
+  },
+  {
+   "equation": "u_tt + c*u_t + k*u = 0",
+   "threads": 4,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 0.0,
+   "ranking_a": [
+    "equation_fit",
+    "pinn",
+    "poly_physics",
+    "spline",
+    "poly",
+    "nn"
+   ],
+   "ranking_other": [
+    "equation_fit",
+    "pinn",
+    "poly_physics",
+    "spline",
+    "poly",
+    "nn"
+   ]
+  },
+  {
+   "equation": "u_tt + c*u_t + k*u = 0",
+   "threads": 16,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 0.0,
+   "ranking_a": [
+    "equation_fit",
+    "pinn",
+    "poly_physics",
+    "spline",
+    "poly",
+    "nn"
+   ],
+   "ranking_other": [
+    "equation_fit",
+    "pinn",
+    "poly_physics",
+    "spline",
+    "poly",
+    "nn"
+   ]
+  },
+  {
+   "equation": "u'' + c*u' + f(u) = 0",
+   "threads": 4,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 0.0,
+   "ranking_a": [
+    "pinn",
+    "spline",
+    "poly_physics",
+    "equation_fit",
+    "nn",
+    "poly"
+   ],
+   "ranking_other": [
+    "pinn",
+    "spline",
+    "poly_physics",
+    "equation_fit",
+    "nn",
+    "poly"
+   ]
+  },
+  {
+   "equation": "u'' + c*u' + f(u) = 0",
+   "threads": 16,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 0.0,
+   "ranking_a": [
+    "pinn",
+    "spline",
+    "poly_physics",
+    "equation_fit",
+    "nn",
+    "poly"
+   ],
+   "ranking_other": [
+    "pinn",
+    "spline",
+    "poly_physics",
+    "equation_fit",
+    "nn",
+    "poly"
+   ]
+  },
+  {
+   "equation": "u_t = D*u_xx",
+   "threads": 4,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 3.8092573672690437e-16,
+   "ranking_a": [
+    "poly",
+    "pinn",
+    "nn",
+    "equation_fit",
+    "spline",
+    "poly_physics"
+   ],
+   "ranking_other": [
+    "poly",
+    "pinn",
+    "nn",
+    "equation_fit",
+    "spline",
+    "poly_physics"
+   ]
+  },
+  {
+   "equation": "u_t = D*u_xx",
+   "threads": 16,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 7.618514734538087e-16,
+   "ranking_a": [
+    "poly",
+    "pinn",
+    "nn",
+    "equation_fit",
+    "spline",
+    "poly_physics"
+   ],
+   "ranking_other": [
+    "poly",
+    "pinn",
+    "nn",
+    "equation_fit",
+    "spline",
+    "poly_physics"
+   ]
+  },
+  {
+   "equation": "u_t = D*u_xx + r*u*(1 - u)",
+   "threads": 4,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 6.296650135816868e-16,
+   "ranking_a": [
+    "poly",
+    "equation_fit",
+    "pinn",
+    "spline",
+    "nn",
+    "poly_physics"
+   ],
+   "ranking_other": [
+    "poly",
+    "equation_fit",
+    "pinn",
+    "spline",
+    "nn",
+    "poly_physics"
+   ]
+  },
+  {
+   "equation": "u_t = D*u_xx + r*u*(1 - u)",
+   "threads": 16,
+   "same_ranking": true,
+   "same_pick": true,
+   "max_rel_param_diff": 0.0,
+   "max_rel_pred_diff": 6.299351334994473e-16,
+   "ranking_a": [
+    "poly",
+    "equation_fit",
+    "pinn",
+    "spline",
+    "nn",
+    "poly_physics"
+   ],
+   "ranking_other": [
+    "poly",
+    "equation_fit",
+    "pinn",
+    "spline",
+    "nn",
+    "poly_physics"
+   ]
+  }
+ ]
+}

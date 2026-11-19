@@ -1,0 +1,78 @@
+u_t = -k*u poly {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -k*u spline {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -k*u equation_fit {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -k*u poly_physics {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -k*u nn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -k*u pinn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = r*u*(1 - u/K) poly {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = r*u*(1 - u/K) spline {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = r*u*(1 - u/K) equation_fit {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = r*u*(1 - u/K) poly_physics {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = r*u*(1 - u/K) nn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = r*u*(1 - u/K) pinn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt + c*u_t + k*u = 0 poly {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt + c*u_t + k*u = 0 spline {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt + c*u_t + k*u = 0 equation_fit {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt + c*u_t + k*u = 0 poly_physics {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt + c*u_t + k*u = 0 nn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt + c*u_t + k*u = 0 pinn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u'' + c*u' + f(u) = 0 poly {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u'' + c*u' + f(u) = 0 spline {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u'' + c*u' + f(u) = 0 equation_fit {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u'' + c*u' + f(u) = 0 poly_physics {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u'' + c*u' + f(u) = 0 nn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u'' + c*u' + f(u) = 0 pinn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt = -g*sin(u) poly {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt = -g*sin(u) spline {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt = -g*sin(u) equation_fit {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt = -g*sin(u) poly_physics {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt = -g*sin(u) nn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_tt = -g*sin(u) pinn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -k*(u - A) poly {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -k*(u - A) spline {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -k*(u - A) equation_fit {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -k*(u - A) poly_physics {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -k*(u - A) nn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -k*(u - A) pinn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx poly {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx spline {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx equation_fit {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx poly_physics {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx nn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx pinn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t + u*u_x = nu*u_xx poly {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t + u*u_x = nu*u_xx spline {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t + u*u_x = nu*u_xx equation_fit {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t + u*u_x = nu*u_xx poly_physics {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t + u*u_x = nu*u_xx nn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t + u*u_x = nu*u_xx pinn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx + r*u*(1 - u) poly {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx + r*u*(1 - u) spline {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx + r*u*(1 - u) equation_fit {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx + r*u*(1 - u) poly_physics {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx + r*u*(1 - u) nn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = D*u_xx + r*u*(1 - u) pinn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -np*exp(-c*t)*u poly {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -np*exp(-c*t)*u spline {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -np*exp(-c*t)*u equation_fit {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -np*exp(-c*t)*u poly_physics {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -np*exp(-c*t)*u nn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+u_t = -np*exp(-c*t)*u pinn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+T_t = -k*(T - 20) poly {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+T_t = -k*(T - 20) spline {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+T_t = -k*(T - 20) equation_fit {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+T_t = -k*(T - 20) poly_physics {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+T_t = -k*(T - 20) nn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+T_t = -k*(T - 20) pinn {'C0_identical': True, 'C1_imports_ok': True, 'C1_bad_imports': [], 'C1_runs': True, 'C2_max_rel_diff': 0.0, 'C2_match': True}
+S1_bom spline MISS
+S1_bom equation_fit MISS
+S2_reordered_extra spline OK
+S2_reordered_extra equation_fit OK
+S3_missing_value spline MISS
+S3_missing_value equation_fit MISS
+S4_text_value spline MISS
+S4_text_value equation_fit MISS
+S5_no_target spline MISS
+S5_no_target equation_fit MISS
+
+scripts: 66  C0 66  C1 imports 66  C1 runs 66  C2 match 66  reader 2/10

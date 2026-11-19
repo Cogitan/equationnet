@@ -1,0 +1,9 @@
+{"kind": "main", "problem": "pendulum", "seed": 51, "z": {"w": -0.38065030823035984}}
+{"kind": "main", "problem": "duffing_uneven", "seed": 51, "z": {"c": 0.11411975930606012, "a": -0.43420927482568583, "b": 0.19226354633008297}}
+{"kind": "main", "problem": "van_der_pol", "seed": 51, "z": {"mu": -0.3404034963735569}}
+{"problem": "gompertz", "seed": 1001, "status": "ok", "z": {"r": 0.2568395145916499, "K": 1.1721408686196688}, "kind": "coverage"}
+{"problem": "gompertz", "seed": 1003, "status": "ok", "z": {"r": 1.456419729372963, "K": -2.043103195295596}, "kind": "coverage"}
+{"problem": "gompertz", "seed": 1019, "status": "ok", "z": {"r": -0.9879776421978215, "K": 2.828410267506341}, "kind": "coverage"}
+{"problem": "duffing_uneven", "seed": 1000, "status": "ok", "z": {"c": 1.5911847117680342, "a": 1.722542580197359, "b": -1.7749589833201684}, "kind": "coverage"}
+{"problem": "duffing_uneven", "seed": 1006, "status": "ok", "z": {"c": -0.32384704472214443, "a": 0.6477604995421542, "b": -1.2325310454783402}, "kind": "coverage"}
+{"problem": "duffing_uneven", "seed": 1011, "status": "ok", "z": {"c": 0.13564615576704855, "a": -0.05701757915009055, "b": 0.2437689243938169}, "kind": "coverage"}

@@ -1,0 +1,54 @@
+
+== oscillator / random / seed 0
+  Equation fit (classical)           0.04208  (47.1s)
+equation: u_tt + c*u_t + k*u = 0
+          target u(t); fit c, k
+split: random, 5-fold cross-validation; errors are the mean over folds.
+       Returned models are retrained on all 16 points.
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Equation fit (classical)                  0.04208   47.1s   c=0.2909, k=3.994
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+note (Equation fit (classical)): a faster-changing curve (29 turning points against 6) fits these data equally well; the smoother one is returned. More closely or unevenly spaced data would tell them apart.
+
+== missing_term / random / seed 0
+  Equation fit (classical)           0.1012  (199.7s)
+equation: u_tt + c*u_t + f(u) = 0
+          target u(t); fit c; learn f(u)
+split: random, 5-fold cross-validation; errors are the mean over folds.
+       Returned models are retrained on all 24 points.
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Equation fit (classical)                   0.1012  199.7s   c=0.2946
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+
+== oscillator / forecast / seed 0
+  Equation fit (classical)           0.08983  (15.3s)
+equation: u_tt + c*u_t + k*u = 0
+          target u(t); fit c, k
+split: forecast, 3 forecast origins (train on the past, score what comes next); errors are the mean over folds.
+       Returned models are retrained on all 16 points.
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Equation fit (classical)                  0.08983   15.3s   c=0.2866, k=4.036
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+note (Equation fit (classical)): a faster-changing curve (24 turning points against 6) fits these data equally well; the smoother one is returned. More closely or unevenly spaced data would tell them apart.
+
+== missing_term / forecast / seed 0
+  Equation fit (classical)           0.08464  (24.1s)
+equation: u_tt + c*u_t + f(u) = 0
+          target u(t); fit c; learn f(u)
+split: forecast, 3 forecast origins (train on the past, score what comes next); errors are the mean over folds.
+       Returned models are retrained on all 24 points.
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Equation fit (classical)                  0.08464   24.1s   c=0.2867
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.

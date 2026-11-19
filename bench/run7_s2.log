@@ -1,0 +1,142 @@
+
+== oscillator / random / seed 2
+  Polynomial (data only)             3.87  (0.0s)
+  Smoothing spline (data only)       0.3958  (0.1s)
+  Equation fit (classical)           0.06653  (28.8s)
+  Polynomial + equation              0.07888  (21.1s)
+  Neural network (data only)         0.2049  (19.8s)
+  PINN (neural network + equation)   0.08285  (61.6s)
+equation: u_tt + c*u_t + k*u = 0
+          target u(t); fit c, k
+split: random, 5-fold cross-validation; errors are the mean over folds.
+       Returned models are retrained on all 16 points.
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Equation fit (classical)                  0.06653   28.8s   c=0.3249, k=3.986
+2    Polynomial + equation                     0.07888   21.1s   c=0.3051, k=4.01
+3    PINN (neural network + equation)          0.08285   61.6s   c=0.3076, k=4
+4    Neural network (data only)                 0.2049   19.8s   -
+5    Smoothing spline (data only)               0.3958    0.1s   -
+6    Polynomial (data only)                       3.87    0.0s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+
+== heat / random / seed 2
+  Polynomial (data only)             0.03351  (0.0s)
+  Smoothing spline (data only)       0.0399  (0.0s)
+  Equation fit (classical)           0.02777  (3.0s)
+  Polynomial + equation              0.04646  (3.8s)
+  Neural network (data only)         0.05391  (4.4s)
+  PINN (neural network + equation)   0.02897  (18.6s)
+equation: u_t = D*u_xx
+          target u(x, t); fit D
+split: random, 97 points to train, 24 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = Equation fit (classical)                  0.02777    3.0s   D=0.0968
+2  = PINN (neural network + equation)          0.02897   18.6s   D=0.09381
+3    Polynomial (data only)                    0.03351    0.0s   -
+4    Smoothing spline (data only)               0.0399    0.0s   -
+5    Polynomial + equation                     0.04646    3.8s   D=0.001012
+6    Neural network (data only)                0.05391    4.4s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+=     2 models are within the noise of the lowest error on these 24 held-out points, so the data cannot tell them apart.
+      The lowest is also the one with the fewest free numbers.
+
+== missing_term / random / seed 2
+  Polynomial (data only)             0.5224  (0.0s)
+  Smoothing spline (data only)       0.1143  (0.0s)
+  Equation fit (classical)           0.1669  (89.0s)
+  Polynomial + equation              0.05724  (39.5s)
+  Neural network (data only)         0.2048  (19.3s)
+  PINN (neural network + equation)   0.06073  (65.7s)
+equation: u_tt + c*u_t + f(u) = 0
+          target u(t); fit c; learn f(u)
+split: random, 5-fold cross-validation; errors are the mean over folds.
+       Returned models are retrained on all 24 points.
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = Polynomial + equation                     0.05724   39.5s   c=0.3212
+2  = PINN (neural network + equation)          0.06073   65.7s   c=0.3101
+3    Smoothing spline (data only)               0.1143    0.0s   -
+4    Equation fit (classical)                   0.1669   89.0s   c=0.3189
+5    Neural network (data only)                 0.2048   19.3s   -
+6    Polynomial (data only)                     0.5224    0.0s   -
+
+best: Polynomial + equation. Held-out error is the RMS error on data the models never saw.
+=     2 models are within the noise of the lowest error on these 24 held-out points, so the data cannot tell them apart.
+      The lowest is also the one with the fewest free numbers.
+
+== oscillator / forecast / seed 2
+  Polynomial (data only)             27.28  (0.0s)
+  Smoothing spline (data only)       1.904  (0.0s)
+  Equation fit (classical)           0.03355  (9.7s)
+  Polynomial + equation              0.03407  (12.2s)
+  Neural network (data only)         0.5513  (11.6s)
+  PINN (neural network + equation)   0.03304  (36.3s)
+equation: u_tt + c*u_t + k*u = 0
+          target u(t); fit c, k
+split: forecast, 3 forecast origins (train on the past, score what comes next); errors are the mean over folds.
+       Returned models are retrained on all 16 points.
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = PINN (neural network + equation)          0.03304   36.3s   c=0.3087, k=3.982
+2  = Equation fit (classical)                  0.03355    9.7s   c=0.318, k=3.973
+3  = Polynomial + equation                     0.03407   12.2s   c=0.3047, k=4
+4    Neural network (data only)                 0.5513   11.6s   -
+5    Smoothing spline (data only)                1.904    0.0s   -
+6    Polynomial (data only)                      27.28    0.0s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+=     3 models are within the noise of the lowest error on these 9 held-out points, so the data cannot tell them apart.
+      The one with the fewest free numbers is returned; pick="lowest" would return PINN (neural network + equation).
+
+== heat / forecast / seed 2
+  Polynomial (data only)             0.1351  (0.0s)
+  Smoothing spline (data only)       0.0459  (0.0s)
+  Equation fit (classical)           0.02565  (1.6s)
+  Polynomial + equation              0.09399  (3.8s)
+  Neural network (data only)         0.04327  (5.0s)
+  PINN (neural network + equation)   0.03352  (17.9s)
+equation: u_t = D*u_xx
+          target u(x, t); fit D
+split: forecast, 99 points to train, 22 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Equation fit (classical)                  0.02565    1.6s   D=0.09969
+2    PINN (neural network + equation)          0.03352   17.9s   D=0.09561
+3    Neural network (data only)                0.04327    5.0s   -
+4    Smoothing spline (data only)               0.0459    0.0s   -
+5    Polynomial + equation                     0.09399    3.8s   D=0.00324
+6    Polynomial (data only)                     0.1351    0.0s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+
+== missing_term / forecast / seed 2
+  Polynomial (data only)             31.28  (0.0s)
+  Smoothing spline (data only)       1.444  (0.0s)
+  Equation fit (classical)           0.0626  (34.2s)
+  Polynomial + equation              0.7099  (34.2s)
+  Neural network (data only)         1.052  (14.2s)
+  PINN (neural network + equation)   0.5773  (50.9s)
+equation: u_tt + c*u_t + f(u) = 0
+          target u(t); fit c; learn f(u)
+split: forecast, 3 forecast origins (train on the past, score what comes next); errors are the mean over folds.
+       Returned models are retrained on all 24 points.
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Equation fit (classical)                   0.0626   34.2s   c=0.2926
+2    PINN (neural network + equation)           0.5773   50.9s   c=0.2132
+3    Polynomial + equation                      0.7099   34.2s   c=0.2784
+4    Neural network (data only)                  1.052   14.2s   -
+5    Smoothing spline (data only)                1.444    0.0s   -
+6    Polynomial (data only)                      31.28    0.0s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.

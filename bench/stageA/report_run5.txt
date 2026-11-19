@@ -1,0 +1,64 @@
+84 runs
+
+A1  runs stopped with an error: 0; model results not ok: 2 of 504
+     gompertz 53 random pinn -> failed: the trained model predicts NaN or infinite values on held-out points (training diverged; the equation may be undefined for some values, e.g. l
+     gompertz 53 forecast pinn -> failed: the trained model predicts NaN or infinite values on held-out points (training diverged; the equation may be undefined for some values, e.g. l
+
+A2  pick within 1.5x of truly best: 75/84 = 89% (bar >= 90%); worst 52.16x (bar <= 3x); exactly best 66
+        52.16x  microseconds_sparse s53 forecast: picked pinn, best equation_fit
+        25.95x  microseconds_sparse s53 random: picked poly, best equation_fit
+        11.90x  quadratic_decay s53 forecast: picked equation_fit, best poly_physics
+         6.29x  quadratic_decay s53 random: picked spline, best equation_fit
+         4.39x  microseconds_sparse s52 forecast: picked poly_physics, best equation_fit
+         3.79x  one_exponential_second_order s51 random: picked equation_fit, best pinn
+         2.67x  quadratic_decay s52 forecast: picked equation_fit, best poly_physics
+         1.59x  burgers s53 random: picked poly_physics, best pinn
+         1.51x  logistic_dense_noisy s52 forecast: picked equation_fit, best pinn
+         1.32x  fisher_kpp s51 random: picked equation_fit, best pinn
+         1.30x  one_exponential_second_order s52 random: picked equation_fit, best pinn
+         1.28x  one_exponential_second_order s53 forecast: picked equation_fit, best pinn
+
+A3  classical fits with every constant within 3 SE: 71/72 = 99% (bar >= 90%)
+     |z|     3.24  gompertz s53 forecast r: fitted 0.3607 +- 0.0033, true 0.35
+     |z|     3.18  gompertz s53 forecast K: fitted 2480.6 +- 6.1, true 2500
+
+A5  false alarms on identifiable problems: 0 (bar 0)
+    (report only) separate 'models disagree' notes: 1 runs
+     van_der_pol 53 random | mu: the equation models give 1.111 to 1.496, while the classical fit gives 1.496 +- 0.01. The data pin mu down
+A6  non-identifiable runs where every constant is flagged: 12/12 (bar 100%)
+
+A7  an equation model truly best: 84/84
+     advection_diffusion           forecast  truly best: equation_fit, equation_fit, equation_fit
+     advection_diffusion           random    truly best: equation_fit, equation_fit, equation_fit
+     burgers                       forecast  truly best: equation_fit, equation_fit, equation_fit
+     burgers                       random    truly best: equation_fit, pinn, pinn
+     duffing_uneven                forecast  truly best: equation_fit, equation_fit, equation_fit
+     duffing_uneven                random    truly best: equation_fit, equation_fit, equation_fit
+     fisher_kpp                    forecast  truly best: pinn, equation_fit, equation_fit
+     fisher_kpp                    random    truly best: pinn, pinn, pinn
+     gompertz                      forecast  truly best: equation_fit, equation_fit, equation_fit
+     gompertz                      random    truly best: equation_fit, equation_fit, equation_fit
+     heat_edges                    forecast  truly best: equation_fit, equation_fit, equation_fit
+     heat_edges                    random    truly best: equation_fit, equation_fit, equation_fit
+     logistic_dense_noisy          forecast  truly best: equation_fit, pinn, equation_fit
+     logistic_dense_noisy          random    truly best: equation_fit, pinn, pinn
+     microseconds_sparse           forecast  truly best: equation_fit, equation_fit, equation_fit
+     microseconds_sparse           random    truly best: equation_fit, equation_fit, equation_fit
+     one_exponential_second_order  forecast  truly best: pinn, equation_fit, pinn
+     one_exponential_second_order  random    truly best: pinn, pinn, pinn
+     pendulum                      forecast  truly best: equation_fit, equation_fit, equation_fit
+     pendulum                      random    truly best: equation_fit, equation_fit, equation_fit
+     quadratic_decay               forecast  truly best: equation_fit, poly_physics, poly_physics
+     quadratic_decay               random    truly best: equation_fit, poly_physics, equation_fit
+     stiff_forced                  forecast  truly best: equation_fit, equation_fit, equation_fit
+     stiff_forced                  random    truly best: equation_fit, equation_fit, equation_fit
+     sum_of_rates                  forecast  truly best: equation_fit, equation_fit, equation_fit
+     sum_of_rates                  random    truly best: equation_fit, equation_fit, equation_fit
+     van_der_pol                   forecast  truly best: equation_fit, equation_fit, equation_fit
+     van_der_pol                   random    truly best: equation_fit, equation_fit, equation_fit
+
+A4  coverage of +-1.96 SE (bar 85% to 98% per family):
+     advection_diffusion    38/40 = 95%   rms z 1.11   failed fits 0
+     burgers                18/20 = 90%   rms z 1.36   failed fits 0
+     duffing_uneven         56/60 = 93%   rms z 1.12   failed fits 0
+     gompertz               38/40 = 95%   rms z 0.99   failed fits 0

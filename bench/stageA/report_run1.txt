@@ -1,0 +1,77 @@
+84 runs
+
+A1  runs stopped with an error: 0; model results not ok: 3 of 504
+     gompertz 11 forecast pinn -> failed: predictions were not finite
+     gompertz 13 random poly_physics -> failed: predictions were not finite
+     gompertz 13 random pinn -> failed: predictions were not finite
+
+A2  pick within 1.5x of truly best: 77/84 = 92% (bar >= 90%); worst 14.17x (bar <= 3x); exactly best 64
+        14.17x  quadratic_decay s12 forecast: picked poly_physics, best equation_fit
+         3.64x  one_exponential_second_order s11 forecast: picked poly_physics, best pinn
+         3.41x  microseconds_sparse s12 forecast: picked equation_fit, best pinn
+         2.24x  sum_of_rates s12 forecast: picked equation_fit, best poly_physics
+         2.08x  one_exponential_second_order s11 random: picked equation_fit, best poly_physics
+         1.98x  microseconds_sparse s13 random: picked poly_physics, best equation_fit
+         1.55x  quadratic_decay s13 forecast: picked equation_fit, best poly_physics
+         1.45x  fisher_kpp s13 random: picked equation_fit, best pinn
+         1.42x  fisher_kpp s11 random: picked equation_fit, best pinn
+         1.35x  fisher_kpp s11 forecast: picked equation_fit, best pinn
+         1.31x  gompertz s12 random: picked equation_fit, best pinn
+         1.24x  fisher_kpp s13 forecast: picked equation_fit, best pinn
+
+A3  classical fits with every constant within 3 SE: 66/72 = 92% (bar >= 90%)
+     |z|     9.77  advection_diffusion s12 forecast D: fitted -0.0010684 +- 0.0022, true 0.02
+     |z|     9.76  advection_diffusion s11 forecast D: fitted -0.0010986 +- 0.0022, true 0.02
+     |z|     9.69  advection_diffusion s13 forecast D: fitted -0.0010981 +- 0.0022, true 0.02
+     |z|     6.66  advection_diffusion s11 forecast v: fitted 1.1028 +- 0.045, true 0.8
+     |z|     6.64  advection_diffusion s12 forecast v: fitted 1.104 +- 0.046, true 0.8
+     |z|     6.61  advection_diffusion s13 forecast v: fitted 1.1037 +- 0.046, true 0.8
+     |z|     4.37  burgers s12 random nu: fitted 0.050789 +- 0.00018, true 0.05
+     |z|     3.90  heat_edges s13 random D: fitted 0.050051 +- 1.3e-05, true 0.05
+     |z|     3.53  heat_edges s13 forecast D: fitted 0.050049 +- 1.4e-05, true 0.05
+
+A5  false alarms on identifiable problems: 7 (bar 0)
+     advection_diffusion 11 random | v: the equation models disagree, 0.7968 to 0.889. If you know it, pass known={'v': ...}. Otherwise more or lon
+     advection_diffusion 11 forecast | D: consistent with 0 (classical fit -0.001099 +- 0.0022): the data cannot tell it from zero; the equation mode / v: the equation models disagree, 0.7981 to 1.103. If you know it, pass known={'v': ...}. Otherwise more or lon
+     advection_diffusion 12 forecast | D: consistent with 0 (classical fit -0.001068 +- 0.0022): the data cannot tell it from zero; the equation mode / v: the equation models disagree, 0.804 to 1.104. If you know it, pass known={'v': ...}. Otherwise more or long
+     duffing_uneven 13 random | a: the equation models disagree, 1.975 to 4.272. If you know it, pass known={'a': ...}. Otherwise more or long / b: the equation models disagree, 4.273 to 8.063. If you know it, pass known={'b': ...}. Otherwise more or long / c: the equation models disagree, 0.1493 to 0.1746. If you know it, pass known={'c': ...}. Otherwise more or lo
+     stiff_forced 13 random | k: the equation models disagree, 11.54 to 48.67. If you know it, pass known={'k': ...}. Otherwise more or long
+     advection_diffusion 13 forecast | D: consistent with 0 (classical fit -0.001098 +- 0.0022): the data cannot tell it from zero; the equation mode / v: the equation models disagree, 0.8022 to 1.104. If you know it, pass known={'v': ...}. Otherwise more or lon
+     fisher_kpp 13 random | D: the equation models disagree, 0.008112 to 0.01098. If you know it, pass known={'D': ...}. Otherwise more or
+A6  non-identifiable runs where every constant is flagged: 12/12 (bar 100%)
+
+A7  an equation model truly best: 81/84
+     advection_diffusion           forecast  truly best: pinn, pinn, pinn
+     advection_diffusion           random    truly best: pinn, pinn, pinn
+     burgers                       forecast  truly best: equation_fit, equation_fit, equation_fit
+     burgers                       random    truly best: equation_fit, pinn, equation_fit
+     duffing_uneven                forecast  truly best: equation_fit, equation_fit, equation_fit
+     duffing_uneven                random    truly best: equation_fit, equation_fit, equation_fit
+     fisher_kpp                    forecast  truly best: pinn, pinn, pinn
+     fisher_kpp                    random    truly best: pinn, pinn, pinn
+     gompertz                      forecast  truly best: poly_physics, equation_fit, poly_physics
+     gompertz                      random    truly best: equation_fit, pinn, equation_fit
+     heat_edges                    forecast  truly best: equation_fit, equation_fit, equation_fit
+     heat_edges                    random    truly best: equation_fit, poly, equation_fit
+     logistic_dense_noisy          forecast  truly best: pinn, equation_fit, poly_physics
+     logistic_dense_noisy          random    truly best: pinn, equation_fit, equation_fit
+     microseconds_sparse           forecast  truly best: equation_fit, pinn, equation_fit
+     microseconds_sparse           random    truly best: equation_fit, equation_fit, equation_fit
+     one_exponential_second_order  forecast  truly best: pinn, equation_fit, equation_fit
+     one_exponential_second_order  random    truly best: poly_physics, equation_fit, poly
+     pendulum                      forecast  truly best: equation_fit, equation_fit, equation_fit
+     pendulum                      random    truly best: equation_fit, equation_fit, equation_fit
+     quadratic_decay               forecast  truly best: equation_fit, equation_fit, poly_physics
+     quadratic_decay               random    truly best: equation_fit, equation_fit, equation_fit
+     stiff_forced                  forecast  truly best: equation_fit, equation_fit, equation_fit
+     stiff_forced                  random    truly best: equation_fit, equation_fit, spline
+     sum_of_rates                  forecast  truly best: equation_fit, poly_physics, equation_fit
+     sum_of_rates                  random    truly best: equation_fit, equation_fit, equation_fit
+     van_der_pol                   forecast  truly best: equation_fit, equation_fit, equation_fit
+     van_der_pol                   random    truly best: equation_fit, equation_fit, equation_fit
+
+A4  coverage of +-1.96 SE (bar 85% to 98% per family):
+     advection_diffusion    30/40 = 75%   rms z 1.52   failed fits 0
+     burgers                18/20 = 90%   rms z 1.34   failed fits 0
+     duffing_uneven         57/60 = 95%   rms z 2.38   failed fits 0
+     gompertz               36/40 = 90%   rms z 1.09   failed fits 0

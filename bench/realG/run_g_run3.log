@@ -1,0 +1,228 @@
+
+== Misra1a / u_x = k*(A - u) / random
+equation: u_x = k*(A - u)
+          target u(x); fit A, k
+split: random, 11 points to train, 3 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Polynomial (data only)                    0.01821    0.0s   -
+2    Equation fit (classical)                   0.0894    1.7s   A=252+-4, k=0.0005139+-1e-05
+3    Smoothing spline (data only)               0.1206    0.5s   -
+4    Neural network (data only)                  0.318    1.5s   -
+5    Polynomial + equation                      0.8261    3.8s   A=-4.276e+05, k=-2.415e-07
+6    PINN (neural network + equation)            30.38    2.0s   A=-5.342e+05, k=-1.574e-07
+
+best: Polynomial (data only). Held-out error is the RMS error on data the models never saw.
+note: the ranking rests on only 3 held-out point(s); treat it as a rough guide (more data, a larger holdout, or cv=5 scores more points)
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).
+
+== Misra1a / u_x = k*(A - u) / forecast
+equation: u_x = k*(A - u)
+          target u(x); fit A, k
+split: forecast, 11 points to train, 3 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Equation fit (classical)                   0.3607    1.7s   A=231.6+-4.1, k=0.0005681+-1.2e-05
+2    Polynomial (data only)                     0.9908    0.0s   -
+3    Neural network (data only)                  1.313    1.5s   -
+4    Smoothing spline (data only)                1.467    0.0s   -
+5    Polynomial + equation                       8.109    1.2s   A=4.693e+08, k=1.846e-10
+6    PINN (neural network + equation)            21.25    2.2s   A=8.225e+08, k=8.172e-11
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+note: the ranking rests on only 3 held-out point(s); treat it as a rough guide (more data, a larger holdout, or cv=5 scores more points)
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).
+
+== Misra1a / u_x = k*u / random
+equation: u_x = k*u
+          target u(x); fit k
+split: random, 11 points to train, 3 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Polynomial (data only)                    0.01821    0.0s   -
+2    Smoothing spline (data only)               0.1206    0.0s   -
+3    Neural network (data only)                  0.318    1.5s   -
+4    Polynomial + equation                       8.233    1.1s   k=0.001867
+5    PINN (neural network + equation)            8.274    2.1s   k=0.00186
+6    Equation fit (classical)                    10.21    1.1s   k=0.001886+-0.00015
+
+best: Polynomial (data only). Held-out error is the RMS error on data the models never saw.
+note: the ranking rests on only 3 held-out point(s); treat it as a rough guide (more data, a larger holdout, or cv=5 scores more points)
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).
+
+== Misra1a / u_x = k*u / forecast
+equation: u_x = k*u
+          target u(x); fit k
+split: forecast, 11 points to train, 3 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = Polynomial (data only)                     0.9908    0.0s   -
+2  = Neural network (data only)                  1.313    1.5s   -
+3  = Smoothing spline (data only)                1.467    0.0s   -
+4    PINN (neural network + equation)            26.75    2.0s   k=0.002819
+5    Polynomial + equation                       27.46    1.1s   k=0.002838
+6    Equation fit (classical)                    31.07    1.1s   k=0.002943+-0.00025
+
+best: Polynomial (data only). Held-out error is the RMS error on data the models never saw.
+=     3 models are within the noise of the lowest error on these 3 held-out points, so the data cannot tell them apart.
+      The lowest is also the one the equation constrains most.
+note: the ranking rests on only 3 held-out point(s); treat it as a rough guide (more data, a larger holdout, or cv=5 scores more points)
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).
+
+== Rat42 / u_t = r*u*(1 - u/K) / random
+equation: u_t = r*u*(1 - u/K)
+          target u(t); fit K, r
+split: random, 7 points to train, 2 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = Smoothing spline (data only)               0.2166    0.0s   -
+2  = Polynomial (data only)                     0.2396    0.0s   -
+3    Polynomial + equation                       1.031    1.3s   K=71.67, r=0.06933
+4    PINN (neural network + equation)            1.081    2.1s   K=71.53, r=0.06963
+5    Equation fit (classical)                    1.154    2.5s   K=71.44+-2.4, r=0.06984+-0.0062
+6    Neural network (data only)                  3.628    1.5s   -
+
+best: Polynomial (data only). Held-out error is the RMS error on data the models never saw.
+=     2 models are within the noise of the lowest error on these 2 held-out points, so the data cannot tell them apart.
+      The one the equation constrains most is returned; pick="lowest" would return Smoothing spline (data only).
+note: the ranking rests on only 2 held-out point(s); treat it as a rough guide (more data, a larger holdout, or cv=5 scores more points)
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).
+
+== Rat42 / u_t = r*u*(1 - u/K) / forecast
+equation: u_t = r*u*(1 - u/K)
+          target u(t); fit K, r
+split: forecast, 7 points to train, 2 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = Polynomial + equation                       2.457    1.3s   K=76.43, r=0.06369
+2  = PINN (neural network + equation)             2.96    2.0s   K=77.65, r=0.06261
+3  = Neural network (data only)                   2.98    1.5s   -
+4  = Equation fit (classical)                    3.266    2.5s   K=78.42+-5.2, r=0.06192+-0.0047
+5    Polynomial (data only)                      4.332    0.0s   -
+6    Smoothing spline (data only)                9.788    0.0s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+=     4 models are within the noise of the lowest error on these 2 held-out points, so the data cannot tell them apart.
+      The one the equation constrains most is returned; pick="lowest" would return Polynomial + equation.
+note: the ranking rests on only 2 held-out point(s); treat it as a rough guide (more data, a larger holdout, or cv=5 scores more points)
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).
+
+== Eckerle4 / u_x = -(x - m)*u/s^2 / random
+equation: u_x = -(x - m)*u/s^2
+          target u(x); fit m, s
+split: random, 28 points to train, 7 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Neural network (data only)              9.611e-05    1.5s   -
+2    Smoothing spline (data only)             0.005742    0.0s   -
+3    Polynomial + equation                     0.02142    1.2s   m=16.67, s=222
+4    PINN (neural network + equation)          0.05855    2.9s   m=6.205e+10, s=-2.775e+06
+5    Equation fit (classical)                  0.07867    9.3s   m=451.4 (+-inf), s=6.192 (+-inf)
+6    Polynomial (data only)                    0.09797    0.0s   -
+
+best: Neural network (data only). Held-out error is the RMS error on data the models never saw.
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).
+not pinned down: m: not determined (the classical fit is as good along a whole range of m). If you know it, pass known={'m': ...}. Otherwise more or longer data may help, unless only a combination of constants is determined.
+not pinned down: s: not determined (the classical fit is as good along a whole range of s). If you know it, pass known={'s': ...}. Otherwise more or longer data may help, unless only a combination of constants is determined.
+
+== Eckerle4 / u_x = -(x - m)*u/s^2 / forecast
+equation: u_x = -(x - m)*u/s^2
+          target u(x); fit m, s
+split: forecast, 28 points to train, 7 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Equation fit (classical)                0.0004905    7.4s   m=451.4 (+-inf), s=-6.188 (+-inf)
+2    Polynomial + equation                    0.001358    1.2s   m=451.5, s=4.925
+3    Neural network (data only)                 0.0043    1.5s   -
+4    PINN (neural network + equation)          0.02656    2.9s   m=3.993e+09, s=6.535e+05
+5    Smoothing spline (data only)                2.523    0.0s   -
+6    Polynomial (data only)                      399.3    0.0s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).
+not pinned down: m: not determined (the classical fit is as good along a whole range of m). If you know it, pass known={'m': ...}. Otherwise more or longer data may help, unless only a combination of constants is determined.
+not pinned down: s: not determined (the classical fit is as good along a whole range of s). If you know it, pass known={'s': ...}. Otherwise more or longer data may help, unless only a combination of constants is determined.
+
+== BoxBOD / u_t = k*(L - u) / random
+equation: u_t = k*(L - u)
+          target u(t); fit L, k
+split: random, 5 points to train, 1 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Polynomial (data only)                     0.9231    0.0s   -
+2    PINN (neural network + equation)            1.518    2.8s   L=243.7, k=0.2836
+3    Equation fit (classical)                     1.58    2.5s   L=243.8+-30, k=0.2214+-0.12
+4    Polynomial + equation                       2.239    1.1s   L=247, k=0.209
+5    Smoothing spline (data only)                  8.8    0.0s   -
+6    Neural network (data only)                  15.59    1.5s   -
+
+best: Polynomial (data only). Held-out error is the RMS error on data the models never saw.
+note: the ranking rests on only 1 held-out point(s); treat it as a rough guide (more data, a larger holdout, or cv=5 scores more points)
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).
+not pinned down: L: poorly determined: set to half or one and a half times its value (243.8), the classical fit refits the data as well. If you know it, pass known={'L': ...}. Otherwise more or longer data may help, unless only a combination of constants is determined.
+not pinned down: k: consistent with 0 (classical fit 0.2214 +- 0.12): the data cannot tell it from zero. If you know it, pass known={'k': ...}. Otherwise more or longer data may help, unless only a combination of constants is determined.
+
+== BoxBOD / u_t = k*(L - u) / forecast
+equation: u_t = k*(L - u)
+          target u(t); fit L, k
+split: forecast, 5 points to train, 1 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Neural network (data only)                  2.202    1.4s   -
+2    Polynomial (data only)                      2.706    0.0s   -
+3    Equation fit (classical)                    10.96    1.7s   L=268.4+-93, k=0.1708+-0.16
+4    Polynomial + equation                          11    1.2s   L=268.2, k=0.1708
+5    PINN (neural network + equation)            18.94    2.8s   L=273.8, k=0.2081
+6    Smoothing spline (data only)                43.09    0.0s   -
+
+best: Neural network (data only). Held-out error is the RMS error on data the models never saw.
+note: the ranking rests on only 1 held-out point(s); treat it as a rough guide (more data, a larger holdout, or cv=5 scores more points)
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).
+not pinned down: L: poorly determined: set to half or one and a half times its value (268.4), the classical fit refits the data as well. If you know it, pass known={'L': ...}. Otherwise more or longer data may help, unless only a combination of constants is determined.
+not pinned down: k: consistent with 0 (classical fit 0.1708 +- 0.16): the data cannot tell it from zero. If you know it, pass known={'k': ...}. Otherwise more or longer data may help, unless only a combination of constants is determined.
+
+== DanWood / u_x = b*u/x / random
+equation: u_x = b*u/x
+          target u(x); fit b
+split: random, 5 points to train, 1 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    PINN (neural network + equation)         0.002904    2.0s   b=3.856
+2    Polynomial + equation                    0.002911    1.1s   b=3.86
+3    Equation fit (classical)                 0.009009    0.5s   b=3.861+-0.059
+4    Polynomial (data only)                    0.01652    0.0s   -
+5    Neural network (data only)                0.02096    1.4s   -
+6    Smoothing spline (data only)              0.03059    0.0s   -
+
+best: PINN (neural network + equation). Held-out error is the RMS error on data the models never saw.
+note: the ranking rests on only 1 held-out point(s); treat it as a rough guide (more data, a larger holdout, or cv=5 scores more points)
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).
+
+== DanWood / u_x = b*u/x / forecast
+equation: u_x = b*u/x
+          target u(x); fit b
+split: forecast, 5 points to train, 1 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Smoothing spline (data only)             0.004035    0.0s   -
+2    Polynomial (data only)                    0.05155    0.0s   -
+3    Neural network (data only)                0.05568    1.4s   -
+4    Polynomial + equation                     0.09958    1.0s   b=3.951
+5    PINN (neural network + equation)          0.09993    2.0s   b=3.952
+6    Equation fit (classical)                   0.1011    0.5s   b=3.951+-0.031
+
+best: Smoothing spline (data only). Held-out error is the RMS error on data the models never saw.
+note: the ranking rests on only 1 held-out point(s); treat it as a rough guide (more data, a larger holdout, or cv=5 scores more points)
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).

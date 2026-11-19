@@ -1,0 +1,66 @@
+84 runs
+
+A1  runs stopped with an error: 0; model results not ok: 3 of 504
+     gompertz 41 random pinn -> failed: the trained model predicts NaN or infinite values on held-out points (training diverged; the equation may be undefined for some values, e.g. l
+     gompertz 41 forecast pinn -> failed: the trained model predicts NaN or infinite values on held-out points (training diverged; the equation may be undefined for some values, e.g. l
+     gompertz 43 random pinn -> failed: the trained model predicts NaN or infinite values on held-out points (training diverged; the equation may be undefined for some values, e.g. l
+
+A2  pick within 1.5x of truly best: 74/84 = 88% (bar >= 90%); worst 6.82x (bar <= 3x); exactly best 62
+         6.82x  microseconds_sparse s42 forecast: picked poly_physics, best equation_fit
+         4.99x  one_exponential_second_order s42 forecast: picked equation_fit, best pinn
+         3.26x  gompertz s42 forecast: picked equation_fit, best nn
+         2.44x  quadratic_decay s42 forecast: picked equation_fit, best poly_physics
+         2.27x  one_exponential_second_order s42 random: picked equation_fit, best pinn
+         2.22x  microseconds_sparse s41 forecast: picked equation_fit, best pinn
+         1.92x  burgers s42 random: picked poly_physics, best pinn
+         1.61x  one_exponential_second_order s41 random: picked equation_fit, best pinn
+         1.53x  one_exponential_second_order s43 forecast: picked equation_fit, best pinn
+         1.53x  burgers s43 random: picked poly_physics, best pinn
+         1.49x  fisher_kpp s43 random: picked equation_fit, best pinn
+         1.43x  burgers s41 random: picked poly_physics, best pinn
+
+A3  classical fits with every constant within 3 SE: 72/72 = 100% (bar >= 90%)
+
+A5  false alarms on identifiable problems: 1 (bar 0)
+     duffing_uneven 42 random | a: consistent with 0 (classical fit -0.6741 +- 1.1): the data cannot tell it from zero; the equation models di
+    (report only) separate 'models disagree' notes: 2 runs
+     duffing_uneven 42 random | c: the equation models give 0.1553 to 0.4485, while the classical fit gives 0.4485 +- 0.11. The data pin c dow
+     one_exponential_second_order 43 random | k: the equation models give -0.5466 to 2.184, while the classical fit gives -0.5466 +- 0.24. The data pin k do
+A6  non-identifiable runs where every constant is flagged: 11/12 (bar 100%)
+     MISSED one_exponential_second_order 43 random ["c: consistent with 0 (classical fit -0.591 +- 0.47): the data cannot tell it from zero; the equation models disagree, -0.591 to 4.866. If you know it, pass known={'c': ...}. Otherwise more or longer data may help, unless only a combination of constants is determined."] {'c': (-0.5910128741295922, 0.4705501244548389), 'k': (-0.5465903341505228, 0.2369203401175608)}
+
+A7  an equation model truly best: 82/84
+     advection_diffusion           forecast  truly best: equation_fit, equation_fit, equation_fit
+     advection_diffusion           random    truly best: equation_fit, equation_fit, equation_fit
+     burgers                       forecast  truly best: equation_fit, equation_fit, equation_fit
+     burgers                       random    truly best: pinn, pinn, pinn
+     duffing_uneven                forecast  truly best: equation_fit, equation_fit, equation_fit
+     duffing_uneven                random    truly best: equation_fit, poly_physics, equation_fit
+     fisher_kpp                    forecast  truly best: pinn, equation_fit, pinn
+     fisher_kpp                    random    truly best: pinn, pinn, pinn
+     gompertz                      forecast  truly best: equation_fit, nn, nn
+     gompertz                      random    truly best: poly_physics, equation_fit, equation_fit
+     heat_edges                    forecast  truly best: equation_fit, equation_fit, equation_fit
+     heat_edges                    random    truly best: equation_fit, poly_physics, equation_fit
+     logistic_dense_noisy          forecast  truly best: pinn, poly_physics, pinn
+     logistic_dense_noisy          random    truly best: pinn, equation_fit, equation_fit
+     microseconds_sparse           forecast  truly best: pinn, equation_fit, equation_fit
+     microseconds_sparse           random    truly best: equation_fit, equation_fit, equation_fit
+     one_exponential_second_order  forecast  truly best: equation_fit, pinn, pinn
+     one_exponential_second_order  random    truly best: pinn, pinn, pinn
+     pendulum                      forecast  truly best: equation_fit, equation_fit, equation_fit
+     pendulum                      random    truly best: equation_fit, equation_fit, equation_fit
+     quadratic_decay               forecast  truly best: equation_fit, poly_physics, equation_fit
+     quadratic_decay               random    truly best: equation_fit, equation_fit, equation_fit
+     stiff_forced                  forecast  truly best: equation_fit, equation_fit, equation_fit
+     stiff_forced                  random    truly best: equation_fit, equation_fit, equation_fit
+     sum_of_rates                  forecast  truly best: equation_fit, equation_fit, equation_fit
+     sum_of_rates                  random    truly best: equation_fit, equation_fit, equation_fit
+     van_der_pol                   forecast  truly best: equation_fit, equation_fit, equation_fit
+     van_der_pol                   random    truly best: equation_fit, equation_fit, equation_fit
+
+A4  coverage of +-1.96 SE (bar 85% to 98% per family):
+     advection_diffusion    37/40 = 92%   rms z 1.21   failed fits 0
+     burgers                20/20 = 100%   rms z 0.84   failed fits 0
+     duffing_uneven         54/60 = 90%   rms z 0.98   failed fits 0
+     gompertz               39/40 = 98%   rms z 0.90   failed fits 0

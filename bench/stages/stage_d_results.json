@@ -1,0 +1,162 @@
+{
+ "build": [
+  {
+   "cmd": "build --out-dir <work>\\dist <repo>",
+   "returncode": 0,
+   "tail": "onnet\\models.py -> build\\bdist.win-amd64\\wheel\\.\\equationnet\ncopying build\\lib\\equationnet\\parse.py -> build\\bdist.win-amd64\\wheel\\.\\equationnet\ncopying build\\lib\\equationnet\\templates.py -> build\\bdist.win-amd64\\wheel\\.\\equationnet\ncopying build\\lib\\equationnet\\__init__.py -> build\\bdist.win-amd64\\wheel\\.\\equationnet\nwarning: install_lib: byte-compiling is disabled, skipping.\n\nrunning install_egg_info\nCopying src\\equationnet.egg-info to build\\bdist.win-amd64\\wheel\\.\\equationnet-0.0.1-py3.10.egg-info\nrunning install_scripts\ncreating build\\bdist.win-amd64\\wheel\\equationnet-0.0.1.dist-info\\WHEEL\ncreating '<work>\\\\dist\\\\.tmp-fhi3q91f\\\\equationnet-0.0.1-py3-none-any.whl' and adding 'build\\\\bdist.win-amd64\\\\wheel' to it\nadding 'equationnet/__init__.py'\nadding 'equationnet/cli.py'\nadding 'equationnet/codegen.py'\nadding 'equationnet/fit.py'\nadding 'equationnet/models.py'\nadding 'equationnet/parse.py'\nadding 'equationnet/templates.py'\nadding 'equationnet-0.0.1.dist-info/licenses/LICENSE'\nadding 'equationnet-0.0.1.dist-info/METADATA'\nadding 'equationnet-0.0.1.dist-info/WHEEL'\nadding 'equationnet-0.0.1.dist-info/entry_points.txt'\nadding 'equationnet-0.0.1.dist-info/top_level.txt'\nadding 'equationnet-0.0.1.dist-info/RECORD'\nremoving build\\bdist.win-amd64\\wheel\nSuccessfully built dist\\equationnet-0.0.1.tar.gz\nSuccessfully built dist\\equationnet-0.0.1-py3-none-any.whl\n"
+  },
+  {
+   "cmd": "twine check <work>\\dist\\equationnet-0.0.1-py3-none-any.whl <work>\\dist\\equationnet-0.0.1.tar.gz",
+   "returncode": 0,
+   "tail": "Checking <work>\\dist\\equationnet-0.0.1-py3-none-any.whl: PASSED\nChecking <work>\\dist\\equationnet-0.0.1.tar.gz: PASSED\n"
+  }
+ ],
+ "wheel_files": [
+  "equationnet/__init__.py",
+  "equationnet/cli.py",
+  "equationnet/codegen.py",
+  "equationnet/fit.py",
+  "equationnet/models.py",
+  "equationnet/parse.py",
+  "equationnet/templates.py",
+  "equationnet-0.0.1.dist-info/licenses/LICENSE",
+  "equationnet-0.0.1.dist-info/METADATA",
+  "equationnet-0.0.1.dist-info/WHEEL",
+  "equationnet-0.0.1.dist-info/entry_points.txt",
+  "equationnet-0.0.1.dist-info/top_level.txt",
+  "equationnet-0.0.1.dist-info/RECORD"
+ ],
+ "pythons": {
+  "3.10": {
+   "steps": [
+    {
+     "cmd": "venv --python 3.10 <work>\\venv3.10",
+     "returncode": 0,
+     "tail": "Using CPython 3.10.20\nCreating virtual environment at: venv3.10\nActivate with: venv3.10\\Scripts\\activate\n"
+    },
+    {
+     "cmd": "pip install --python <work>\\venv3.10\\Scripts\\python.exe <work>\\dist\\equationnet-0.0.1-py3-none-any.whl pytest",
+     "returncode": 0,
+     "tail": "Using Python 3.10.20 environment at: venv3.10\nResolved 21 packages in 132ms\nPrepared 1 package in 29ms\nInstalled 21 packages in 10.33s\n + colorama==0.4.6\n + equationnet==0.0.1 (from file:///<work>/dist/equationnet-0.0.1-py3-none-any.whl)\n + exceptiongroup==1.3.1\n + filelock==4.1.0\n + fsspec==2026.9.0\n + iniconfig==2.3.1\n + jinja2==3.1.6\n + markupsafe==3.0.4\n + mpmath==1.3.0\n + networkx==3.4.2\n + numpy==2.2.6\n + packaging==26.3\n + pluggy==1.7.0\n + pygments==2.21.0\n + pytest==9.2.0\n + scipy==1.15.3\n + setuptools==84.2.1\n + sympy==1.14.0\n + tomli==2.5.0\n + torch==2.14.1\n + typing-extensions==4.16.0\n"
+    },
+    {
+     "cmd": "-c import sys, equationnet; print(sys.version); print(equationnet.__file__)",
+     "returncode": 0,
+     "tail": "3.10.20 (main, Apr  7 2026, 20:46:26) [MSC v.1944 64 bit (AMD64)]\n<work>\\venv3.10\\lib\\site-packages\\equationnet\\__init__.py\n"
+    },
+    {
+     "cmd": "readme_example.py",
+     "returncode": 0,
+     "tail": "  Polynomial (data only)             0.05869  (0.1s)\n  Smoothing spline (data only)       0.05551  (5.1s)\n  Equation fit (classical)           0.05754  (13.4s)\n  Polynomial + equation              0.05727  (12.5s)\n  Neural network (data only)         0.2913  (1.5s)\n  PINN (neural network + equation)   0.0571  (2.6s)\nequation: u_tt + c*u_t + k*u = 0\n          target u(t); fit c, k\nsplit: random, 32 points to train, 8 held out\n\nrank model                              held-out error    time   fitted\n-----------------------------------------------------------------------\n1  = Smoothing spline (data only)              0.05551    5.1s   -\n2  = PINN (neural network + equation)           0.0571    2.6s   c=0.3257, k=4.043\n3  = Polynomial + equation                     0.05727   12.5s   c=0.3261, k=4.038\n4  = Equation fit (classical)                  0.05754   13.4s   c=0.324+-0.015, k=4.029+-0.043\n5  = Polynomial (data only)                    0.05869    0.1s   -\n6    Neural network (data only)                 0.2913    1.5s   -\n\nbest: Equation fit (classical). Held-out error is the RMS error on data the models never saw.\n=     5 models are within the noise of the lowest error on these 8 held-out points, so the data cannot tell them apart.\n      The one the equation constrains most is returned; pick=\"lowest\" would return Smoothing spline (data only).\n+-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).\n"
+    },
+    {
+     "cmd": "best_model.py spring.csv",
+     "returncode": 0,
+     "tail": "fitted: {'c': 0.328266, 'k': 4.024747}\nstandard error: {'c': 0.015089, 'k': 0.033524}\nrms error on the data: 0.04346296133675413\npredictions at the data written to spring_best_model_pred.csv\n"
+    },
+    {
+     "cmd": "readme_api.py",
+     "returncode": 0,
+     "tail": "  Equation fit (classical)           0.05732  (8.5s)\n  PINN (neural network + equation)   0.05608  (6.0s)\nequation: u_tt + c*u_t + k*u = 0\n          target u(t); fit c; known k=4\nsplit: random, 32 points to train, 8 held out\n\nrank model                              held-out error    time   fitted\n-----------------------------------------------------------------------\n1  = PINN (neural network + equation)          0.05608    6.0s   c=0.3456\n2  = Equation fit (classical)                  0.05732    8.5s   c=0.3247+-0.014\n\nbest: Equation fit (classical). Held-out error is the RMS error on data the models never saw.\n=     2 models are within the noise of the lowest error on these 8 held-out points, so the data cannot tell them apart.\n      The one the equation constrains most is returned; pick=\"lowest\" would return PINN (neural network + equation).\n+-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).\n"
+    },
+    {
+     "cmd": "fit u_tt + c*u_t + k*u = 0 spring.csv --split forecast --out scripts/",
+     "returncode": 0,
+     "tail": "ing spline (data only)       2.138  (0.5s)\n  Equation fit (classical)           0.04601  (10.1s)\n  Polynomial + equation              0.06865  (3.9s)\n  Neural network (data only)         2.517  (1.5s)\n  PINN (neural network + equation)   0.05365  (3.2s)\n\nequation: u_tt + c*u_t + k*u = 0\n          target u(t); fit c, k\nsplit: forecast, 32 points to train, 8 held out\n\nrank model                              held-out error    time   fitted\n-----------------------------------------------------------------------\n1  = Equation fit (classical)                  0.04601   10.1s   c=0.3289+-0.018, k=4.008+-0.04\n2  = PINN (neural network + equation)          0.05365    3.2s   c=0.3295, k=3.997\n3    Polynomial + equation                     0.06865    3.9s   c=0.3188, k=3.954\n4    Smoothing spline (data only)                2.138    0.5s   -\n5    Neural network (data only)                  2.517    1.5s   -\n6    Polynomial (data only)                      192.7    0.0s   -\n\nbest: Equation fit (classical). Held-out error is the RMS error on data the models never saw.\n=     2 models are within the noise of the lowest error on these 8 held-out points, so the data cannot tell them apart.\n      The lowest is also the one the equation constrains most.\n+-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).\n\nscripts written: scripts\\poly.py, scripts\\spline.py, scripts\\equation_fit.py, scripts\\poly_physics.py, scripts\\nn.py, scripts\\pinn.py\n"
+    },
+    {
+     "cmd": "fit u_tt + c*u_t + k*u = 0 spring.csv --cv 5 --predict-at future_times.csv",
+     "returncode": 0,
+     "tail": "\n  Polynomial + equation              0.04977  (8.3s)\n  Neural network (data only)         0.1412  (9.2s)\n  PINN (neural network + equation)   0.04576  (19.6s)\n\nequation: u_tt + c*u_t + k*u = 0\n          target u(t); fit c, k\nsplit: random, 5-fold cross-validation; errors are the mean over folds.\n       Returned models are retrained on all 40 points.\n\nrank model                              held-out error    time   fitted\n-----------------------------------------------------------------------\n1  = Equation fit (classical)                  0.04385   67.8s   c=0.3283+-0.015, k=4.025+-0.034\n2  = PINN (neural network + equation)          0.04576   19.6s   c=0.3474, k=4.021\n3  = Polynomial + equation                     0.04977    8.3s   c=0.3294, k=4.009\n4    Neural network (data only)                 0.1412    9.2s   -\n5    Smoothing spline (data only)               0.2156    0.6s   -\n6    Polynomial (data only)                     0.2168    0.1s   -\n\nbest: Equation fit (classical). Held-out error is the RMS error on data the models never saw.\n=     3 models are within the noise of the lowest error on these 40 held-out points, so the data cannot tell them apart.\n      The lowest is also the one the equation constrains most.\n+-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).\n\npredictions of Equation fit (classical) at future_times.csv written to future_times_equation_fit_pred.csv\n  12  ->  0.0497471\n  14  ->  -0.0965377\n"
+    },
+    {
+     "cmd": "script u_t = D*u_xx --model pinn",
+     "returncode": 0,
+     "tail": "== \"__main__\":\n    import os\n\n    if len(sys.argv) < 2 or sys.argv[1] in (\"-h\", \"--help\"):\n        print(__doc__)\n        print(\"Usage: python this_file.py data.csv [points.csv]\")\n        print(\"  data.csv    training data; predictions at its rows go to data_<script>_pred.csv\")\n        print(\"  points.csv  optional: other locations (e.g. future times) to predict at\")\n        sys.exit(0 if len(sys.argv) >= 2 else 1)\n    name = os.path.splitext(os.path.basename(sys.argv[0]))[0] or \"pinn\"\n    X, y = load_csv(sys.argv[1])\n    state = train(X, y)\n    pred = predict(state, X)\n    se = uncertainty(state) if \"uncertainty\" in globals() else {}\n    print(\"fitted:\", {k: round(v, 6) for k, v in fitted_params(state).items()})\n    if se:\n        print(\"standard error:\", {k: round(v, 6) for k, v in se.items()})\n    print(\"rms error on the data:\", float(np.sqrt(np.mean((pred - y) ** 2))))\n    out = os.path.splitext(sys.argv[1])[0] + f\"_{name}_pred.csv\"\n    np.savetxt(out, np.column_stack([X, y, pred]), delimiter=\",\",\n               header=\",\".join(INDEP + [TARGET, \"prediction\"]), comments=\"\")\n    print(\"predictions at the data written to\", out)\n    if len(sys.argv) > 2:\n        P = load_points(sys.argv[2])\n        out2 = os.path.splitext(sys.argv[2])[0] + f\"_{name}_pred.csv\"\n        np.savetxt(out2, np.column_stack([P, predict(state, P)]), delimiter=\",\",\n                   header=\",\".join(INDEP + [\"prediction\"]), comments=\"\")\n        print(\"predictions at\", sys.argv[2], \"written to\", out2)\n\n"
+    },
+    {
+     "cmd": "models",
+     "returncode": 0,
+     "tail": "equation_fit  Equation fit (classical)\n              Solves the equation with a standard numerical solver (SciPy) and fits the unknowns\n              by least squares. No neural network. Unknown functions are cubic polynomials.\npinn          PINN (neural network + equation)\n              Physics-informed neural network: a small network trained so it matches the data\n              and satisfies the equation. Unknowns are trained alongside it.\npoly_physics  Polynomial + equation\n              Chebyshev polynomial trained like a PINN: matches the data and satisfies the equation.\nnn            Neural network (data only)\n              Plain neural network fitted to the data. Ignores the equation: a baseline.\nspline        Smoothing spline (data only)\n              Smoothing spline through the data (cubic in 1D, thin-plate in 2D+), smoothness\n              picked automatically. Ignores the equation: the strongest simple baseline.\npoly          Polynomial (data only)\n              Chebyshev polynomial least squares, degree picked by cross-validation.\n              Ignores the equation: a baseline.\n"
+    },
+    {
+     "cmd": "-c import ast; ast.parse(open('train_pinn.py').read()); print('train_pinn.py parses')",
+     "returncode": 0,
+     "tail": "train_pinn.py parses\n"
+    },
+    {
+     "cmd": "-m pytest -q -p no:cacheprovider --import-mode=importlib <work>\\tests3.10",
+     "returncode": 0,
+     "tail": "...........................................................s.......................................................................................................................................................................                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              [100%]\n226 passed, 1 skipped in 334.91s (0:05:34)\n"
+    }
+   ],
+   "all_ok": true
+  },
+  "3.13": {
+   "steps": [
+    {
+     "cmd": "venv --python 3.13 <work>\\venv3.13",
+     "returncode": 0,
+     "tail": "Using CPython 3.13.0 interpreter at: <home>\\AppData\\Local\\Programs\\Python\\Python313\\python.exe\nCreating virtual environment at: venv3.13\nActivate with: venv3.13\\Scripts\\activate\n"
+    },
+    {
+     "cmd": "pip install --python <work>\\venv3.13\\Scripts\\python.exe <work>\\dist\\equationnet-0.0.1.tar.gz pytest",
+     "returncode": 0,
+     "tail": "Using Python 3.13.0 environment at: venv3.13\nResolved 19 packages in 44ms\n   Building equationnet @ file:///<work>/dist/equationnet-0.0.1.tar.gz\n      Built equationnet @ file:///<work>/dist/equationnet-0.0.1.tar.gz\nPrepared 1 package in 1.12s\nInstalled 19 packages in 6.16s\n + colorama==0.4.6\n + equationnet==0.0.1 (from file:///<work>/dist/equationnet-0.0.1.tar.gz)\n + filelock==4.2.12\n + fsspec==2026.9.0\n + iniconfig==2.3.1\n + jinja2==3.1.6\n + markupsafe==3.0.4\n + mpmath==1.3.0\n + networkx==3.7\n + numpy==2.5.5\n + packaging==26.3\n + pluggy==1.7.0\n + pygments==2.21.0\n + pytest==9.2.0\n + scipy==1.18.1\n + setuptools==84.2.1\n + sympy==1.14.0\n + torch==2.15.0\n + typing-extensions==4.16.0\n"
+    },
+    {
+     "cmd": "-c import sys, equationnet; print(sys.version); print(equationnet.__file__)",
+     "returncode": 0,
+     "tail": "3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)]\n<work>\\venv3.13\\Lib\\site-packages\\equationnet\\__init__.py\n"
+    },
+    {
+     "cmd": "readme_example.py",
+     "returncode": 0,
+     "tail": "  Polynomial (data only)             0.05869  (0.1s)\n  Smoothing spline (data only)       0.05551  (4.9s)\n  Equation fit (classical)           0.05754  (11.6s)\n  Polynomial + equation              0.05727  (10.0s)\n  Neural network (data only)         0.2913  (1.4s)\n  PINN (neural network + equation)   0.0571  (2.6s)\nequation: u_tt + c*u_t + k*u = 0\n          target u(t); fit c, k\nsplit: random, 32 points to train, 8 held out\n\nrank model                              held-out error    time   fitted\n-----------------------------------------------------------------------\n1  = Smoothing spline (data only)              0.05551    4.9s   -\n2  = PINN (neural network + equation)           0.0571    2.6s   c=0.3257, k=4.043\n3  = Polynomial + equation                     0.05727   10.0s   c=0.3261, k=4.038\n4  = Equation fit (classical)                  0.05754   11.6s   c=0.324+-0.015, k=4.029+-0.043\n5  = Polynomial (data only)                    0.05869    0.1s   -\n6    Neural network (data only)                 0.2913    1.4s   -\n\nbest: Equation fit (classical). Held-out error is the RMS error on data the models never saw.\n=     5 models are within the noise of the lowest error on these 8 held-out points, so the data cannot tell them apart.\n      The one the equation constrains most is returned; pick=\"lowest\" would return Smoothing spline (data only).\n+-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).\n"
+    },
+    {
+     "cmd": "best_model.py spring.csv",
+     "returncode": 0,
+     "tail": "fitted: {'c': 0.328266, 'k': 4.024747}\nstandard error: {'c': 0.01509, 'k': 0.033506}\nrms error on the data: 0.04346296133737194\npredictions at the data written to spring_best_model_pred.csv\n"
+    },
+    {
+     "cmd": "readme_api.py",
+     "returncode": 0,
+     "tail": "  Equation fit (classical)           0.05732  (7.6s)\n  PINN (neural network + equation)   0.05608  (6.6s)\nequation: u_tt + c*u_t + k*u = 0\n          target u(t); fit c; known k=4\nsplit: random, 32 points to train, 8 held out\n\nrank model                              held-out error    time   fitted\n-----------------------------------------------------------------------\n1  = PINN (neural network + equation)          0.05608    6.6s   c=0.3456\n2  = Equation fit (classical)                  0.05732    7.6s   c=0.3247+-0.014\n\nbest: Equation fit (classical). Held-out error is the RMS error on data the models never saw.\n=     2 models are within the noise of the lowest error on these 8 held-out points, so the data cannot tell them apart.\n      The one the equation constrains most is returned; pick=\"lowest\" would return PINN (neural network + equation).\n+-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).\n"
+    },
+    {
+     "cmd": "fit u_tt + c*u_t + k*u = 0 spring.csv --split forecast --out scripts/",
+     "returncode": 0,
+     "tail": "hing spline (data only)       2.138  (0.6s)\n  Equation fit (classical)           0.04601  (8.9s)\n  Polynomial + equation              0.06865  (4.4s)\n  Neural network (data only)         2.517  (1.5s)\n  PINN (neural network + equation)   0.05365  (3.2s)\n\nequation: u_tt + c*u_t + k*u = 0\n          target u(t); fit c, k\nsplit: forecast, 32 points to train, 8 held out\n\nrank model                              held-out error    time   fitted\n-----------------------------------------------------------------------\n1  = Equation fit (classical)                  0.04601    8.9s   c=0.3289+-0.018, k=4.008+-0.04\n2  = PINN (neural network + equation)          0.05365    3.2s   c=0.3295, k=3.997\n3    Polynomial + equation                     0.06865    4.4s   c=0.3188, k=3.954\n4    Smoothing spline (data only)                2.138    0.6s   -\n5    Neural network (data only)                  2.517    1.5s   -\n6    Polynomial (data only)                      192.7    0.0s   -\n\nbest: Equation fit (classical). Held-out error is the RMS error on data the models never saw.\n=     2 models are within the noise of the lowest error on these 8 held-out points, so the data cannot tell them apart.\n      The lowest is also the one the equation constrains most.\n+-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).\n\nscripts written: scripts\\poly.py, scripts\\spline.py, scripts\\equation_fit.py, scripts\\poly_physics.py, scripts\\nn.py, scripts\\pinn.py\n"
+    },
+    {
+     "cmd": "fit u_tt + c*u_t + k*u = 0 spring.csv --cv 5 --predict-at future_times.csv",
+     "returncode": 0,
+     "tail": "\n  Polynomial + equation              0.04977  (8.7s)\n  Neural network (data only)         0.1412  (9.2s)\n  PINN (neural network + equation)   0.04576  (19.6s)\n\nequation: u_tt + c*u_t + k*u = 0\n          target u(t); fit c, k\nsplit: random, 5-fold cross-validation; errors are the mean over folds.\n       Returned models are retrained on all 40 points.\n\nrank model                              held-out error    time   fitted\n-----------------------------------------------------------------------\n1  = Equation fit (classical)                  0.04385   60.4s   c=0.3283+-0.015, k=4.025+-0.034\n2  = PINN (neural network + equation)          0.04576   19.6s   c=0.3474, k=4.021\n3  = Polynomial + equation                     0.04977    8.7s   c=0.3294, k=4.009\n4    Neural network (data only)                 0.1412    9.2s   -\n5    Smoothing spline (data only)               0.2156    0.7s   -\n6    Polynomial (data only)                     0.2168    0.1s   -\n\nbest: Equation fit (classical). Held-out error is the RMS error on data the models never saw.\n=     3 models are within the noise of the lowest error on these 40 held-out points, so the data cannot tell them apart.\n      The lowest is also the one the equation constrains most.\n+-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).\n\npredictions of Equation fit (classical) at future_times.csv written to future_times_equation_fit_pred.csv\n  12  ->  0.0497472\n  14  ->  -0.0965376\n"
+    },
+    {
+     "cmd": "script u_t = D*u_xx --model pinn",
+     "returncode": 0,
+     "tail": "== \"__main__\":\n    import os\n\n    if len(sys.argv) < 2 or sys.argv[1] in (\"-h\", \"--help\"):\n        print(__doc__)\n        print(\"Usage: python this_file.py data.csv [points.csv]\")\n        print(\"  data.csv    training data; predictions at its rows go to data_<script>_pred.csv\")\n        print(\"  points.csv  optional: other locations (e.g. future times) to predict at\")\n        sys.exit(0 if len(sys.argv) >= 2 else 1)\n    name = os.path.splitext(os.path.basename(sys.argv[0]))[0] or \"pinn\"\n    X, y = load_csv(sys.argv[1])\n    state = train(X, y)\n    pred = predict(state, X)\n    se = uncertainty(state) if \"uncertainty\" in globals() else {}\n    print(\"fitted:\", {k: round(v, 6) for k, v in fitted_params(state).items()})\n    if se:\n        print(\"standard error:\", {k: round(v, 6) for k, v in se.items()})\n    print(\"rms error on the data:\", float(np.sqrt(np.mean((pred - y) ** 2))))\n    out = os.path.splitext(sys.argv[1])[0] + f\"_{name}_pred.csv\"\n    np.savetxt(out, np.column_stack([X, y, pred]), delimiter=\",\",\n               header=\",\".join(INDEP + [TARGET, \"prediction\"]), comments=\"\")\n    print(\"predictions at the data written to\", out)\n    if len(sys.argv) > 2:\n        P = load_points(sys.argv[2])\n        out2 = os.path.splitext(sys.argv[2])[0] + f\"_{name}_pred.csv\"\n        np.savetxt(out2, np.column_stack([P, predict(state, P)]), delimiter=\",\",\n                   header=\",\".join(INDEP + [\"prediction\"]), comments=\"\")\n        print(\"predictions at\", sys.argv[2], \"written to\", out2)\n\n"
+    },
+    {
+     "cmd": "models",
+     "returncode": 0,
+     "tail": "equation_fit  Equation fit (classical)\n              Solves the equation with a standard numerical solver (SciPy) and fits the unknowns\n              by least squares. No neural network. Unknown functions are cubic polynomials.\npinn          PINN (neural network + equation)\n              Physics-informed neural network: a small network trained so it matches the data\n              and satisfies the equation. Unknowns are trained alongside it.\npoly_physics  Polynomial + equation\n              Chebyshev polynomial trained like a PINN: matches the data and satisfies the equation.\nnn            Neural network (data only)\n              Plain neural network fitted to the data. Ignores the equation: a baseline.\nspline        Smoothing spline (data only)\n              Smoothing spline through the data (cubic in 1D, thin-plate in 2D+), smoothness\n              picked automatically. Ignores the equation: the strongest simple baseline.\npoly          Polynomial (data only)\n              Chebyshev polynomial least squares, degree picked by cross-validation.\n              Ignores the equation: a baseline.\n"
+    },
+    {
+     "cmd": "-c import ast; ast.parse(open('train_pinn.py').read()); print('train_pinn.py parses')",
+     "returncode": 0,
+     "tail": "train_pinn.py parses\n"
+    },
+    {
+     "cmd": "-m pytest -q -p no:cacheprovider --import-mode=importlib <work>\\tests3.13",
+     "returncode": 0,
+     "tail": "   [100%]\n========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================== warnings summary ===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================\ntests3.13/test_inputs.py::test_a_classical_pde_start_profile_meets_the_edges[pulse_oversmoothed]\n  <work>\\venv3.13\\Lib\\site-packages\\scipy\\optimize\\_lsq\\trf.py:527: RuntimeWarning: overflow encountered in dot\n    cost_new = 0.5 * np.dot(f_new, f_new)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n226 passed, 1 skipped, 1 warning in 309.42s (0:05:09)\n"
+    }
+   ],
+   "all_ok": true
+  }
+ },
+ "build_ok": true
+}

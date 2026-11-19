@@ -1,0 +1,132 @@
+
+== theophylline / u_t = -k*u / random
+equation: u_t = -k*u
+          target u(t); fit k
+split: random, 9 points to train, 2 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Smoothing spline (data only)               0.0522    0.8s   -
+2    Polynomial (data only)                    0.06455    0.0s   -
+3    Neural network (data only)                 0.0832    3.4s   -
+4    PINN (neural network + equation)           0.1342    5.1s   k=0.172
+5    Polynomial + equation                      0.1362    4.0s   k=0.1719
+6    Equation fit (classical)                   0.1479    1.3s   k=0.1711
+
+best: Smoothing spline (data only). Held-out error is the RMS error on data the models never saw.
+
+== theophylline / u_t = -k*u / forecast
+equation: u_t = -k*u
+          target u(t); fit k
+split: forecast, 9 points to train, 2 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    PINN (neural network + equation)           0.0156    5.3s   k=0.1717
+2    Polynomial + equation                     0.02045    2.6s   k=0.1717
+3    Equation fit (classical)                  0.04256    0.9s   k=0.1708
+4    Neural network (data only)                 0.3931    3.6s   -
+5    Smoothing spline (data only)               0.4104    0.0s   -
+6    Polynomial (data only)                      1.059    0.0s   -
+
+best: PINN (neural network + equation). Held-out error is the RMS error on data the models never saw.
+
+== overdamped_pendulum / u_tt + c*u_t + k*u = 0 / random
+equation: u_tt + c*u_t + k*u = 0
+          target u(t); fit c, k
+split: random, 22 points to train, 5 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = Polynomial (data only)                    0.01828    0.0s   -
+2  = Smoothing spline (data only)              0.02053    0.0s   -
+3    Equation fit (classical)                  0.02086    1.6s   c=1.495, k=0.1371
+4    Polynomial + equation                     0.02959    3.3s   c=7.232, k=7.302
+5    PINN (neural network + equation)           0.0436    8.0s   c=4.797, k=4.136
+6  = Neural network (data only)                0.04681    4.1s   -
+
+best: Polynomial (data only). Held-out error is the RMS error on data the models never saw.
+=     3 models are within the noise of the lowest error on these 5 held-out points, so the data cannot tell them apart.
+      The lowest is also the one with the fewest free numbers.
+
+== overdamped_pendulum / u_tt + c*u_t + k*u = 0 / forecast
+equation: u_tt + c*u_t + k*u = 0
+          target u(t); fit c, k
+split: forecast, 21 points to train, 6 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = Polynomial + equation                     0.02848    3.2s   c=0.1768, k=-1.455
+2  = Equation fit (classical)                  0.03159    1.6s   c=1.942, k=0.7024
+3    PINN (neural network + equation)          0.07126    7.9s   c=5.385, k=4.978
+4    Neural network (data only)                 0.1206    3.9s   -
+5    Polynomial (data only)                     0.2039    0.0s   -
+6    Smoothing spline (data only)               0.2404    0.0s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+=     2 models are within the noise of the lowest error on these 6 held-out points, so the data cannot tell them apart.
+      The one with the fewest free numbers is returned; pick="lowest" would return Polynomial + equation.
+
+== calf_dye / u_t = -k*u / random
+equation: u_t = -k*u
+          target u(t); fit k
+split: random, 14 points to train, 3 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Neural network (data only)                0.02508    3.3s   -
+2    Smoothing spline (data only)               0.0413    0.0s   -
+3    Polynomial (data only)                    0.05251    0.0s   -
+4    PINN (neural network + equation)           0.2599    6.0s   k=0.2498
+5    Polynomial + equation                      0.2686    2.5s   k=0.2487
+6    Equation fit (classical)                   0.2978    1.2s   k=0.2475
+
+best: Neural network (data only). Held-out error is the RMS error on data the models never saw.
+
+== calf_dye / u_t = -k*u / forecast
+equation: u_t = -k*u
+          target u(t); fit k
+split: forecast, 13 points to train, 4 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Neural network (data only)                0.01454    3.5s   -
+2    PINN (neural network + equation)           0.1581    5.4s   k=0.2536
+3    Polynomial + equation                      0.1643    2.7s   k=0.2526
+4    Equation fit (classical)                   0.1826    1.0s   k=0.2501
+5    Smoothing spline (data only)                0.616    0.0s   -
+6    Polynomial (data only)                       59.2    0.0s   -
+
+best: Neural network (data only). Held-out error is the RMS error on data the models never saw.
+
+== calf_dye / u_t = -f(u) / random
+equation: u_t = -f(u)
+          target u(t); learn f(u)
+split: random, 14 points to train, 3 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Neural network (data only)                0.02508    3.6s   -
+2    PINN (neural network + equation)          0.02733    7.0s   -
+3    Smoothing spline (data only)               0.0413    0.0s   -
+4    Equation fit (classical)                  0.04142    1.4s   -
+5    Polynomial (data only)                    0.05251    0.0s   -
+6    Polynomial + equation                     0.08738    7.2s   -
+
+best: Neural network (data only). Held-out error is the RMS error on data the models never saw.
+
+== calf_dye / u_t = -f(u) / forecast
+equation: u_t = -f(u)
+          target u(t); learn f(u)
+split: forecast, 13 points to train, 4 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1    Neural network (data only)                0.01454    3.6s   -
+2    PINN (neural network + equation)          0.03311    6.5s   -
+3    Equation fit (classical)                  0.08441    1.4s   -
+4    Polynomial + equation                      0.1071    6.4s   -
+5    Smoothing spline (data only)                0.616    0.0s   -
+6    Polynomial (data only)                       59.2    0.0s   -
+
+best: Neural network (data only). Held-out error is the RMS error on data the models never saw.
