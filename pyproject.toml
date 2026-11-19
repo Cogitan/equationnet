@@ -8,7 +8,7 @@ version = "0.0.1"
 description = "Type an equation: six simple models (three that use it, three data-only baselines) are trained on your data and ranked on held-out points."
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["numpy>=1.24", "scipy>=1.10", "sympy>=1.12", "torch>=2.0"]
+dependencies = ["numpy>=1.24", "scipy>=1.10", "sympy>=1.12", "torch>=2.0", "questionary>=2.0"]
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{name = "Cogitan"}]
@@ -29,6 +29,9 @@ equationnet = "equationnet.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+equationnet = ["data/*.csv"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

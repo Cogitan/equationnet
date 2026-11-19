@@ -1,0 +1,439 @@
+[
+ {
+  "equation": "u_t = -k*u",
+  "columns": [
+   "Sample ID",
+   "Concentration (mg/L)",
+   "Time (min)"
+  ],
+  "split": "random",
+  "seconds": 7.7,
+  "I1_runs": true,
+  "returned": "equation_fit",
+  "ranking": [
+   [
+    "poly_physics",
+    0.01706
+   ],
+   [
+    "pinn",
+    0.017132
+   ],
+   [
+    "equation_fit",
+    0.017147
+   ],
+   [
+    "poly",
+    0.017195
+   ],
+   [
+    "nn",
+    0.017906
+   ],
+   [
+    "spline",
+    0.01895
+   ]
+  ],
+  "tied": [
+   "poly_physics",
+   "pinn",
+   "equation_fit",
+   "poly",
+   "nn",
+   "spline"
+  ],
+  "expected_phrase": "This data cannot tell whether your equation helps",
+  "I2_summary_ok": true,
+  "summary": "What this means\n  This data cannot tell whether your equation helps: the polynomial held to the equation, which uses it (off by 0.01706), and the polynomial, which does not (off by 0.0172), are within the noise of each other on the held-out points (both marked = in the table). Returned: Equation fit (classical), the one the equation constrains most.\n  Constants from the classical fit, fitted on the 24 training points: k=0.4969+-0.0022. The +- is one standard error (roughly a 68% range), if the equation is exactly right. Units are your columns': a rate is per one unit of Time (min).\n  Only 6 points were held back for testing, so treat the ranking as a rough guide. 'Careful' scoring tests every point.\n\nsaved <tmp>\\tmpmtv2f6_i\\case0\\out\\equation_fit.py\nsaved <tmp>\\tmpmtv2f6_i\\case0\\out\\field data 0_equationnet.csv  (your data with the columns named t, u, as the scripts expect)\nEach script trains its model again on all the data you give it (30 rows here), so its constants can differ a little from the table's, which came from the 24 training points. It needs only numpy, scipy and (for the networks) torch.\nTo run it later, open a te",
+  "I3_runs": true,
+  "I3_max_rel_diff": 0.0,
+  "I3_match": true
+ },
+ {
+  "equation": "u_t = k*(L - u)",
+  "columns": [
+   "hours",
+   "Temperature (°C)"
+  ],
+  "split": "forecast",
+  "seconds": 5.9,
+  "I1_runs": true,
+  "returned": "equation_fit",
+  "ranking": [
+   [
+    "equation_fit",
+    0.459746
+   ],
+   [
+    "poly_physics",
+    0.462037
+   ],
+   [
+    "pinn",
+    0.466308
+   ],
+   [
+    "nn",
+    0.531047
+   ],
+   [
+    "spline",
+    3.551483
+   ],
+   [
+    "poly",
+    5.429092
+   ]
+  ],
+  "tied": [
+   "equation_fit",
+   "poly_physics",
+   "pinn",
+   "nn"
+  ],
+  "expected_phrase": "This data cannot tell whether your equation helps",
+  "I2_summary_ok": true,
+  "summary": "What this means\n  This data cannot tell whether your equation helps: the classical fit, which uses it (off by 0.4597), and the neural network, which does not (off by 0.531), are within the noise of each other on the held-out points (both marked = in the table). Returned: Equation fit (classical), the one the equation constrains most.\n  Constants from the classical fit, fitted on the 24 training points: L=79.8+-0.17, k=0.4065+-0.0044. The +- is one standard error (roughly a 68% range), if the equation is exactly right. Units are your columns': a rate is per one unit of hours.\n  Only 6 points were held back for testing, so treat the ranking as a rough guide. 'Careful' scoring averages over several forecast windows.\n\nsaved <tmp>\\tmpmtv2f6_i\\case1\\out\\equation_fit.py\nsaved <tmp>\\tmpmtv2f6_i\\case1\\out\\field data 1_equationnet.csv  (your data with the columns named t, u, as the scripts expect)\nEach script trains its model again on all the data you give it (30 rows here), so its constants can differ a little from the table's, which came from the 24 training points. It needs only numpy, scipy and (for the networks) torch.\nTo run it la",
+  "I3_runs": true,
+  "I3_max_rel_diff": 0.0,
+  "I3_match": true
+ },
+ {
+  "equation": "u_t = r*u*(1 - u/K)",
+  "columns": [
+   "Population",
+   "Day"
+  ],
+  "split": "random",
+  "seconds": 7.4,
+  "I1_runs": true,
+  "returned": "poly",
+  "ranking": [
+   [
+    "spline",
+    0.375954
+   ],
+   [
+    "nn",
+    0.425032
+   ],
+   [
+    "poly",
+    0.461621
+   ],
+   [
+    "poly_physics",
+    0.513604
+   ],
+   [
+    "pinn",
+    0.518161
+   ],
+   [
+    "equation_fit",
+    0.5193
+   ]
+  ],
+  "tied": [
+   "spline",
+   "nn",
+   "poly"
+  ],
+  "expected_phrase": "Your equation did not help",
+  "I2_summary_ok": true,
+  "summary": "What this means\n  Your equation did not help on this data. On points the models never saw, the most accurate data-only model (the smoothing spline) was off by 0.376 in the units of Population, and the most accurate model using the equation (the polynomial held to the equation) by 0.5136. Possible reasons: the equation does not describe this data, the data is too small or noisy to show it, or the fits did not settle (read any notes above). Constants from an equation that does not describe the data mean little, however small their +-. Returned: Polynomial (data only).\n  Constants from the classical fit, fitted on the 32 training points: K=49.77+-0.12, r=0.8298+-0.0091. The +- is one standard error (roughly a 68% range), if the equation is exactly right. Units are your columns': a rate is per one unit of Day.\n  Only 8 points were held back for testing, so treat the ranking as a rough guide. 'Careful' scoring tests every point.\n\nsaved <tmp>\\tmpmtv2f6_i\\case2\\out\\poly.py\nsaved <tmp>\\tmpmtv2f6_i\\case2\\out\\field data 2_equationnet.csv  (your data with the columns named t, u, as the scripts expect)\nEach script trains its model again o",
+  "I3_runs": true,
+  "I3_max_rel_diff": 0.0,
+  "I3_match": true
+ },
+ {
+  "equation": "u_tt + c*u_t + k*u = 0",
+  "columns": [
+   "t [s]",
+   "displacement [m]"
+  ],
+  "split": "forecast",
+  "seconds": 15.0,
+  "I1_runs": true,
+  "returned": "equation_fit",
+  "ranking": [
+   [
+    "equation_fit",
+    0.010701
+   ],
+   [
+    "poly_physics",
+    0.01114
+   ],
+   [
+    "pinn",
+    0.011252
+   ],
+   [
+    "nn",
+    0.150044
+   ],
+   [
+    "spline",
+    1.068771
+   ],
+   [
+    "poly",
+    34.528609
+   ]
+  ],
+  "tied": [
+   "equation_fit",
+   "poly_physics",
+   "pinn"
+  ],
+  "expected_phrase": "Your equation helped",
+  "I2_summary_ok": true,
+  "summary": "What this means\n  Your equation helped. On points the models never saw, the most accurate model using it (the classical fit) was off by 0.0107 in the units of displacement [m], and the most accurate data-only model (the neural network) by 0.15, 14.0 times as much. Returned: Equation fit (classical).\n  Constants from the classical fit, fitted on the 40 training points: c=0.2034+-0.0042, k=2.992+-0.0082. The +- is one standard error (roughly a 68% range), if the equation is exactly right. Units are your columns': a rate is per one unit of t [s].\n\nsaved <tmp>\\tmpmtv2f6_i\\case3\\out\\equation_fit.py\nsaved <tmp>\\tmpmtv2f6_i\\case3\\out\\field data 3_equationnet.csv  (your data with the columns named t, u, as the scripts expect)\nEach script trains its model again on all the data you give it (50 rows here), so its constants can differ a little from the table's, which came from the 40 training points. It needs only numpy, scipy and (for the networks) torch.\nTo run it later, open a terminal in that folder and type:\n  python equation_fit.py field data 3_equationnet.csv\n(python here is the one that runs equationnet: <repo>\\.ve",
+  "I3_runs": true,
+  "I3_max_rel_diff": 0.0,
+  "I3_match": true
+ },
+ {
+  "equation": "u_tt = -w*sin(u)",
+  "columns": [
+   "time",
+   "angle (rad)"
+  ],
+  "split": "random",
+  "seconds": 18.3,
+  "I1_runs": true,
+  "returned": "equation_fit",
+  "ranking": [
+   [
+    "equation_fit",
+    0.018159
+   ],
+   [
+    "pinn",
+    0.019495
+   ],
+   [
+    "poly",
+    0.020443
+   ],
+   [
+    "poly_physics",
+    0.022116
+   ],
+   [
+    "nn",
+    0.022186
+   ],
+   [
+    "spline",
+    0.836661
+   ]
+  ],
+  "tied": [
+   "equation_fit",
+   "pinn",
+   "poly",
+   "poly_physics",
+   "nn"
+  ],
+  "expected_phrase": "This data cannot tell whether your equation helps",
+  "I2_summary_ok": true,
+  "summary": "What this means\n  This data cannot tell whether your equation helps: the classical fit, which uses it (off by 0.01816), and the polynomial, which does not (off by 0.02044), are within the noise of each other on the held-out points (both marked = in the table). Returned: Equation fit (classical), the one the equation constrains most.\n  Constants from the classical fit, fitted on the 48 training points: w=9.795+-0.017. The +- is one standard error (roughly a 68% range), if the equation is exactly right. Units are your columns': a rate is per one unit of time.\n\nsaved <tmp>\\tmpmtv2f6_i\\case4\\out\\equation_fit.py\nsaved <tmp>\\tmpmtv2f6_i\\case4\\out\\field data 4_equationnet.csv  (your data with the columns named t, u, as the scripts expect)\nEach script trains its model again on all the data you give it (60 rows here), so its constants can differ a little from the table's, which came from the 48 training points. It needs only numpy, scipy and (for the networks) torch.\nTo run it later, open a terminal in that folder and type:\n  python equation_fit.py field data 4_equationnet.csv\n(python here is the one that runs equationnet: <repo>",
+  "I3_runs": true,
+  "I3_max_rel_diff": 0.0,
+  "I3_match": true
+ },
+ {
+  "equation": "u_t = D*u_xx",
+  "columns": [
+   "time (days)",
+   "depth (m)",
+   "temperature"
+  ],
+  "split": "forecast",
+  "seconds": 30.6,
+  "I1_runs": true,
+  "returned": "equation_fit",
+  "ranking": [
+   [
+    "equation_fit",
+    0.002436
+   ],
+   [
+    "pinn",
+    0.00322
+   ],
+   [
+    "nn",
+    0.003433
+   ],
+   [
+    "poly",
+    0.008015
+   ],
+   [
+    "poly_physics",
+    0.009762
+   ],
+   [
+    "spline",
+    0.025365
+   ]
+  ],
+  "tied": [
+   "equation_fit"
+  ],
+  "expected_phrase": "Your equation helped",
+  "I2_summary_ok": true,
+  "summary": "What this means\n  Your equation helped. On points the models never saw, the most accurate model using it (the classical fit) was off by 0.002436 in the units of temperature, and the most accurate data-only model (the neural network) by 0.003433, 1.4 times as much. Returned: Equation fit (classical).\n  Constants from the classical fit, fitted on the 189 training points: D=0.04999+-8.8e-05. The +- is one standard error (roughly a 68% range), if the equation is exactly right. Units are your columns': a rate is per one unit of time (days).\n  Ignore the constants of the polynomial held to the equation: on the held-out points it was off by 4 or more times as much as the classical fit.\n  Forecasting with position: past the last training time the classical fit holds the edge values at their last fitted values; they are not predicted.\n\nsaved <tmp>\\tmpmtv2f6_i\\case5\\out\\equation_fit.py\nsaved <tmp>\\tmpmtv2f6_i\\case5\\out\\field data 5_equationnet.csv  (your data with the columns named x, t, u, as the scripts expect)\nEach script trains its model again on all the data you give it (231 rows here), so its constants can differ a little from the",
+  "I3_runs": true,
+  "I3_max_rel_diff": 0.0,
+  "I3_match": true
+ },
+ {
+  "equation": "u_t + v*u_x = D*u_xx",
+  "columns": [
+   "distance km",
+   "dye level",
+   "t (h)"
+  ],
+  "split": "random",
+  "seconds": 36.9,
+  "I1_runs": true,
+  "returned": "equation_fit",
+  "ranking": [
+   [
+    "equation_fit",
+    0.001577
+   ],
+   [
+    "pinn",
+    0.002201
+   ],
+   [
+    "nn",
+    0.00556
+   ],
+   [
+    "spline",
+    0.039228
+   ],
+   [
+    "poly",
+    0.058498
+   ],
+   [
+    "poly_physics",
+    0.97795
+   ]
+  ],
+  "tied": [
+   "equation_fit"
+  ],
+  "expected_phrase": "Your equation helped",
+  "I2_summary_ok": true,
+  "summary": "What this means\n  Your equation helped. On points the models never saw, the most accurate model using it (the classical fit) was off by 0.001577 in the units of dye level, and the most accurate data-only model (the neural network) by 0.00556, 3.5 times as much. Returned: Equation fit (classical).\n  Constants from the classical fit, fitted on the 185 training points: D=0.03011+-0.0001, v=0.5992+-0.00071. The +- is one standard error (roughly a 68% range), if the equation is exactly right. Units are your columns': a rate is per one unit of t (h).\n  Ignore the constants of the polynomial held to the equation: on the held-out points it was off by 620 or more times as much as the classical fit.\n\nsaved <tmp>\\tmpmtv2f6_i\\case6\\out\\equation_fit.py\nsaved <tmp>\\tmpmtv2f6_i\\case6\\out\\field data 6_equationnet.csv  (your data with the columns named x, t, u, as the scripts expect)\nEach script trains its model again on all the data you give it (231 rows here), so its constants can differ a little from the table's, which came from the 185 training points. It needs only numpy, scipy and (for the networks) torch.\nTo run it later, open a termina",
+  "I3_runs": true,
+  "I3_max_rel_diff": 0.0,
+  "I3_match": true
+ },
+ {
+  "equation": "u_t = D*u_xx + r*u*(1 - u)",
+  "columns": [
+   "position",
+   "time",
+   "density"
+  ],
+  "split": "forecast",
+  "seconds": 31.5,
+  "I1_runs": true,
+  "returned": "pinn",
+  "ranking": [
+   [
+    "pinn",
+    0.003681
+   ],
+   [
+    "equation_fit",
+    0.004612
+   ],
+   [
+    "nn",
+    0.005385
+   ],
+   [
+    "poly_physics",
+    0.005822
+   ],
+   [
+    "spline",
+    0.048332
+   ],
+   [
+    "poly",
+    0.581212
+   ]
+  ],
+  "tied": [
+   "pinn"
+  ],
+  "expected_phrase": "Your equation helped",
+  "I2_summary_ok": true,
+  "summary": "What this means\n  Your equation helped. On points the models never saw, the most accurate model using it (the PINN) was off by 0.003681 in the units of density, and the most accurate data-only model (the neural network) by 0.005385, 1.4 times as much. Returned: PINN (neural network + equation).\n  Constants from the classical fit, fitted on the 189 training points: D=0.01972+-0.0011, r=1.503+-0.0081. The +- is one standard error (roughly a 68% range), if the equation is exactly right. Units are your columns': a rate is per one unit of time.\n  Forecasting with position: past the last training time the classical fit holds the edge values at their last fitted values; they are not predicted.\n\nsaved <tmp>\\tmpmtv2f6_i\\case7\\out\\pinn.py\nsaved <tmp>\\tmpmtv2f6_i\\case7\\out\\field data 7_equationnet.csv  (your data with the columns named x, t, u, as the scripts expect)\nEach script trains its model again on all the data you give it (231 rows here), so its constants can differ a little from the table's, which came from the 189 training points. It needs only numpy, scipy and (for the networks) torch.\nTo run it later, open a terminal in that f",
+  "I3_runs": true,
+  "I3_max_rel_diff": 0.0,
+  "I3_match": true
+ },
+ {
+  "equation": "u_t + u*u_x = nu*u_xx",
+  "columns": [
+   "x (m)",
+   "t (s)",
+   "velocity (m/s)"
+  ],
+  "split": "random",
+  "seconds": 27.2,
+  "I1_runs": true,
+  "returned": "poly_physics",
+  "ranking": [
+   [
+    "pinn",
+    0.000687
+   ],
+   [
+    "nn",
+    0.000714
+   ],
+   [
+    "poly_physics",
+    0.000763
+   ],
+   [
+    "spline",
+    0.000928
+   ],
+   [
+    "equation_fit",
+    0.001174
+   ],
+   [
+    "poly",
+    0.001184
+   ]
+  ],
+  "tied": [
+   "pinn",
+   "nn",
+   "poly_physics"
+  ],
+  "expected_phrase": "This data cannot tell whether your equation helps",
+  "I2_summary_ok": true,
+  "summary": "What this means\n  This data cannot tell whether your equation helps: the PINN, which uses it (off by 0.0006873), and the neural network, which does not (off by 0.0007143), are within the noise of each other on the held-out points (both marked = in the table). Returned: Polynomial + equation, the one the equation constrains most.\n  Constants from the classical fit, fitted on the 185 training points: nu=0.08002+-0.00018. The +- is one standard error (roughly a 68% range), if the equation is exactly right. Units are your columns': a rate is per one unit of t (s).\n\nsaved <tmp>\\tmpmtv2f6_i\\case8\\out\\poly_physics.py\nsaved <tmp>\\tmpmtv2f6_i\\case8\\out\\field data 8_equationnet.csv  (your data with the columns named x, t, u, as the scripts expect)\nEach script trains its model again on all the data you give it (231 rows here), so its constants can differ a little from the table's, which came from the 185 training points. It needs only numpy, scipy and (for the networks) torch.\nTo run it later, open a terminal in that folder and type:\n  python poly_physics.py field data 8_equationnet.csv\n(python here is the one that runs equationnet: Z:\\c",
+  "I3_runs": true,
+  "I3_max_rel_diff": 0.0,
+  "I3_match": true
+ }
+]

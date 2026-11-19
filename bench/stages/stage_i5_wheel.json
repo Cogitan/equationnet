@@ -1,0 +1,13 @@
+{
+ "commit": "15ac95f",
+ "src_has_uncommitted_changes": false,
+ "wheel": "equationnet-0.0.1-py3-none-any.whl",
+ "python": "3.13.0",
+ "installed_from_site_packages": true,
+ "exit_code": 0,
+ "summary_printed": true,
+ "said_bye": true,
+ "traceback": false,
+ "pass": true,
+ "tail": "oints, so the data cannot tell them apart.\n      The one the equation constrains most is returned; pick=\"lowest\" would return Smoothing spline (data only).\n+-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).\nHow to read it: held-out error is how far off each model was, typically, on points it never saw (same units as u; lower is better). '=' marks models the data cannot tell apart. +- is one standard error (roughly a 68% range), if the equation is exactly right.\n\nWhat this means\n  This data cannot tell whether your equation helps: the PINN, which uses it (off by 0.0571), and the smoothing spline, which does not (off by 0.05551), are within the noise of each other on the held-out points (both marked = in the table). Returned: Equation fit (classical), the one the equation constrains most.\n  Constants from the classical fit, fitted on the 32 training points: c=0.324+-0.015, k=4.029+-0.043. The +- is one standard error (roughly a 68% range), if the equation is exactly right. Units are your columns': a rate is per one unit of t.\n  Only 8 points were held back for testing, so treat the ranking as a rough guide. 'Careful' scoring tests every point.\n\nWhat next?\n  1. Try another equation on the same data\n  2. Save the returned model (Equation fit (classical)) as a Python script\n  3. Save all the models as Python scripts\n  4. Predict u at new t values\n  5. What do these words mean?\n  6. Load other data\n  7. Quit\nnumber: \nBye.\n"
+}

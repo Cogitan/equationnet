@@ -5,6 +5,24 @@ models: three that use the equation and three data-only baselines. It ranks them
 by their error on points they never saw, and gives you each model as a standalone
 script.
 
+No code needed:
+
+```
+pip install equationnet
+equationnet
+```
+
+That starts a guided session in the terminal. It asks for your data file, a CSV that
+you can drag into the window. Then it asks which column you measured, which is time,
+and which equation to test: a starter such as logistic growth or the heat equation,
+or your own. It trains the six models and says in plain words whether the equation helped,
+with the fitted constants. Then it can save the returned model, or all six, as
+scripts, predict at new times, or try another equation on the same data. Arrow keys
+and Enter choose (with answers piped in, it shows numbered menus instead); Esc or
+Ctrl-C leaves.
+
+From Python:
+
 ```python
 import equationnet as en
 

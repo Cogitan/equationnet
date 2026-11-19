@@ -1,5 +1,7 @@
 """Command line:
 
+    equationnet                      (no arguments: a guided session, see guide.py)
+    equationnet start                (the same)
     equationnet fit "u_tt + c*u_t + k*u = 0" data.csv [--split forecast] [--out scripts/]
     equationnet script "u_t = D*u_xx" --model pinn > train_pinn.py
     equationnet models
@@ -38,8 +40,16 @@ def _cv(text: str):
 
 
 def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(prog="equationnet", description="Equation in, best model out.")
+    argv = sys.argv[1:] if argv is None else argv
+    if not argv or argv == ["start"]:
+        from .guide import run
+        return run()
+    p = argparse.ArgumentParser(
+        prog="equationnet",
+        description="Is your equation better than no equation? Type equationnet with no arguments "
+                    "for a guided session, or use the commands below.")
     sub = p.add_subparsers(dest="cmd", required=True)
+    sub.add_parser("start", help="a guided session: questions instead of options (same as no arguments)")
 
     f = sub.add_parser("fit", help="train every model on your data and rank them")
     f.add_argument("equation")

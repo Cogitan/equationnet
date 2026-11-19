@@ -1134,6 +1134,9 @@ README's example. Found and fixed:
 
 ### Stage D rerun after the soil test (2026-11-19)
 
+(Note added later on 2026-11-19: `stage_d_results.json` now holds the stage I run of
+stage D, 259 tests; the 226-test run below is that file at commit 7e49c18.)
+
 The soil commit (4dbc1e9) changed `templates.py` after the last stage D run, so stage D
 was run again (bars unchanged): build and twine check pass; on Python 3.10.20 (wheel)
 and 3.13.0 (sdist) every README example and CLI line runs, and the installed package
@@ -1141,3 +1144,117 @@ passes 226 tests with 1 skipped (pandas not installed) on both
 (`bench/stages/stage_d_results.json`). The one warning on 3.13, a SciPy overflow
 inside the deliberately over-smoothed start-profile test, was in the previous record
 too; that test passes.
+
+## Stage I (guided mode): bars written 2026-11-19, before any code or run
+
+The maintainer asked for a command line that people can use without knowing
+terminals or the papers ("I want people to have options"): typing `equationnet`
+starts a guided session (pick the data, say what each column is, pick a starter
+equation or type one, then results in plain words). These bars are fixed now, before
+the guided mode is written, under the rules at the top. Synthetic data for I1 uses
+seeds 900 to 999, never used before.
+
+| # | bar | proposed |
+|---|---|---|
+| I1 | every starter equation, on data made by that equation, runs end to end through the guided session (scripted answers) | 100% |
+| I2 | the plain-words summary names the same model as `result.best`, and what it says about equation vs data-only models matches the ranking and the ties | 100% of I1 and I3 runs |
+| I3 | data whose columns have any names (several letters, spaces, units in brackets) runs; the saved script runs on the saved data copy and its predictions match the library's (C2 tolerances) | 100% |
+| I4 | a wrong answer at any question (missing file, not a CSV, one column, a column that is not numbers, a bad equation, a known value that is not a number, an empty answer) gets a message in words and the question again; Ctrl-C or Esc leaves cleanly | 0 tracebacks |
+| I5 | with no terminal (answers piped in) the session falls back to numbered menus and runs, from the installed wheel on Python 3.10 and 3.13 | both |
+| I6 | `fit()`, `generate()` and the existing `equationnet fit/script/models` commands are unchanged: the full test suite passes | all pass |
+| I7 | a reviewer agent that has not seen the code, playing a scientist new to the tool, given only "pip install equationnet, then type equationnet" and a CSV with real-world column names, finishes a fit and correctly says whether the equation helped and what the fitted constant is, without opening the README | finishes and answers correctly; every confusion it reports fixed or accepted in writing |
+
+## Stage I (guided mode): results 2026-11-19
+
+`bench/stages/stage_i.py` (results `stage_i_results.json`, from run 3; logs
+`stage_i_run1.log`, `stage_i_run2.log`, `stage_i_run3.log`), `bench/stages/stage_i5_wheel.py`
+(`stage_i5_wheel.json`) and `tests/test_guide.py`, `tests/test_table.py`. Run 3 and the
+records below are on the final code (commit 15ac95f).
+
+| bar | result |
+|---|---|
+| I1 every starter runs end to end | 9 of 9 in run 1, run 2 (after the I7 fixes) and run 3 (after the preflight fixes) |
+| I2 summary matches `result.best`, the ranking and the ties | 9 of 9 in all three runs; plus the three summary cases in `test_summary_matches_the_ranking` |
+| I3 any column names; saved script on the data copy matches the library | 9 of 9 run and match (largest difference 0.0) in all three runs; column names with units, spaces and a degree sign |
+| I4 wrong answers get words and the question again | `test_wrong_answers_are_said_in_words_and_asked_again`: 13 wrong answers, 13 messages, 0 tracebacks; Ctrl-C and Esc leave cleanly (`test_quit_anywhere_is_clean`, `test_arrow_key_menus`) |
+| I5 numbered menus without a terminal, installed wheel, 3.10 and 3.13 | stage D rerun 2026-11-19 ran the guided session with piped answers on the packaged example: on 3.10.20 from the wheel, on 3.13.0 from the sdist (stage D installs one of each), and the installed package passed 259 tests with 1 skipped on each (`stage_d_results.json`). Found by the writing preflight: the bar asks for the wheel on both, so 3.13 was then run from the wheel too (see I5 wheel check below) |
+| I6 API and existing commands unchanged | full suite 261 passed, 1 skipped (pandas), on commit 15ac95f (`bench/stages/pytest_2026-11-19.log`) |
+| I7 new-user review by an AI agent | finished and answered correctly (below); the other confusions fixed, and the two points left unfixed accepted by the maintainer in writing (below) |
+
+Starters on their own data (run 2, not a bar): the equation helped in 4 of 9, the data
+could not tell in 4, and on logistic growth (random split) a data-only model was
+returned (the polynomial, by the tie rule; the smoothing spline had the lowest error).
+Recorded as found. Run 2 reused seeds 900 to 908: its fixes came from the I7 review, not
+from the I1 data, so no fix was tuned on those seeds.
+
+I7. The reviewer was an AI agent (Anthropic's Claude, the same model family that wrote
+the code), started without the code, the README or the author's notes. Its brief and
+condensed report are in `bench/stages/stage_i7_review.md`. It played a food-science
+student, told only to type `equationnet`. Its data was a CSV of a cooling cup with the columns
+`Minutes elapsed`, `Coffee temp (F)`, `Room temp (F)` and `Notes` (true L = 72,
+k = 0.035 per minute, noise 0.8 F). It picked "Relaxing toward a level" and found that
+the equation helped on the forecast split: 0.63 against 0.91 for the best data-only
+model. It reported L = 72.3 +- 0.4 and k = 0.0354 +- 0.0004, from the all-data script
+and the careful run, and compared L with the room-temperature column (71.4 to 72.4). Its confusions and what was done:
+
+1. The default for "which column did you measure" was Room temp: now the column
+   that varies most relative to its size, after setting aside the time-like column.
+2. Room temp offered as a "position": the question now asks whether the measurement
+   was taken at different positions, says most data is not like that, and defaults to No.
+3. Its room-temperature column was dropped with no use: the known-constants step now
+   names unused columns and their averages as possible constant values.
+4. "Steady decay" described as "cooling toward zero" steered toward the wrong equation:
+   reworded; "Relaxing toward a level" now names Newton's law of cooling.
+5. `u_t = k(L-u)` (no `*`) silently learned k(...) as an unknown function: the session
+   now prints how it read the equation and asks before learning any unknown function.
+6. `T_t = ...` gave "no derivative of u": the message now says the measured column is
+   called u here.
+7. "Careful" on a forecast split crashed with fold settings it never offered: careful
+   forecasts now use 3 windows, and when the data is still too short it says so and
+   runs Standard.
+8. The saved script's constants differed from the table's with no word why: the
+   constants line says they come from the training points, and saving says the script
+   refits on all the data.
+9. Poorly scoring equation models printed absurd constants (L = 0.755) unflagged: the
+   summary now says to ignore the constants of any equation model, the classical fit
+   included, off by more than 3 times the most accurate equation model.
+10. Running the script assumed programming knowledge: it now says to open a terminal
+    in the folder and which python to use.
+
+Also:
+- the table's `pass known={...}` advice is put in the session's terms;
+- a legend follows the table, and a "What do these words mean?" entry explains the terms;
+- predictions outside the data's range are flagged, and the session says that
+  predictions carry no uncertainty.
+
+Two points are left for the maintainer, not fixed:
+- the forecast and scattered verdicts are never shown side by side (they answer
+  different questions, and each run says which it is);
+- predictions carry no uncertainty in this version (now stated in words).
+
+**Maintainer, 2026-11-19: "I accept both".**
+
+The fixes were checked by tests, not by a second reviewer.
+
+I5 wheel check (2026-11-19, after the preflight; `bench/stages/stage_i5_wheel.py`,
+record `stage_i5_wheel.json`): the wheel built from commit 15ac95f, installed into a fresh
+Python 3.13.0 environment, ran the guided session with piped answers on the packaged
+example: exit 0, the summary printed, no traceback. With the
+3.10.20 wheel run in stage D, I5 is met on both versions.
+
+Writing preflight on this stage, the README section and the session's wording
+(2026-11-19, a separate reviewer agent, also Anthropic's Claude): NOT READY, 3 blockers and 6 should-fix, then
+fixed. The I5 and I7 rows above are its blockers 1 and 2. Its other findings changed the
+code: ties in the summary follow the table's `=` marks even when cross-validation orders
+models differently; the classical fit's constants are flagged too when it scores more
+than 3 times worse; the "times as much" figures round down (to a whole number in the "ignore the constants"
+line, to one decimal in the summary); the table's `best:` line
+reads `returned:` in the session, and the summary says "most accurate" for the lowest
+error; the Careful option states fit counts, not times. A recheck by another such agent
+found four more defects in those fixes (a tie sentence that called a lower-ranked model
+"the most accurate", a rounding claim, and two results not rerun or not recorded); fixed,
+and every stage I result was rerun on the final code (run 3, below).
+
+Order of record: the stage I bars were written into this file before any guided-mode
+code, as the date line says, but they first entered git together with the results, in
+the commit that added the guided session.

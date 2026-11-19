@@ -111,6 +111,15 @@ def main(work):
             step(run([cli, *args], cwd=ex, env=env, stdout_to=target))
         step(run([exe, "-c", "import ast; ast.parse(open('train_pinn.py').read()); print('train_pinn.py parses')"],
                  cwd=ex, env=env))
+        # stage I5: the guided session with answers piped in (numbered menus), on the
+        # packaged example: example data, default columns, damped spring, quit
+        answers = "\n".join(["2", "", "", "4", "n", "1", "1", "7"]) + "\n"   # 7 = Quit
+        g = subprocess.run([str(cli)], input=answers, cwd=ex, env=env,
+                           capture_output=True, text=True, timeout=1800)
+        ok = (g.returncode == 0 and "What this means" in g.stdout and "Bye." in g.stdout
+              and "Traceback" not in g.stdout + g.stderr)
+        step({"cmd": "equationnet (guided, answers piped)", "returncode": 0 if ok else 1,
+              "tail": (g.stdout + g.stderr)[-1500:]})
         tests = work / f"tests{py}"
         shutil.copytree(ROOT / "tests", tests)
         step(run([exe, "-m", "pytest", "-q", "-p", "no:cacheprovider", "--import-mode=importlib", tests],
