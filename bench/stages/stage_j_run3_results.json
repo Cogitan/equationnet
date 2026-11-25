@@ -1,0 +1,2164 @@
+{
+ "report": {
+  "J2": "24/24",
+  "J3_scores": "24/24",
+  "J3_ties": "10/10 (runs where none of yours is lowest)",
+  "J4": "20/20 runs with a tie between yours and a built-in",
+  "J4_said": "13/13 runs where yours was lowest and tied",
+  "J5": true
+ },
+ "rows": [
+  {
+   "case": "spring/random/cv1",
+   "seed": 0,
+   "kw": {
+    "split": "random",
+    "cv": 1
+   },
+   "seconds": 68.4,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": false,
+   "J3_ties": true,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": null,
+   "poly": 0.05869020953129841,
+   "poly_yours": 0.05869020953129841,
+   "without": {
+    "ranked": [
+     "spline",
+     "pinn",
+     "poly_physics",
+     "equation_fit",
+     "poly",
+     "nn"
+    ],
+    "tied": [
+     "spline",
+     "pinn",
+     "poly_physics",
+     "equation_fit",
+     "poly"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.05869020953129841,
+     "spline": 0.05551421403896233,
+     "equation_fit": 0.05754107091418934,
+     "poly_physics": 0.05727188539772639,
+     "nn": 0.2490641222209321,
+     "pinn": 0.057105281426313104
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "spline",
+     "pinn",
+     "poly_physics",
+     "equation_fit",
+     "poly",
+     "poly_yours",
+     "nn",
+     "nearest"
+    ],
+    "tied": [
+     "spline",
+     "pinn",
+     "poly_physics",
+     "equation_fit",
+     "poly",
+     "poly_yours"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.05869020953129841,
+     "spline": 0.05551421403896233,
+     "equation_fit": 0.05754107091418934,
+     "poly_physics": 0.05727188539772639,
+     "nn": 0.2490641222209321,
+     "pinn": 0.057105281426313104,
+     "poly_yours": 0.05869020953129841,
+     "nearest": 0.30750478034413753
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok"
+    }
+   }
+  },
+  {
+   "case": "spring/random/cv5",
+   "seed": 0,
+   "kw": {
+    "split": "random",
+    "cv": 5
+   },
+   "seconds": 445.5,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": false,
+   "J3_ties": true,
+   "J4_conflict": false,
+   "J4": true,
+   "J4_said": null,
+   "poly": 0.2168379959328585,
+   "poly_yours": 0.2168379959328585,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "pinn",
+     "poly_physics",
+     "nn",
+     "spline",
+     "poly"
+    ],
+    "tied": [
+     "equation_fit",
+     "pinn",
+     "poly_physics"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.2168379959328585,
+     "spline": 0.21562976802363729,
+     "equation_fit": 0.04384883746545446,
+     "poly_physics": 0.04742507459034341,
+     "nn": 0.18542785440911905,
+     "pinn": 0.04621253838300949
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "equation_fit",
+     "pinn",
+     "poly_physics",
+     "nn",
+     "spline",
+     "poly",
+     "poly_yours",
+     "nearest"
+    ],
+    "tied": [
+     "equation_fit",
+     "pinn",
+     "poly_physics"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.2168379959328585,
+     "spline": 0.21562976802363729,
+     "equation_fit": 0.04384883746545446,
+     "poly_physics": 0.04742507459034341,
+     "nn": 0.18542785440911905,
+     "pinn": 0.04621253838300949,
+     "poly_yours": 0.2168379959328585,
+     "nearest": 0.21808393420044908
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok"
+    }
+   }
+  },
+  {
+   "case": "spring/forecast/cv1",
+   "seed": 0,
+   "kw": {
+    "split": "forecast",
+    "cv": 1
+   },
+   "seconds": 71.7,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": false,
+   "J3_ties": true,
+   "J4_conflict": false,
+   "J4": true,
+   "J4_said": null,
+   "poly": 192.68463180567747,
+   "poly_yours": 192.68463180567747,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "pinn",
+     "poly_physics",
+     "nn",
+     "spline",
+     "poly"
+    ],
+    "tied": [
+     "equation_fit",
+     "pinn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 192.68463180567747,
+     "spline": 2.1375302456693697,
+     "equation_fit": 0.04600540761641906,
+     "poly_physics": 0.06864859135108288,
+     "nn": 1.993750144525711,
+     "pinn": 0.05349424685654223
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "equation_fit",
+     "pinn",
+     "poly_physics",
+     "nearest",
+     "nn",
+     "spline",
+     "poly",
+     "poly_yours"
+    ],
+    "tied": [
+     "equation_fit",
+     "pinn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 192.68463180567747,
+     "spline": 2.1375302456693697,
+     "equation_fit": 0.04600540761641906,
+     "poly_physics": 0.06864859135108288,
+     "nn": 1.993750144525711,
+     "pinn": 0.05349424685654223,
+     "poly_yours": 192.68463180567747,
+     "nearest": 0.4595626403514895
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok"
+    }
+   }
+  },
+  {
+   "case": "spring/forecast/cv3",
+   "seed": 0,
+   "kw": {
+    "split": "forecast",
+    "cv": 3
+   },
+   "seconds": 239.9,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": false,
+   "J3_ties": true,
+   "J4_conflict": false,
+   "J4": true,
+   "J4_said": null,
+   "poly": 90.20995266743671,
+   "poly_yours": 90.20995266743671,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "poly_physics",
+     "pinn",
+     "nn",
+     "spline",
+     "poly"
+    ],
+    "tied": [
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 90.20995266743671,
+     "spline": 3.1419775348580163,
+     "equation_fit": 0.05792416916740863,
+     "poly_physics": 0.07481705832775881,
+     "nn": 0.9533426492204655,
+     "pinn": 0.08591735989878595
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "equation_fit",
+     "poly_physics",
+     "pinn",
+     "nearest",
+     "nn",
+     "spline",
+     "poly",
+     "poly_yours"
+    ],
+    "tied": [
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 90.20995266743671,
+     "spline": 3.1419775348580163,
+     "equation_fit": 0.05792416916740863,
+     "poly_physics": 0.07481705832775881,
+     "nn": 0.9533426492204655,
+     "pinn": 0.08591735989878595,
+     "poly_yours": 90.20995266743671,
+     "nearest": 0.4312068344401394
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok"
+    }
+   }
+  },
+  {
+   "case": "gompertz/random",
+   "seed": 1120,
+   "kw": {
+    "split": "random"
+   },
+   "seconds": 40.2,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": false,
+   "J3_ties": true,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": null,
+   "poly": 16.945365339054497,
+   "poly_yours": 16.945365339054497,
+   "without": {
+    "ranked": [
+     "poly",
+     "spline",
+     "nn",
+     "equation_fit",
+     "poly_physics",
+     "pinn"
+    ],
+    "tied": [
+     "poly",
+     "spline",
+     "nn"
+    ],
+    "best": "poly",
+    "scores": {
+     "poly": 16.945365339054497,
+     "spline": 17.073377027718234,
+     "equation_fit": 25.086074101927984,
+     "poly_physics": 26.51027312434967,
+     "nn": 19.142355686494092,
+     "pinn": 27.078708391975706
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "poly",
+     "poly_yours",
+     "spline",
+     "nn",
+     "equation_fit",
+     "oracle",
+     "poly_physics",
+     "pinn",
+     "nearest"
+    ],
+    "tied": [
+     "poly",
+     "poly_yours",
+     "spline",
+     "nn"
+    ],
+    "best": "poly",
+    "scores": {
+     "poly": 16.945365339054497,
+     "spline": 17.073377027718234,
+     "equation_fit": 25.086074101927984,
+     "poly_physics": 26.51027312434967,
+     "nn": 19.142355686494092,
+     "pinn": 27.078708391975706,
+     "poly_yours": 16.945365339054497,
+     "nearest": 140.30737241185298,
+     "oracle": 25.09839196892966
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "quadratic_decay/forecast",
+   "seed": 1121,
+   "kw": {
+    "split": "forecast"
+   },
+   "seconds": 34.1,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": false,
+   "J3_ties": true,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": null,
+   "poly": 465.06554810125,
+   "poly_yours": 465.06554810125,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "poly_physics",
+     "pinn",
+     "nn",
+     "spline",
+     "poly"
+    ],
+    "tied": [
+     "equation_fit",
+     "poly_physics",
+     "pinn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 465.06554810125,
+     "spline": 13.213032252015521,
+     "equation_fit": 2.555932562545415,
+     "poly_physics": 2.616550381029003,
+     "nn": 4.226182564324025,
+     "pinn": 3.210320964393526
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "equation_fit",
+     "poly_physics",
+     "oracle",
+     "pinn",
+     "nn",
+     "spline",
+     "nearest",
+     "poly",
+     "poly_yours"
+    ],
+    "tied": [
+     "equation_fit",
+     "poly_physics",
+     "oracle",
+     "pinn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 465.06554810125,
+     "spline": 13.213032252015521,
+     "equation_fit": 2.555932562545415,
+     "poly_physics": 2.616550381029003,
+     "nn": 4.226182564324025,
+     "pinn": 3.210320964393526,
+     "poly_yours": 465.06554810125,
+     "nearest": 31.297816500619856,
+     "oracle": 2.891338986000911
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "pendulum/random",
+   "seed": 1122,
+   "kw": {
+    "split": "random"
+   },
+   "seconds": 71.6,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 0.6259202410668935,
+   "poly_yours": 0.6259202410668935,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "pinn",
+     "nn",
+     "poly_physics",
+     "poly",
+     "spline"
+    ],
+    "tied": [
+     "equation_fit",
+     "pinn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.6259202410668935,
+     "spline": 2.0451471075272534,
+     "equation_fit": 0.03718239957518193,
+     "poly_physics": 0.1544087977750227,
+     "nn": 0.12166673394420933,
+     "pinn": 0.041548259800548035
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "equation_fit",
+     "pinn",
+     "nn",
+     "poly_physics",
+     "nearest",
+     "poly",
+     "poly_yours",
+     "spline"
+    ],
+    "tied": [
+     "oracle",
+     "equation_fit",
+     "pinn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.6259202410668935,
+     "spline": 2.0451471075272534,
+     "equation_fit": 0.03718239957518193,
+     "poly_physics": 0.1544087977750227,
+     "nn": 0.12166673394420933,
+     "pinn": 0.041548259800548035,
+     "poly_yours": 0.6259202410668935,
+     "nearest": 0.5686431514184854,
+     "oracle": 0.034120455677379896
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "duffing_uneven/forecast",
+   "seed": 1123,
+   "kw": {
+    "split": "forecast"
+   },
+   "seconds": 144.8,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 20838.12672074732,
+   "poly_yours": 20838.12672074732,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "spline",
+     "nn",
+     "pinn",
+     "poly_physics",
+     "poly"
+    ],
+    "tied": [
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 20838.12672074732,
+     "spline": 0.49246860954417165,
+     "equation_fit": 0.010078525329048191,
+     "poly_physics": 1.9390592720622843,
+     "nn": 1.1774535625236215,
+     "pinn": 1.3985102619461063
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "equation_fit",
+     "spline",
+     "nearest",
+     "nn",
+     "pinn",
+     "poly_physics",
+     "poly",
+     "poly_yours"
+    ],
+    "tied": [
+     "oracle",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 20838.12672074732,
+     "spline": 0.49246860954417165,
+     "equation_fit": 0.010078525329048191,
+     "poly_physics": 1.9390592720622843,
+     "nn": 1.1774535625236215,
+     "pinn": 1.3985102619461063,
+     "poly_yours": 20838.12672074732,
+     "nearest": 0.9032244845716506,
+     "oracle": 0.007770388267360112
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "van_der_pol/random",
+   "seed": 1124,
+   "kw": {
+    "split": "random"
+   },
+   "seconds": 110.9,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 0.3121602993707694,
+   "poly_yours": 0.3121602993707694,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "nn",
+     "pinn",
+     "poly_physics",
+     "poly",
+     "spline"
+    ],
+    "tied": [
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.3121602993707694,
+     "spline": 1.166460362901735,
+     "equation_fit": 0.05372026264059385,
+     "poly_physics": 0.2902510708026213,
+     "nn": 0.112613129347183,
+     "pinn": 0.1181661230246054
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "equation_fit",
+     "nn",
+     "pinn",
+     "poly_physics",
+     "poly",
+     "poly_yours",
+     "nearest",
+     "spline"
+    ],
+    "tied": [
+     "oracle",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.3121602993707694,
+     "spline": 1.166460362901735,
+     "equation_fit": 0.05372026264059385,
+     "poly_physics": 0.2902510708026213,
+     "nn": 0.112613129347183,
+     "pinn": 0.1181661230246054,
+     "poly_yours": 0.3121602993707694,
+     "nearest": 0.49537185601006367,
+     "oracle": 0.05324675905313685
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "stiff_forced/forecast",
+   "seed": 1125,
+   "kw": {
+    "split": "forecast"
+   },
+   "seconds": 29.0,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": false,
+   "J3_ties": true,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": null,
+   "poly": 3472.8685250828867,
+   "poly_yours": 3472.8685250828867,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "poly_physics",
+     "pinn",
+     "nn",
+     "spline",
+     "poly"
+    ],
+    "tied": [
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 3472.8685250828867,
+     "spline": 0.29869379629249887,
+     "equation_fit": 0.006236562804363871,
+     "poly_physics": 0.023374541136922253,
+     "nn": 0.15242548375949624,
+     "pinn": 0.04678188816808427
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "equation_fit",
+     "oracle",
+     "poly_physics",
+     "pinn",
+     "nn",
+     "spline",
+     "nearest",
+     "poly",
+     "poly_yours"
+    ],
+    "tied": [
+     "equation_fit",
+     "oracle"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 3472.8685250828867,
+     "spline": 0.29869379629249887,
+     "equation_fit": 0.006236562804363871,
+     "poly_physics": 0.023374541136922253,
+     "nn": 0.15242548375949624,
+     "pinn": 0.04678188816808427,
+     "poly_yours": 3472.8685250828867,
+     "nearest": 0.6437102795333544,
+     "oracle": 0.006362815792092689
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "microseconds_sparse/random",
+   "seed": 1126,
+   "kw": {
+    "split": "random"
+   },
+   "seconds": 17.8,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 24565.87166852173,
+   "poly_yours": 24565.87166852173,
+   "without": {
+    "ranked": [
+     "poly_physics",
+     "nn",
+     "spline",
+     "equation_fit",
+     "pinn",
+     "poly"
+    ],
+    "tied": [
+     "poly_physics",
+     "nn",
+     "spline",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 24565.87166852173,
+     "spline": 6625.595632908439,
+     "equation_fit": 6814.649445665121,
+     "poly_physics": 5836.366308538271,
+     "nn": 6512.62580233118,
+     "pinn": 11722.910842729127
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "poly_physics",
+     "nn",
+     "spline",
+     "equation_fit",
+     "pinn",
+     "poly",
+     "poly_yours",
+     "nearest"
+    ],
+    "tied": [
+     "oracle",
+     "poly_physics",
+     "nn",
+     "spline",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 24565.87166852173,
+     "spline": 6625.595632908439,
+     "equation_fit": 6814.649445665121,
+     "poly_physics": 5836.366308538271,
+     "nn": 6512.62580233118,
+     "pinn": 11722.910842729127,
+     "poly_yours": 24565.87166852173,
+     "nearest": 304562.3865747816,
+     "oracle": 5029.570633500098
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "advection_diffusion/forecast",
+   "seed": 1127,
+   "kw": {
+    "split": "forecast"
+   },
+   "seconds": 147.8,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 0.8801285483384211,
+   "poly_yours": 0.8801285483384211,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "pinn",
+     "nn",
+     "poly_physics",
+     "spline",
+     "poly"
+    ],
+    "tied": [
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.8801285483384211,
+     "spline": 0.05763458017742025,
+     "equation_fit": 0.0016816694336864622,
+     "poly_physics": 0.024332088266418212,
+     "nn": 0.0027632671426151053,
+     "pinn": 0.0026939440879017534
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "equation_fit",
+     "pinn",
+     "nn",
+     "poly_physics",
+     "spline",
+     "nearest",
+     "poly",
+     "poly_yours"
+    ],
+    "tied": [
+     "oracle",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.8801285483384211,
+     "spline": 0.05763458017742025,
+     "equation_fit": 0.0016816694336864622,
+     "poly_physics": 0.024332088266418212,
+     "nn": 0.0027632671426151053,
+     "pinn": 0.0026939440879017534,
+     "poly_yours": 0.8801285483384211,
+     "nearest": 0.06348278217277617,
+     "oracle": 0.001546930730017436
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "fisher_kpp/random",
+   "seed": 1128,
+   "kw": {
+    "split": "random"
+   },
+   "seconds": 77.5,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 0.02747649782285848,
+   "poly_yours": 0.02747649782285848,
+   "without": {
+    "ranked": [
+     "pinn",
+     "nn",
+     "equation_fit",
+     "poly_physics",
+     "spline",
+     "poly"
+    ],
+    "tied": [
+     "pinn",
+     "nn",
+     "equation_fit",
+     "poly_physics"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.02747649782285848,
+     "spline": 0.005225893743906798,
+     "equation_fit": 0.003763159963461709,
+     "poly_physics": 0.003967537530163806,
+     "nn": 0.003581444812720057,
+     "pinn": 0.003504536172434855
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "pinn",
+     "nn",
+     "equation_fit",
+     "poly_physics",
+     "spline",
+     "poly",
+     "poly_yours",
+     "nearest"
+    ],
+    "tied": [
+     "oracle",
+     "pinn",
+     "nn",
+     "equation_fit",
+     "poly_physics"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.02747649782285848,
+     "spline": 0.005225893743906798,
+     "equation_fit": 0.003763159963461709,
+     "poly_physics": 0.003967537530163806,
+     "nn": 0.003581444812720057,
+     "pinn": 0.003504536172434855,
+     "poly_yours": 0.02747649782285848,
+     "nearest": 0.07504891439566083,
+     "oracle": 0.003332542883929612
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "burgers/forecast",
+   "seed": 1129,
+   "kw": {
+    "split": "forecast"
+   },
+   "seconds": 92.4,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 0.0557069117186721,
+   "poly_yours": 0.0557069117186721,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "pinn",
+     "nn",
+     "poly_physics",
+     "spline",
+     "poly"
+    ],
+    "tied": [
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.0557069117186721,
+     "spline": 0.010912406344752166,
+     "equation_fit": 0.00041290018005946946,
+     "poly_physics": 0.0023275837157179223,
+     "nn": 0.0011319774588315567,
+     "pinn": 0.0006954990016677043
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "equation_fit",
+     "pinn",
+     "nn",
+     "poly_physics",
+     "nearest",
+     "spline",
+     "poly",
+     "poly_yours"
+    ],
+    "tied": [
+     "oracle",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.0557069117186721,
+     "spline": 0.010912406344752166,
+     "equation_fit": 0.00041290018005946946,
+     "poly_physics": 0.0023275837157179223,
+     "nn": 0.0011319774588315567,
+     "pinn": 0.0006954990016677043,
+     "poly_yours": 0.0557069117186721,
+     "nearest": 0.005996298162247403,
+     "oracle": 0.00040083592580716286
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "heat_edges/random",
+   "seed": 1130,
+   "kw": {
+    "split": "random"
+   },
+   "seconds": 56.6,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 0.0005479789805110691,
+   "poly_yours": 0.0005479789805110691,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "poly",
+     "pinn",
+     "poly_physics",
+     "nn",
+     "spline"
+    ],
+    "tied": [
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.0005479789805110691,
+     "spline": 0.010750903940761152,
+     "equation_fit": 0.0003732978241172901,
+     "poly_physics": 0.0009532146386084187,
+     "nn": 0.002974406084342548,
+     "pinn": 0.0008576590792031233
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "equation_fit",
+     "poly",
+     "poly_yours",
+     "pinn",
+     "poly_physics",
+     "nn",
+     "spline",
+     "nearest"
+    ],
+    "tied": [
+     "oracle",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.0005479789805110691,
+     "spline": 0.010750903940761152,
+     "equation_fit": 0.0003732978241172901,
+     "poly_physics": 0.0009532146386084187,
+     "nn": 0.002974406084342548,
+     "pinn": 0.0008576590792031233,
+     "poly_yours": 0.0005479789805110691,
+     "nearest": 0.10019745318610171,
+     "oracle": 0.0003332511904367831
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "logistic_dense_noisy/forecast",
+   "seed": 1131,
+   "kw": {
+    "split": "forecast"
+   },
+   "seconds": 31.4,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 44.33200312490884,
+   "poly_yours": 44.33200312490884,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "poly_physics",
+     "pinn",
+     "spline",
+     "nn",
+     "poly"
+    ],
+    "tied": [
+     "equation_fit",
+     "poly_physics",
+     "pinn",
+     "spline",
+     "nn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 44.33200312490884,
+     "spline": 2.6448602396624263,
+     "equation_fit": 2.6440663752454303,
+     "poly_physics": 2.6441489540960017,
+     "nn": 2.6464957830408338,
+     "pinn": 2.6446607505932636
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "equation_fit",
+     "poly_physics",
+     "pinn",
+     "spline",
+     "nn",
+     "nearest",
+     "poly",
+     "poly_yours"
+    ],
+    "tied": [
+     "oracle",
+     "equation_fit",
+     "poly_physics",
+     "pinn",
+     "spline",
+     "nn",
+     "nearest"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 44.33200312490884,
+     "spline": 2.6448602396624263,
+     "equation_fit": 2.6440663752454303,
+     "poly_physics": 2.6441489540960017,
+     "nn": 2.6464957830408338,
+     "pinn": 2.6446607505932636,
+     "poly_yours": 44.33200312490884,
+     "nearest": 2.754041916564478,
+     "oracle": 2.639847204138019
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "sum_of_rates/random",
+   "seed": 1132,
+   "kw": {
+    "split": "random"
+   },
+   "seconds": 26.4,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": false,
+   "J3_ties": true,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": null,
+   "poly": 0.09421987081766602,
+   "poly_yours": 0.09421987081766602,
+   "without": {
+    "ranked": [
+     "pinn",
+     "equation_fit",
+     "poly_physics",
+     "nn",
+     "spline",
+     "poly"
+    ],
+    "tied": [
+     "pinn",
+     "equation_fit",
+     "poly_physics",
+     "nn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.09421987081766602,
+     "spline": 0.017349746044795625,
+     "equation_fit": 0.009655903168229644,
+     "poly_physics": 0.009765644829375595,
+     "nn": 0.010990076026428777,
+     "pinn": 0.009550984270876462
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "pinn",
+     "equation_fit",
+     "poly_physics",
+     "oracle",
+     "nn",
+     "spline",
+     "poly",
+     "poly_yours",
+     "nearest"
+    ],
+    "tied": [
+     "pinn",
+     "equation_fit",
+     "poly_physics",
+     "oracle",
+     "nn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.09421987081766602,
+     "spline": 0.017349746044795625,
+     "equation_fit": 0.009655903168229644,
+     "poly_physics": 0.009765644829375595,
+     "nn": 0.010990076026428777,
+     "pinn": 0.009550984270876462,
+     "poly_yours": 0.09421987081766602,
+     "nearest": 0.14035405576263896,
+     "oracle": 0.009982883581325073
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "one_exponential_second_order/forecast",
+   "seed": 1133,
+   "kw": {
+    "split": "forecast"
+   },
+   "seconds": 56.8,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": false,
+   "J3_ties": true,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": null,
+   "poly": 0.050628580974779146,
+   "poly_yours": 0.050628580974779146,
+   "without": {
+    "ranked": [
+     "pinn",
+     "equation_fit",
+     "poly_physics",
+     "nn",
+     "poly",
+     "spline"
+    ],
+    "tied": [
+     "pinn",
+     "equation_fit",
+     "poly_physics"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.050628580974779146,
+     "spline": 0.1005961715707849,
+     "equation_fit": 0.004903386773579002,
+     "poly_physics": 0.005031998574954613,
+     "nn": 0.013471119280317348,
+     "pinn": 0.004903208854890479
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "pinn",
+     "equation_fit",
+     "oracle",
+     "poly_physics",
+     "nn",
+     "nearest",
+     "poly",
+     "poly_yours",
+     "spline"
+    ],
+    "tied": [
+     "pinn",
+     "equation_fit",
+     "oracle",
+     "poly_physics"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.050628580974779146,
+     "spline": 0.1005961715707849,
+     "equation_fit": 0.004903386773579002,
+     "poly_physics": 0.005031998574954613,
+     "nn": 0.013471119280317348,
+     "pinn": 0.004903208854890479,
+     "poly_yours": 0.050628580974779146,
+     "nearest": 0.03797547188345959,
+     "oracle": 0.004907837679407882
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "gompertz/random",
+   "seed": 1134,
+   "kw": {
+    "split": "random"
+   },
+   "seconds": 43.7,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 77.00816487860558,
+   "poly_yours": 77.00816487860558,
+   "without": {
+    "ranked": [
+     "poly_physics",
+     "equation_fit",
+     "spline",
+     "nn",
+     "poly"
+    ],
+    "tied": [
+     "poly_physics",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 77.00816487860558,
+     "spline": 42.02954204682138,
+     "equation_fit": 22.641498620823967,
+     "poly_physics": 22.632725595987125,
+     "nn": 72.95332202430014
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "failed: the trained model predicts NaN or infinite values on held-out points (training diverged; the equation may be undefined for some values, e.g. log or sqrt of a negative number)"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "poly_physics",
+     "equation_fit",
+     "spline",
+     "nn",
+     "poly",
+     "poly_yours",
+     "nearest"
+    ],
+    "tied": [
+     "oracle",
+     "poly_physics",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 77.00816487860558,
+     "spline": 42.02954204682138,
+     "equation_fit": 22.641498620823967,
+     "poly_physics": 22.632725595987125,
+     "nn": 72.95332202430014,
+     "poly_yours": 77.00816487860558,
+     "nearest": 145.2513890866799,
+     "oracle": 20.330947332770947
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "failed: the trained model predicts NaN or infinite values on held-out points (training diverged; the equation may be undefined for some values, e.g. log or sqrt of a negative number)",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "quadratic_decay/forecast",
+   "seed": 1135,
+   "kw": {
+    "split": "forecast"
+   },
+   "seconds": 34.5,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": false,
+   "J3_ties": true,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": null,
+   "poly": 339.0145429345545,
+   "poly_yours": 339.0145429345545,
+   "without": {
+    "ranked": [
+     "poly_physics",
+     "nn",
+     "equation_fit",
+     "pinn",
+     "spline",
+     "poly"
+    ],
+    "tied": [
+     "poly_physics",
+     "nn",
+     "equation_fit",
+     "pinn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 339.0145429345545,
+     "spline": 27.57975641625025,
+     "equation_fit": 3.0632168204788846,
+     "poly_physics": 2.671100995259393,
+     "nn": 2.9181245204738366,
+     "pinn": 3.0868183786066368
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "poly_physics",
+     "oracle",
+     "nn",
+     "equation_fit",
+     "pinn",
+     "spline",
+     "nearest",
+     "poly",
+     "poly_yours"
+    ],
+    "tied": [
+     "poly_physics",
+     "oracle",
+     "nn",
+     "equation_fit",
+     "pinn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 339.0145429345545,
+     "spline": 27.57975641625025,
+     "equation_fit": 3.0632168204788846,
+     "poly_physics": 2.671100995259393,
+     "nn": 2.9181245204738366,
+     "pinn": 3.0868183786066368,
+     "poly_yours": 339.0145429345545,
+     "nearest": 34.66213081183726,
+     "oracle": 2.773884752931896
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "pendulum/random",
+   "seed": 1136,
+   "kw": {
+    "split": "random"
+   },
+   "seconds": 65.4,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 0.16528961113815924,
+   "poly_yours": 0.16528961113815924,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "pinn",
+     "nn",
+     "poly_physics",
+     "poly",
+     "spline"
+    ],
+    "tied": [
+     "equation_fit",
+     "pinn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.16528961113815924,
+     "spline": 2.0002604921455323,
+     "equation_fit": 0.03756291118649326,
+     "poly_physics": 0.12295539435470236,
+     "nn": 0.05264390782445154,
+     "pinn": 0.03848831688379028
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "equation_fit",
+     "pinn",
+     "nn",
+     "poly_physics",
+     "poly",
+     "poly_yours",
+     "nearest",
+     "spline"
+    ],
+    "tied": [
+     "oracle",
+     "equation_fit",
+     "pinn"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.16528961113815924,
+     "spline": 2.0002604921455323,
+     "equation_fit": 0.03756291118649326,
+     "poly_physics": 0.12295539435470236,
+     "nn": 0.05264390782445154,
+     "pinn": 0.03848831688379028,
+     "poly_yours": 0.16528961113815924,
+     "nearest": 0.7022531114151979,
+     "oracle": 0.037118737608431554
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "duffing_uneven/forecast",
+   "seed": 1137,
+   "kw": {
+    "split": "forecast"
+   },
+   "seconds": 135.9,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": false,
+   "J4": true,
+   "J4_said": null,
+   "poly": 45888820.446768776,
+   "poly_yours": 45888820.446768776,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "spline",
+     "nn",
+     "pinn",
+     "poly_physics",
+     "poly"
+    ],
+    "tied": [
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 45888820.446768776,
+     "spline": 0.44739543122818826,
+     "equation_fit": 0.032548150513092816,
+     "poly_physics": 1.3797693180018384,
+     "nn": 0.6155411621176051,
+     "pinn": 1.1163918979912526
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "equation_fit",
+     "nearest",
+     "spline",
+     "nn",
+     "pinn",
+     "poly_physics",
+     "poly",
+     "poly_yours"
+    ],
+    "tied": [
+     "oracle"
+    ],
+    "best": "oracle",
+    "scores": {
+     "poly": 45888820.446768776,
+     "spline": 0.44739543122818826,
+     "equation_fit": 0.032548150513092816,
+     "poly_physics": 1.3797693180018384,
+     "nn": 0.6155411621176051,
+     "pinn": 1.1163918979912526,
+     "poly_yours": 45888820.446768776,
+     "nearest": 0.4266826817023969,
+     "oracle": 0.021727993593539923
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "van_der_pol/random",
+   "seed": 1138,
+   "kw": {
+    "split": "random"
+   },
+   "seconds": 117.0,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 0.2726910517643977,
+   "poly_yours": 0.2726910517643977,
+   "without": {
+    "ranked": [
+     "pinn",
+     "equation_fit",
+     "nn",
+     "poly_physics",
+     "poly",
+     "spline"
+    ],
+    "tied": [
+     "pinn",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.2726910517643977,
+     "spline": 1.5374824350470584,
+     "equation_fit": 0.07257876207017681,
+     "poly_physics": 0.2513161661640183,
+     "nn": 0.12215401610314623,
+     "pinn": 0.06989865550381999
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "pinn",
+     "equation_fit",
+     "nn",
+     "poly_physics",
+     "poly",
+     "poly_yours",
+     "nearest",
+     "spline"
+    ],
+    "tied": [
+     "oracle",
+     "pinn",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 0.2726910517643977,
+     "spline": 1.5374824350470584,
+     "equation_fit": 0.07257876207017681,
+     "poly_physics": 0.2513161661640183,
+     "nn": 0.12215401610314623,
+     "pinn": 0.06989865550381999,
+     "poly_yours": 0.2726910517643977,
+     "nearest": 0.3482778233978044,
+     "oracle": 0.06126496748159152
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  },
+  {
+   "case": "stiff_forced/forecast",
+   "seed": 1139,
+   "kw": {
+    "split": "forecast"
+   },
+   "seconds": 34.7,
+   "J2": true,
+   "J3_scores": true,
+   "yours_lowest": true,
+   "J3_ties": null,
+   "J4_conflict": true,
+   "J4": true,
+   "J4_said": true,
+   "poly": 3393.725896461072,
+   "poly_yours": 3393.725896461072,
+   "without": {
+    "ranked": [
+     "equation_fit",
+     "pinn",
+     "poly_physics",
+     "nn",
+     "spline",
+     "poly"
+    ],
+    "tied": [
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 3393.725896461072,
+     "spline": 0.22749625630542752,
+     "equation_fit": 0.009043053706191868,
+     "poly_physics": 0.018669892274222683,
+     "nn": 0.16711161380514264,
+     "pinn": 0.017814946007228306
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok"
+    }
+   },
+   "with": {
+    "ranked": [
+     "oracle",
+     "equation_fit",
+     "pinn",
+     "poly_physics",
+     "nn",
+     "spline",
+     "nearest",
+     "poly",
+     "poly_yours"
+    ],
+    "tied": [
+     "oracle",
+     "equation_fit"
+    ],
+    "best": "equation_fit",
+    "scores": {
+     "poly": 3393.725896461072,
+     "spline": 0.22749625630542752,
+     "equation_fit": 0.009043053706191868,
+     "poly_physics": 0.018669892274222683,
+     "nn": 0.16711161380514264,
+     "pinn": 0.017814946007228306,
+     "poly_yours": 3393.725896461072,
+     "nearest": 0.6468327364547549,
+     "oracle": 0.008827499378030684
+    },
+    "status": {
+     "poly": "ok",
+     "spline": "ok",
+     "equation_fit": "ok",
+     "poly_physics": "ok",
+     "nn": "ok",
+     "pinn": "ok",
+     "poly_yours": "ok",
+     "nearest": "ok",
+     "oracle": "ok"
+    }
+   }
+  }
+ ],
+ "J5": {
+  "J5": true,
+  "status": {
+   "poly": "ok",
+   "spline": "ok",
+   "equation_fit": "ok",
+   "Raises": "failed: RuntimeError: deliberately broken",
+   "Short": "failed: ValueError: predict(X) returned an array of shape (7,) for 8 points; it must return 8 values, one per row of X",
+   "Nans": "failed: your model predicts NaN or infinite values on held-out points"
+  },
+  "table": "equation: u_tt + c*u_t + k*u = 0\n          target u(t); fit c, k\nsplit: random, 32 points to train, 8 held out\n\nrank model                              held-out error    time   fitted\n-----------------------------------------------------------------------\n1  = Smoothing spline (data only)              0.05551    0.0s   -\n2  = Equation fit (classical)                  0.05754   27.6s   c=0.324+-0.015, k=4.029+-0.043\n3  = Polynomial (data only)                    0.05869    0.0s   -\n-    Raises (yours)                       failed: RuntimeError: deliberately broken\n-    Short (yours)                        failed: ValueError: predict(X) returned an array of shape (7,) for 8 points; it must return 8 values, one per row of X\n-    Nans (yours)                         failed: your model predicts NaN or infinite values on held-out points\n\nbest: Equation fit (classical). Held-out error is the RMS error on data the models never saw.\n=     3 models are within the noise of the lowest error on these 8 held-out points, so the data cannot tell them apart.\n      The one the equation constrains most is returned; pick=\"lowest\" would return Smoothing spline (data only).\nyours: Raises, Short, Nans, scored on the same held-out points as the built-in models. Constants are shown only if your model has fitted_params(), standard errors only if it has uncertainty(). Saved scripts for yours are stubs: equationnet cannot write out code it did not write.\n+-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).",
+  "traceback": null
+ }
+}

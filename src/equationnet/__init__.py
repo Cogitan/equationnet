@@ -6,10 +6,10 @@
     result.best.save("best_model.py")
 """
 
-from .fit import Candidate, Result, fit, generate
+from .fit import Candidate, Result, YourModel, custom, fit, generate
 from .models import MODELS, VERSION, NotApplicable
 from .parse import Equation, EquationError, parse_equation
 
 __version__ = VERSION
-__all__ = ["fit", "generate", "parse_equation", "Result", "Candidate", "Equation",
+__all__ = ["fit", "generate", "custom", "YourModel", "parse_equation", "Result", "Candidate", "Equation",
            "EquationError", "NotApplicable", "MODELS", "__version__"]

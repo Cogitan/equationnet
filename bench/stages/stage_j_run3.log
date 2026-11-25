@@ -1,0 +1,32 @@
+spring/random/cv1 True True True True 68.4
+spring/random/cv5 True True True True 445.5
+spring/forecast/cv1 True True True True 71.7
+spring/forecast/cv3 True True True True 239.9
+gompertz/random 1120 True True True True 40.2
+quadratic_decay/forecast 1121 True True True True 34.1
+pendulum/random 1122 True True None True 71.6
+duffing_uneven/forecast 1123 True True None True 144.8
+van_der_pol/random 1124 True True None True 110.9
+stiff_forced/forecast 1125 True True True True 29.0
+microseconds_sparse/random 1126 True True None True 17.8
+advection_diffusion/forecast 1127 True True None True 147.8
+fisher_kpp/random 1128 True True None True 77.5
+burgers/forecast 1129 True True None True 92.4
+heat_edges/random 1130 True True None True 56.6
+logistic_dense_noisy/forecast 1131 True True None True 31.4
+sum_of_rates/random 1132 True True True True 26.4
+one_exponential_second_order/forecast 1133 True True True True 56.8
+gompertz/random 1134 True True None True 43.7
+quadratic_decay/forecast 1135 True True True True 34.5
+pendulum/random 1136 True True None True 65.4
+duffing_uneven/forecast 1137 True True None True 135.9
+van_der_pol/random 1138 True True None True 117.0
+stiff_forced/forecast 1139 True True None True 34.7
+{
+ "J2": "24/24",
+ "J3_scores": "24/24",
+ "J3_ties": "10/10 (runs where none of yours is lowest)",
+ "J4": "20/20 runs with a tie between yours and a built-in",
+ "J4_said": "13/13 runs where yours was lowest and tied",
+ "J5": true
+}

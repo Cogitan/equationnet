@@ -3,7 +3,7 @@
 Type a differential equation and give it your data. equationnet trains six simple
 models: three that use the equation and three data-only baselines. It ranks them
 by their error on points they never saw, and gives you each model as a standalone
-script.
+script. You can add models of your own to the comparison.
 
 No code needed:
 
@@ -125,7 +125,7 @@ other than the target are the variables, in order.
 en.fit(equation, data,
        target="u",               # target column
        known={"k": 4.0},         # constants you already know
-       models=["equation_fit", "pinn"],   # default: all
+       models=["equation_fit", "pinn"],   # default: all; can include your own (below)
        split="random",           # or "forecast": hold out the end in time
        holdout=0.2, seed=0,
        cv=1,                     # see "How models are scored"
@@ -146,7 +146,67 @@ and `nn`; `collocation` for `pinn` and `poly_physics`; `degree` for
 ignored.
 
 Models run in a fixed order (polynomial, spline, classical fit, physics
-polynomial, data-only network, PINN), and each prints its result as it finishes.
+polynomial, data-only network, PINN, then any of your own), and each prints its
+result as it finishes.
+
+## Your own model
+
+Put your own model in the same table. Anything with `fit(X, y)` and `predict(X)`
+that `copy.deepcopy` can copy works (tested with scikit-learn estimators and plain
+classes), and so does a plain function `predict(X)` that needs no training:
+
+```python
+result = en.fit("u_tt + c*u_t + k*u = 0", "spring.csv",
+                models=["all", my_model, en.custom(other_model, name="gp")])
+```
+
+`X` has one column per variable, in the data's column order (the target left out),
+and `y` is the target. A fresh copy of your model is trained for every held-out
+split, on the same points as the built-in models, and scored on the same held-out
+points. Your object itself is not changed.
+
+A model is named after its class, a function after its name, and a lambda or
+another callable with no name `your_model_1`, `your_model_2`, ... by position. To name it yourself, use
+`en.custom(model, name=...)`: letters, digits, `_` or `-`, starting with a letter
+or `_`, at most 40 characters (the same rule applies to the automatic names). A name
+may not repeat another model's, built-in names included. `result.save_scripts("scripts/")` saves every model's script,
+yours included.
+
+What equationnet does not know about your model, it says rather than guesses:
+
+- **Ties.** On a tie with a built-in model, the built-in one is returned, because
+  equationnet cannot see how much your model is constrained. In the tie order,
+  yours come after every built-in model, and those you mark as using the equation
+  come first among yours. The table says so when yours had the lowest error, and
+  `pick="lowest"` returns it anyway.
+- **Constants and standard errors.** Constants are shown if your model has a
+  `fitted_params()` method, standard errors if it has `uncertainty()`; both return
+  `{name: value}`. They are kept out of the "not pinned down" and "models
+  disagree" checks, since your `c` need not be the equation's `c`.
+- **Uses the equation?** Your model counts as data-only unless you say otherwise:
+  `en.custom(model, uses_equation=True)`.
+- **Noise level.** Your model's training error is never used as the noise level
+  in the tie rule, and where a model of yours is involved the rule leans toward
+  the built-in models both ways. When yours has the lowest held-out error, a
+  built-in model counts as tied if its error is within what noise could give, with
+  the noise level capped at an upper confidence bound from your model's held-out
+  errors (97.5% for one model chosen beforehand, somewhat less for the lowest of
+  several): 2.45 times their RMS on 5 points, 1.39 times on 24. So built-in models
+  that all fit badly do not tie with a far better model of yours, but on a few
+  held-out points a built-in model up to about 4 times worse can (5 points). A model
+  of yours counts as tied with the lowest through the two-standard-error test,
+  as any model does, or within a noise level capped at the lowest model's own
+  held-out RMS error: up to about 1.6 times it on 5 points and 1.3 times on 24.
+  Built-in models compared with a built-in lowest keep the rule below, unchanged
+  from 0.0.1, so the `=` marks can skip a model of yours that is closer than tied
+  built-in models. The table then says so.
+- **Script.** The saved file for your model is a stub: its class, its
+  parameters if it reports them (`get_params()`, as scikit-learn models do), and
+  how it was trained and called. equationnet cannot write out code it did not
+  write.
+
+A model of yours that fails (raises, returns the wrong number of values, or returns
+NaN) gets a `failed:` line in the table, and the other models still run.
 
 ## How models are scored
 
@@ -163,15 +223,21 @@ polynomial, data-only network, PINN), and each prints its result as it finishes.
   error is within two standard errors of the lowest one's are marked `=` as tied.
   So is a model whose error is no larger than measurement noise alone would give on
   that many held-out points (97.5% of the time). The noise level is the smallest
-  training error of the data-only models, which assume no equation; if none of
-  them ran, this second test is off. It has a known weakness, not fixed: on very
-  small data a data-only model can pass almost exactly through its training points,
-  so the noise level comes out well below the true noise and the test does not fire.
-  In stage A run 5 that is behind four of the six picks more than 3x worse than the
-  best, including the worst (see "How well it works"). Among the tied models, the one the equation
+  training error of the built-in data-only models, which assume no equation; if
+  none of them ran, this second test is off (models of your own: see "Your own
+  model"). It has a known weakness, not fixed: on very small data a data-only model
+  can pass almost exactly through its training points, so the noise level comes out
+  well below the true noise and the test does not fire. In stage A run 5 that is
+  behind four of the six picks more than 3x worse than the best, including the worst
+  (see "How well it works"). The opposite also happens, also not fixed for the
+  built-in models: when all the data-only models fit badly, their training error is
+  their misfit, the noise level comes out far above the true noise, and models many
+  times worse than the lowest are marked tied. The returned model is still the first
+  tied one in the order below, so check the held-out errors, not only the `=` marks.
+  Among the tied models, the one the equation
   constrains most is returned: the classical fit, then the physics polynomial, then
-  the PINN, then the data-only models. The table says when this happened and what
-  `pick="lowest"` would return.
+  the PINN, then the data-only models, then models of your own. The table says when
+  this happened and what `pick="lowest"` would return.
 - **Small held-out sets.** With a handful of held-out points no rule can always
   tell close models apart, and the returned model can be several times worse than
   the best one (see "How well it works"). Treat the ranking as a guide, and use
@@ -193,15 +259,16 @@ equationnet models
 
 For each model equationnet renders a complete Python script from the equation,
 runs that script, and gives you the same text. The script you save is exactly the
-one that was scored. Running it trains the model again on the data you give it, so
+one that was scored. (For a model of your own the saved file is a stub; see "Your
+own model".) Running it trains the model again on the data you give it, so
 its numbers can differ slightly from the table's.
 
 ## Limits in this version
 
 - It needs data. Pure forward solves with no measurements are not scored yet.
-- Standard errors (`+-` in the table) come from the classical fit only. They
-  assume the equation is exactly right, and an approximate equation can be off by
-  more.
+- Standard errors (`+-` in the table) come from the classical fit only, or from a
+  model of your own that reports them. The classical fit's assume the equation is
+  exactly right, and an approximate equation can be off by more.
 - The table warns "not pinned down" when a constant's standard error is infinite
   or more than half its value, or the constant is within two standard errors of
   zero. The classical ODE fit also moves each constant to half and to one and a
@@ -244,7 +311,8 @@ its numbers can differ slightly from the table's.
   table says so. If the start cannot be moved at all, the table says that the
   predictions before the first training point are solved backwards.
 - Unknown functions take one argument. Classical fits treat them as cubics.
-- Gaussian processes are not in yet.
+- No Gaussian process among the built-in models (you can pass one as your own
+  model).
 - Parsing uses SymPy, which evaluates text. equationnet refuses any character an
   equation does not need (quotes, dots after names, square or curly brackets, `#`,
   `;`, newlines) and huge exponents before SymPy sees the text. Even so, do not feed
@@ -357,7 +425,10 @@ can see.
 
 ## Status
 
-0.0.1, the first release. Expect changes.
+1.0.0. New since 0.0.1: your own model in the comparison ("Your own model", tested
+in stage J of `TESTPLAN.md`). The built-in models are unchanged, and so is the tie
+rule for runs without models of your own, so the results above still apply. The arguments of `fit()` and the layout of the table
+are kept stable within 1.x.
 
 ## License
 

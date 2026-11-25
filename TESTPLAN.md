@@ -1258,3 +1258,247 @@ and every stage I result was rerun on the final code (run 3, below).
 Order of record: the stage I bars were written into this file before any guided-mode
 code, as the date line says, but they first entered git together with the results, in
 the commit that added the guided session.
+
+## Stage J (your own model): bars written 2026-11-24, before any stage J run
+
+The maintainer chose version 1.0 = the tested 0.0.1 features + "bring your own model"
+(design note, phase 1): `models=["all", my_model]`, where `my_model` has `fit(X, y)`
+and `predict(X)` or is a function `predict(X)`. The code and its unit tests
+(`tests/test_yours.py`) were written first; these bars are fixed now, before the
+stage J script runs, under the rules at the top. Data: `examples/spring.csv` and the
+stage A generators with seeds 1100 to 1119, never used before.
+
+| # | bar | proposed |
+|---|---|---|
+| J1 | the full test suite passes, including `tests/test_yours.py` | all pass |
+| J2 | scored identically: the built-in polynomial's own script, passed in as a model of yours, gets the same held-out error as the built-in polynomial on every J2 run (spring.csv random and forecast, cv 1 and 5; 20 stage A runs, seeds 1100-1119: seed s uses problem number (s - 1100) mod 14 in `bench/stageA/problems.py` order, split random for even s and forecast for odd s, otherwise default settings) | equal to 1e-12 relative, 100% |
+| J3 | adding models of yours changes no built-in model's held-out error on any J2 run; and in runs where none of yours has the lowest error, it changes neither the tie marks of the built-in models nor the returned model | 100% |
+| J4 | a model of yours is never returned while a built-in model is tied with it (pick="simplest"), and the table says so when yours had the lowest error | 100% of J2 runs where that happens; reported with the count |
+| J5 | a broken model of yours (raises in fit, wrong number of predictions, NaN) is reported in the table in words; the built-in models still run | 0 tracebacks |
+| J6 | a reviewer agent that has not seen the code, given only the README and a scikit-learn model of its own, scores it against the built-ins and correctly states from the table whether its model or the equation won, and what is and is not reported for its model | answers correctly; every confusion fixed or accepted in writing |
+
+Clarified 2026-11-24 before any stage J run: stage A has 14 problems, so "20 stage A problems" was
+made exact as 20 runs (J2 row). Models of yours added in every J2/J3 run: the built-in polynomial's
+own script, the problem's exact solution as a function (an oracle, to exercise J4), and a
+nearest-neighbour interpolator. J3 compares each run with the same run without them.
+
+J3 reworded the same day, before any run: as first written it required the tie marks and the
+returned model never to change, but ties are measured from the lowest error, so a model of
+yours with the lowest error rightly changes them. The bar now holds them fixed only when
+none of yours is lowest.
+
+First stage J attempt (2026-11-24) stopped on its fourth case with an input error, not a
+result: spring.csv has 40 times, and 5 forecast origins of 8 times each need more than 41.
+The forecast cv=5 case is replaced by cv=3 (what cv="auto" uses for forecasts); random keeps
+cv=5. The three cases it finished are discarded; every stage J number below is from one
+complete rerun.
+
+## Stage J (your own model): results, run 1, 2026-11-24 to 25
+
+`bench/stages/stage_j.py` (results `stage_j_results.json`, log `stage_j.log`; the
+discarded first attempt in `stage_j_attempt1.log`), scoring code at a1e9ab3, Python 3.13,
+35 minutes. 24 runs: spring.csv random cv 1 and 5, forecast cv 1 and 3, and the 20
+stage A runs on seeds 1100-1119. Every run was made twice, without and with three models
+of yours (the built-in polynomial's own script, the exact solution as a function, a
+nearest-neighbour interpolator).
+
+| # | result | bar | |
+|---|---|---|---|
+| J1 | 281 passed (`stage_j1_pytest.log`, before the J6 fixes) | all pass | MET |
+| J2 | the polynomial's own script scored exactly what the built-in polynomial scored in 24/24 runs | 100% | MET |
+| J3 | built-in held-out errors unchanged in 24/24; in the 9 runs where none of yours was lowest, tie marks and returned model unchanged in 9/9 (in the other 15 the exact solution was lowest) | 100% | MET |
+| J4 | a built-in model returned in 19/19 runs where yours tied with one; the table said so in 13/13 runs where yours was lowest and tied | 100% | MET |
+| J5 | raising, short and NaN models each got a `failed:` line in words; the three built-ins ran | 0 tracebacks | MET |
+| J6 | answered correctly; 14 confusions, 9 fixed, 5 accepted (four pre-existing 0.0.1 behaviours: tie wording, the `best:` line, number format, an API detail; one still true: six built-in models) (`bench/stages/stage_j6_review.md`) | answers correctly | MET |
+
+The J6 fixes (commit f809195) change messages, the saved stub, the repr and the README
+only, not scoring, ties or picks, so J2-J5 were not rerun on them.
+
+Run 1 took 35 minutes, over the 30-minute guide in the rules at the top; it was a
+single local run, not split up.
+
+Order of record for stage J: the bars, the run definition and the J3 rewording were
+committed before any stage J run, in the maintainer's development history, which is
+not published (the public repository holds one commit per release). The commit hashes
+named anywhere in this file (here and in earlier stages, e.g. 000441a) are from that
+history. a1e9ab3 is the scoring
+code of run 1.
+
+The J6 reviewer read the README's "Your own model" section as it was before the J6
+fixes; that text was first committed together with the fixes (f809195), so the version
+it read is recorded only through `stage_j6_review.md`.
+
+### Fix after the 1.0.0 writing preflight (2026-11-25), and stage J run 2
+
+The writing preflight (an independent Claude reviewer) found a real defect that stage J
+could not see (its V1). The noise level of the tie rule is the smallest training error
+of the built-in data-only models. When those all underfit, that error is their misfit,
+not the noise, and every built-in model counted as tied with a model of yours that was
+far better: on `u = 1 + 2t + 0.5 sin(25t)` plus noise 0.01, yours scored 0.0066 held
+out, the built-ins 0.35, and the classical fit of a wrong equation was returned. Stage
+J's runs never had that combination of a far better model of yours and badly underfitting
+built-ins.
+
+Fix: when a model of yours has the lowest held-out error, the noise level is capped at
+that model's held-out RMS error (a noise level above the lowest held-out error is not
+supported by the data; this reason was withdrawn and the cap changed later, below; the same cap is back as the
+strict cap for models of yours since 51da8ad). Runs
+without models of yours, and runs where none of yours is lowest, are unchanged. The
+preflight case now returns yours with no tie; it is a unit test. The same review found
+that the J4 text check had become unfalsifiable after the J6 fixes (the `yours:` note
+repeated the phrase it looks for); the note no longer states the tie outcome, and J4
+now looks for the tie line itself. The tie lines also now say the right thing when a
+model of yours is returned.
+
+Because the fix changes which model is tied and returned when yours is lowest, stage J
+is rerun in full on the fixed code (run 2), with the same bars, runs and seeds. That
+breaks rule 2 at the top (after a fix, the next run uses new seeds); it was not noticed
+until the recheck below. Run 3 uses new seeds.
+
+### Stage J run 2: 2026-11-25, on the fixed code (90e16eb)
+
+`bench/stages/stage_j.py` (results `stage_j_run2_results.json`, log `stage_j_run2.log`;
+test suite `stage_j_run2_pytest.log`), Python 3.13, 46 minutes (over the 30-minute guide;
+one local run). Same 24 runs and seeds as run 1.
+
+| # | result | bar | |
+|---|---|---|---|
+| J1 | 286 passed (the J6 and V1 fixes and their tests included) | all pass | MET |
+| J2 | 24/24 | 100% | MET |
+| J3 | built-in held-out errors unchanged 24/24; ties and returned model unchanged 9/9 where none of yours was lowest | 100% | MET |
+| J4 | a built-in model returned in 19/19 runs where yours tied with one; the tie line said so in 13/13 runs where yours was lowest and tied | 100% | MET |
+| J5 | the three broken models reported in words, built-ins ran | 0 tracebacks | MET |
+
+The summary counts equal run 1's, but one run changed (found by the recheck, not by me):
+gompertz random, seed 1114, where the exact solution (yours) was lowest. In run 1 four
+built-in models were tied with it and the classical fit was returned; in run 2 the cap
+left only the physics polynomial tied, and it was returned. The scores were identical. So
+the cap did act in stage J, and adding models of yours can change which built-in model
+is returned when yours is lowest. The case the cap was written for is the unit test
+`test_underfitting_built_ins_do_not_tie_with_a_much_better_model_of_yours`.
+
+### Fix after the preflight recheck (2026-11-25), and stage J run 3
+
+The recheck (the first recheck: a separate reviewer, also Anthropic's Claude; report unpublished)
+found the cap's other half missing (its R2): with a built-in model lowest, the uncapped
+noise level could still mark a model of yours at 3 times the lowest error as tied
+(underfitting data-only models again). Fix: a model of yours only ever ties through the
+capped noise level, whichever model is lowest. Built-in models compared with a built-in
+lowest keep the 0.0.1 rule, so runs without models of yours stay as stages A to I tested
+them; the same inflation among built-in models is now stated in the README as a known
+weakness, not fixed in 1.0. Unit test:
+`test_a_much_worse_model_of_yours_is_not_tied_with_a_built_in_lowest`. Tie lines that
+named "the one the equation constrains most" while a model of yours was tied now name the
+tie order instead.
+
+Run 3, fixed before running: the same bars, the same spring.csv cases, and the 20 stage A
+runs on NEW seeds 1120-1139 (seed s uses problem (s - 1120) mod 14, random for even s,
+forecast for odd s), never used before.
+
+### Stage J run 3: 2026-11-25, seeds 1120-1139, on the code at 4d0e5e2
+
+`bench/stages/stage_j.py --first-seed 1120` (results `stage_j_run3_results.json`, log
+`stage_j_run3.log`; full test-suite output `stage_j_run3_pytest.log`), Python 3.13,
+37 minutes of fits (over the 30-minute guide; one local run).
+
+| # | result | bar | |
+|---|---|---|---|
+| J1 | 287 passed | all pass | MET |
+| J2 | 24/24 | 100% | MET |
+| J3 | built-in held-out errors unchanged 24/24; ties and returned model unchanged 10/10 where none of yours was lowest | 100% | MET |
+| J4 | a built-in model returned in 20/20 runs where yours tied with one; the tie line said so in 13/13 runs where yours was lowest and tied | 100% | MET |
+| J5 | the three broken models reported in words, built-ins ran | 0 tracebacks | MET |
+
+In 14 of the 24 runs a model of yours (the exact solution) was lowest; it was returned in
+1, where no built-in model was tied with it. Stage J was closed with run 3, then
+reopened by the second recheck (below).
+
+### Stage J run 4: 2026-11-25, seeds 1140-1159, on the code at 3b1b756
+
+(3b1b756 is 521a39d plus one wording change in the out-of-order tie-mark line.)
+`bench/stages/stage_j.py --first-seed 1140` (results `stage_j_run4_results.json`, log
+`stage_j_run4.log`; full test-suite output `stage_j_run4_pytest.log`), Python 3.13, 36
+minutes of fits (over the 30-minute guide; one local run).
+
+| # | result | bar | |
+|---|---|---|---|
+| J1 | 289 passed | all pass | MET |
+| J2 | 24/24 | 100% | MET |
+| J3 | built-in held-out errors unchanged 24/24; ties and returned model unchanged 9/9 where none of yours was lowest | 100% | MET |
+| J4 | a built-in model returned in 20/20 runs where yours tied with one; the tie line said so in 14/14 runs where yours was lowest and tied | 100% | MET |
+| J5 | the three broken models reported in words, built-ins ran | 0 tracebacks | MET |
+
+In 15 of the 24 runs a model of yours was lowest (the exact solution in 14, the
+nearest-neighbour model in 1); one of yours was returned in 1. J6 (the
+fresh-user review) was run once, on the code before the V1 and later fixes; it was not
+repeated. Stage J was closed with run 4, then reopened by the third recheck (below).
+
+### Fixes after the second recheck (2026-11-25), and how run 4 was defined
+
+The second recheck (a further separate reviewer, also Anthropic's Claude; report unpublished) found: a model of
+yours lucky on 5 held-out points untied built-in models at the noise and was returned,
+2.3 times worse than the classical fit against the exact solution (1 of 100 seeds), so
+"a noise level above the lowest held-out error is not supported by the data" was wrong;
+`=` marks out of error order with no explanation; an unintended copy of the publish
+workflow in the public tree; a README sentence whose "that" pointed at the wrong weakness;
+explicit names silently renamed; the stub's fit line for cv > 1. The fixes (521a39d, wording
+3b1b756): the cap became an upper confidence bound on the noise from the lowest model's
+held-out residuals, rms * sqrt(n / chi2_0.025(n)); a table line explains out-of-order marks;
+the copy removed; the README reordered; only automatic names are replaced; the stub line
+fixed. Unit tests `test_a_lucky_model_of_yours_does_not_untie_built_ins_at_the_noise` and
+`test_marks_out_of_error_order_are_explained`.
+
+Order-of-record lapse: run 4 (seeds 1140-1159) was meant to be defined in this file
+before it ran, but the edit was lost in a chained shell command and the definition was
+only in the unpublished commit message of 521a39d. Run 4's results above are recorded as
+they came out; its seeds were new and were chosen before it ran.
+
+### Fix after the third recheck (2026-11-25), and stage J run 5
+
+The third recheck (a further separate reviewer, also Anthropic's Claude; report unpublished) found that the
+bound went too far the other way: through it, a model of yours up to 3.9 times the
+lowest error could be marked tied on 5 held-out points (R2's data on 25 points: 4 of 6
+seeds), and in one case (5 held-out points) a wrong-equation classical fit at 3.3 times
+the exact solution was tied with it and returned. Fix: the rule leans toward the built-in
+models both ways. A built-in model compared with a model of yours that is lowest uses
+the generous cap (the bound); a model of yours compared with the lowest uses the strict
+cap (the lowest held-out RMS error itself, as at 90e16eb). The second case is the price of the generous cap, accepted and stated in the README: the data
+can tell those two models apart (at that noise, 5 points of pure noise reach an RMS of
+0.0306 with probability about 6e-9), but the rule, using the bound as its noise level, cannot. The out-of-order line now compares the pooled
+held-out RMS the ties use (cv > 1) and gives the reason that applies. Unit test
+`test_on_five_held_out_points_a_much_worse_model_of_yours_is_not_tied` (the condition
+holds in all 6 of its seeds). The same review found the run 4 count corrected above.
+
+Run 5, fixed here before running: the same bars and spring.csv cases, and the 20 stage A
+runs on new seeds 1160-1179 (seed s uses problem (s - 1160) mod 14, random for even s,
+forecast for odd s), never used before.
+
+### Stage J run 5: 2026-11-25, seeds 1160-1179, on the code at 51da8ad
+
+`bench/stages/stage_j.py --first-seed 1160` (results `stage_j_run5_results.json`, log
+`stage_j_run5.log`; full test-suite output `stage_j_run5_pytest.log`), Python 3.13, 38
+minutes of fits (over the 30-minute guide; one local run).
+
+| # | result | bar | |
+|---|---|---|---|
+| J1 | 290 passed | all pass | MET |
+| J2 | 24/24 | 100% | MET |
+| J3 | built-in held-out errors unchanged 24/24; ties and returned model unchanged 9/9 where none of yours was lowest | 100% | MET |
+| J4 | a built-in model returned in 19/19 runs where yours tied with one; the tie line said so in 13/13 runs where yours was lowest and tied | 100% | MET |
+| J5 | the three broken models reported in words, built-ins ran | 0 tracebacks | MET |
+
+In 15 of the 24 runs a model of yours (the exact solution in all 15) was lowest; one of
+yours was returned in 2. J6 was run once, on the code before the V1 and later fixes, and
+not repeated. Stage J is closed with run 5.
+
+### After the fourth recheck (2026-11-25)
+
+A fourth separate reviewer (also Anthropic's Claude; report unpublished) checked the run 5
+code and records: no blocker; every run 5 number recounted exact; the README's three noise
+levels and their numbers exact; in the 100-seed sweep of the lucky-model case, no model of
+yours returned while a built-in one was closer to the truth. Its one should-fix (a sentence
+above that called the rule's limit a limit of the data) and four minor text items are
+corrected in place. One message condition changed: with cv > 1 the out-of-order tie-mark
+line now prints only when the model of yours is below a tied built-in model both in the
+table's error (mean over folds) and in the pooled error the ties use, so it never
+contradicts the table. No score, tie or returned model changes, so stage J was not rerun.
