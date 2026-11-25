@@ -2,19 +2,19 @@ spring/random/cv1 True True True True 38.4
 spring/random/cv5 True True True True 197.4
 spring/forecast/cv1 True True True True 30.6
 Traceback (most recent call last):
-  File "Z:\cogitan\equationnet\bench\stages\stage_j.py", line 170, in <module>
+  File "<repo>\bench\stages\stage_j.py", line 170, in <module>
     main()
     ~~~~^^
-  File "Z:\cogitan\equationnet\bench\stages\stage_j.py", line 140, in main
+  File "<repo>\bench\stages\stage_j.py", line 140, in main
     rows.append(case(f"spring/{split}/cv{cv}", "u_tt + c*u_t + k*u = 0", spring, None, 0,
                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                      split=split, cv=cv))
                      ^^^^^^^^^^^^^^^^^^^
-  File "Z:\cogitan\equationnet\bench\stages\stage_j.py", line 74, in case
+  File "<repo>\bench\stages\stage_j.py", line 74, in case
     base = en.fit(equation, data, seed=seed, verbose=False, **kw)
-  File "Z:\cogitan\equationnet\src\equationnet\fit.py", line 782, in fit
+  File "<repo>\src\equationnet\fit.py", line 782, in fit
     folds = _folds(X, y, indep, split, holdout, seed, k, time=eq.time)
-  File "Z:\cogitan\equationnet\src\equationnet\fit.py", line 509, in _folds
+  File "<repo>\src\equationnet\fit.py", line 509, in _folds
     raise ValueError(f"cv={k} forecast origins of {k_out} time(s) each need more than "
                      f"{k * k_out + 1} distinct times; there are {len(ut)}. Use fewer "
                      "folds or a smaller holdout")
