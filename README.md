@@ -1,5 +1,7 @@
 # equationnet
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24570010.svg)](https://doi.org/10.5281/zenodo.24570010)
+
 Type a differential equation and give it your data. equationnet trains six simple
 models: three that use the equation and three data-only baselines. It ranks them
 by their error on points they never saw, and gives you each model as a standalone
