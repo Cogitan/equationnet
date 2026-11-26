@@ -186,3 +186,8 @@ COVERAGE_SEEDS_RUN4 = list(range(800, 820))
 # fresh seeds, fixed before running. Run 4's seeds (41-43, 800-819) were used to fix.
 SEEDS_RUN5 = [51, 52, 53]
 COVERAGE_SEEDS_RUN5 = list(range(1000, 1020))   # 900-939 were diagnosis seeds
+
+# Run 6 (1.1: generous noise cap for built-in models, TESTPLAN "1.1"), 2026-11-25:
+# fresh seeds, fixed before any 1.1 code or run. No bench record uses them (max seen 1179).
+SEEDS_RUN6 = [61, 62, 63]
+COVERAGE_SEEDS_RUN6 = list(range(1200, 1220))

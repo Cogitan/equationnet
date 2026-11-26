@@ -1,0 +1,12 @@
+........................................................................ [ 24%]
+...........s............................................................ [ 49%]
+........................................................................ [ 73%]
+........................................................................ [ 98%]
+.....                                                                    [100%]
+============================== warnings summary ===============================
+wt/tests/test_inputs.py::test_a_classical_pde_start_profile_meets_the_edges[pulse_oversmoothed]
+  <venv>\Lib\site-packages\scipy\optimize\_lsq\trf.py:527: RuntimeWarning: overflow encountered in dot
+    cost_new = 0.5 * np.dot(f_new, f_new)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+292 passed, 1 skipped, 1 warning in 442.19s (0:07:22)

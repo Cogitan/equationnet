@@ -101,11 +101,34 @@ for r in rows:
 for (prob, split), bests in sorted(by.items()):
     print(f"     {prob:<30}{split:<9} truly best: {', '.join(bests)}")
 
-# A4: coverage
-cov = HERE / (sys.argv[2] if len(sys.argv) > 2 else "coverage.jsonl")
-if cov.exists():
+# A8 / A9 (1.1, run 6 on): the 1.0.0 tie rule recomputed from the same fit
+both = [r for r in rows if "tied_100" in r]
+if both:
+    sub = [r for r in both if set(r["tied"]) <= set(r["tied_100"])]
+    print(f"\nA8  1.1 tied set a subset of the 1.0.0 one: {len(sub)}/{len(both)} (bar 100%)")
+    for r in both:
+        if r not in sub:
+            print("     NOT A SUBSET", r["problem"], r["seed"], r["split"], r["tied"], r["tied_100"])
+    fewer = [r for r in both if len(r["tied"]) < len(r["tied_100"])]
+    print(f"    (report) runs with fewer models tied under 1.1: {len(fewer)}")
+    for r in fewer:
+        print("    ", r["problem"], r["seed"], r["split"], r["tied_100"], "->", r["tied"])
+    moved = [r for r in both if r["pick"] != r["pick_100"]]
+    worse = []
+    print(f"A9  runs where the returned model differs: {len(moved)}" + ("" if moved else " (not exercised)"))
+    for r in moved:
+        d_new, d_old = r["models"][r["pick"]]["dense"], r["models"][r["pick_100"]]["dense"]
+        worse.append(d_new > 1.5 * d_old)
+        print(f"     {r['problem']} s{r['seed']} {r['split']}: 1.0.0 {r['pick_100']} dense {d_old:.4g}, "
+              f"1.1 {r['pick']} dense {d_new:.4g} ({d_new / d_old:.2f}x)")
+    if moved:
+        print(f"    1.1 pick more than 1.5x worse than the 1.0.0 pick: {sum(worse)} (bar 0)")
+
+# A4: coverage (one file, or a glob when coverage is split by family)
+cfiles = sorted(HERE.glob(sys.argv[2] if len(sys.argv) > 2 else "coverage.jsonl"))
+if cfiles:
     print("\nA4  coverage of +-1.96 SE (bar 85% to 98% per family):")
-    crow = [json.loads(line) for line in cov.read_text().splitlines()]
+    crow = [json.loads(line) for f in cfiles for line in f.read_text().splitlines()]
     for fam in sorted({c["problem"] for c in crow}):
         zs = [z for c in crow if c["problem"] == fam for z in c["z"].values() if z is not None]
         fails = sum(c["status"] != "ok" for c in crow if c["problem"] == fam)

@@ -187,19 +187,18 @@ What equationnet does not know about your model, it says rather than guesses:
   `en.custom(model, uses_equation=True)`.
 - **Noise level.** Your model's training error is never used as the noise level
   in the tie rule, and where a model of yours is involved the rule leans toward
-  the built-in models both ways. When yours has the lowest held-out error, a
-  built-in model counts as tied if its error is within what noise could give, with
-  the noise level capped at an upper confidence bound from your model's held-out
-  errors (97.5% for one model chosen beforehand, somewhat less for the lowest of
-  several): 2.45 times their RMS on 5 points, 1.39 times on 24. So built-in models
-  that all fit badly do not tie with a far better model of yours, but on a few
-  held-out points a built-in model up to about 4 times worse can (5 points). A model
-  of yours counts as tied with the lowest through the two-standard-error test,
-  as any model does, or within a noise level capped at the lowest model's own
-  held-out RMS error: up to about 1.6 times it on 5 points and 1.3 times on 24.
-  Built-in models compared with a built-in lowest keep the rule below, unchanged
-  from 0.0.1, so the `=` marks can skip a model of yours that is closer than tied
-  built-in models. The table then says so.
+  the built-in models both ways. A built-in model is judged as under "Ties" below,
+  whichever model is lowest: within the noise level capped at an upper confidence
+  bound from the lowest model's held-out errors. So built-in models that all fit
+  badly do not tie with a far better model of yours. On few held-out points a
+  built-in model several times worse still can: up to about 4 times on 5 points,
+  4.8 times on 4 and 12 times on 2. A model of yours counts as tied with the lowest
+  through the two-standard-error test, as any model does. It also counts as tied
+  within a noise level capped at the lowest model's own held-out RMS error: up to
+  about 1.6 times it on 5 points and 1.3 times on 24. So the `=` marks can skip a
+  model of yours that is closer than tied built-in models. The table then says so
+  (with `cv` above 1, only when yours is below the largest tied built-in error both
+  in the table's error and in the error pooled over folds that ties use).
 - **Script.** The saved file for your model is a stub: its class, its
   parameters if it reports them (`get_params()`, as scikit-learn models do), and
   how it was trained and called. equationnet cannot write out code it did not
@@ -223,21 +222,33 @@ NaN) gets a `failed:` line in the table, and the other models still run.
   error is within two standard errors of the lowest one's are marked `=` as tied.
   So is a model whose error is no larger than measurement noise alone would give on
   that many held-out points (97.5% of the time). The noise level is the smallest
-  training error of the built-in data-only models, which assume no equation; if
-  none of them ran, this second test is off (models of your own: see "Your own
-  model"). It has a known weakness, not fixed: on very small data a data-only model
-  can pass almost exactly through its training points, so the noise level comes out
-  well below the true noise and the test does not fire. In stage A run 5 that is
-  behind four of the six picks more than 3x worse than the best, including the worst
-  (see "How well it works"). The opposite also happens, also not fixed for the
-  built-in models: when all the data-only models fit badly, their training error is
-  their misfit, the noise level comes out far above the true noise, and models many
-  times worse than the lowest are marked tied. The returned model is still the first
-  tied one in the order below, so check the held-out errors, not only the `=` marks.
-  Among the tied models, the one the equation
-  constrains most is returned: the classical fit, then the physics polynomial, then
-  the PINN, then the data-only models, then models of your own. The table says when
-  this happened and what `pick="lowest"` would return.
+  training error of the built-in data-only models, which assume no equation. It is
+  capped at an upper confidence bound on the noise from the lowest model's held-out
+  errors (97.5% for one model chosen beforehand, somewhat less for the lowest of
+  several): 2.45 times their RMS on 5 points, 1.39 times on 24. If none of the data-only models
+  ran, this second test is off (models of your own: see "Your own model"). Among
+  the tied models, the one the equation constrains most is returned: the classical
+  fit, then the physics polynomial, then the PINN, then the data-only models, then
+  models of your own. The table says when this happened and what `pick="lowest"`
+  would return.
+  - Applying the cap when a built-in model is lowest is new in 1.1 (1.0.0 applied
+    it only when a model of yours was lowest). When all the data-only models fit
+    badly, their training error is their misfit, not the noise, and 1.0.0 marked
+    built-in models many times worse than a built-in lowest as tied. On a fast
+    oscillation with 120 points (20 seeds, TESTPLAN.md stage A run 6), 1.0.0 put
+    five or six models in the tie in every run, the worst at about 50 times the
+    lowest error. 1.1 put none besides the lowest. The returned model was the same
+    in every run. With 25 points (5 held out) neither rule tied anything with the
+    lowest, and in stage A's 84 runs it changed no tie and no pick.
+  - The cap still lets a model tie at up to about 1.8 times the lowest error on 24
+    held-out points, 4 times on 5, 4.8 times on 4 and 12 times on 2, so check the
+    held-out errors, not only the `=` marks.
+  - A known weakness, not fixed: on very small data a data-only model can pass
+    almost exactly through its training points, so the noise level comes out well
+    below the true noise and the test does not fire. In stage A run 5 that was behind
+    four of the six picks more than 3 times worse than the truly best model,
+    including the worst. In run 6 it was behind one of six (see "How well it
+    works").
 - **Small held-out sets.** With a handful of held-out points no rule can always
   tell close models apart, and the returned model can be several times worse than
   the best one (see "How well it works"). Treat the ranking as a guide, and use
@@ -304,6 +315,14 @@ its numbers can differ slightly from the table's.
   the training times (a forecast split, for example); a later call to `predict`
   prints nothing. With `cv` above 1 the returned model is retrained on all the
   data, so no note prints, though each forecast fold was scored with held edges.
+- The classical PDE fit can stop in a wrong valley and still return ok. In stage A
+  run 6, 1 of 20 advection-diffusion coverage fits gave D at about zero (true 0.02)
+  with a training error 24 times that of a good fit
+  (`bench/stageA/run6_refit_1204.json`). That harness fits the classical model
+  alone, and its output flagged nothing but "D: consistent with 0" ("not pinned
+  down"). In a normal run with all six models, a stuck fit can show as a held-out
+  error far above the other models'. Not fixed: compare the classical fit's held-out error
+  with the other models' before trusting its constants.
 - When predictions are wanted before the first point the classical ODE fit trains
   on (a held-out first point, or `predict_at`), the solve normally starts there and
   runs forwards. If the data cannot place that earlier start (an equation that
@@ -320,8 +339,8 @@ its numbers can differ slightly from the table's.
 
 ## How well it works
 
-From `TESTPLAN.md`, stage A run 5. The test used 14 problems written before any
-run, scored against the exact solution on a dense grid:
+From `TESTPLAN.md`, stage A run 6, on the 1.1 code. The test used 14 problems
+written before any run, scored against the exact solution on a dense grid:
 - stiff, nonlinear, forced and unevenly spaced problems, four of them PDEs;
 - 10 to 500 points, noise 0.1% to 20% of the signal's standard deviation;
 - constants from 4e-4 to 1.2e5;
@@ -332,35 +351,42 @@ data are made by the same equation that is fitted. The problems themselves are
 not new to the code: fixes after runs 1 to 4 were diagnosed on them (with other
 seeds).
 
-Bars for these numbers were written before the first run and never moved. Run 5
-met all of them except the one on picks, which was missed and accepted in writing.
-TESTPLAN.md has all five runs, with the misses of each.
+Bars for these numbers were written before the first run and never moved. Run 6
+missed three: the one on picks, coverage on one problem family, and one
+nonidentifiable run where only one of its two constants was flagged. All three were
+accepted in writing.
+TESTPLAN.md has all six runs, with the misses of each. The 1.1 tie rule changed no
+run: on the same fits, 1.0.0's rule gives the same ties and the same picks.
 
-- When the equation is exact, a model that uses it was truly best in 84 of 84 runs.
-- The default pick was within 1.5x of the truly best model in 75 of 84 runs (89%;
+- When the equation is exact, a model that uses it was truly best in 83 of 84 runs.
+  In the other, a Gompertz forecast, the data-only network was.
+- The default pick was within 1.5x of the truly best model in 73 of 84 runs (87%;
   the bar was 90%). 6 picks were more than 3x worse; the bar allowed none.
-- Five of those 6 came with the table's warning that the ranking rests on fewer
-  than 5 held-out points: the two smallest problems, with 10 and 20 points. In four
-  of them (the worst, 52x, a PINN chosen on 2 held-out points; 26x and 6.3x, where a
-  data-only model was returned; and 4.4x) the classical fit was truly best and scored
-  at about the noise, and the noise-floor tie described under "Ties" would have
-  returned it had its noise level not come out too low. In the fifth (11.9x) the
-  classical fit was returned, tied with a physics polynomial that was better still,
-  both far below the noise.
-- On the 72 runs with 5 or more held-out points, 69 picks (96%) were within 1.5x.
-  The worst was 3.8x, on a problem built to be nonidentifiable, where the classical
-  fit has more free numbers than the data need. It was returned by the tie order,
-  with an error against the exact solution of about 0.4 of the noise level, while a
-  PINN was closer still. That problem was over 3x in four of the five runs and is
-  not fixed.
+- Three of those 6 came with the table's warning that the ranking rests on fewer
+  than 5 held-out points: the two smallest problems, with 10 and 20 points. Two
+  (11.7x and 4.8x, quadratic decay forecasts) returned the classical fit, tied with
+  a physics polynomial that was better still. In the third (5.4x, 2 held-out
+  points) the classical fit was truly best and scored at about the noise, and a
+  physics polynomial was returned. The noise-floor tie described under "Ties"
+  would have returned the classical fit had its noise level not come out too low.
+- On the 72 runs with 5 or more held-out points, 64 picks (89%) were within 1.5x.
+  The three over 3x (3.8x, 3.8x, 3.3x) were each returned by the tie order from a
+  tie that included the truly best model. On a Gompertz forecast the classical fit
+  was returned over the data-only network. On the nonidentifiable second-order
+  problem and on Fisher-KPP a physics polynomial was returned over a PINN.
 - On the 12 identifiable problems, the classical constants were within 3 standard
-  errors of the truth in 71 of 72 fits. In the other, both constants were just
-  outside (3.2 standard errors).
+  errors of the truth in 72 of 72 fits.
 - Over 20 seeds for each of four problem families, each constant's truth fell
-  within 1.96 standard errors in 90% to 95% of cases (the bar was 85% to 98%).
-- "not pinned down" fired on every run of the two nonidentifiable problems and on
-  none of the identifiable ones.
-- The PINN failed on 2 of 6 Gompertz runs (`log(K/u)` once training takes u through
+  within 1.96 standard errors in 85% to 100% of cases (the bar was 85% to 98%).
+  Burgers, at 20 of 20, was over the bar, as in three earlier seed sets.
+- One of those 80 coverage fits (advection-diffusion) was stuck in a wrong valley:
+  D came out at about zero against a true 0.02, with a training error 24 times that
+  of a good fit, and it was returned as ok. Its "not pinned down" line said "D:
+  consistent with 0". See "Limits in this version".
+- "not pinned down" fired on none of the identifiable runs, and on every
+  constant in 11 of the 12 runs of the two nonidentifiable problems. In the other,
+  one constant of two was flagged, and a "models disagree" line covered the second.
+- The PINN failed on 5 of 6 Gompertz runs (`log(K/u)` once training takes u through
   zero). The table says so, and the other models still ran.
 
 `bench/headroom.py` and `bench/FINDINGS.md` are the smaller development benchmark
@@ -384,6 +410,8 @@ expected outcome of each was written down before running (TESTPLAN.md, stage G).
   TESTPLAN.md explains each.
 - These sets have 6 to 35 points, so 1 to 7 are held out. A data-only model was
   picked in 6 of the 10 runs, so on data this small the ranking is a rough guide.
+- Rerun on the 1.1 code, every run gave the same picks, ties, notes and held-out
+  errors.
 
 `bench/realG/` also holds one PDE test on real data: a week of hourly soil
 temperature at 5, 10, 20, 50 and 100 cm from NOAA's US Climate Reference Network
@@ -425,10 +453,15 @@ can see.
 
 ## Status
 
-1.0.0. New since 0.0.1: your own model in the comparison ("Your own model", tested
-in stage J of `TESTPLAN.md`). The built-in models are unchanged, and so is the tie
-rule for runs without models of your own, so the results above still apply. The arguments of `fit()` and the layout of the table
-are kept stable within 1.x.
+1.1.0. New since 1.0.0: the tie rule caps the noise level for built-in models
+whichever model is lowest. Data-only models that all fit badly no longer make
+models many times worse than the lowest tie with it, except on few held-out points
+(up to about 4 times on 5, 4.8 times on 4 and 12 times on 2; see "Ties"). In `TESTPLAN.md` stage A run 6 the cap
+changed none of the 84 runs scored against the bars. It took effect only in a
+separate report-only sweep on one equation family. The models themselves are
+unchanged. 1.0.0 added your own model in the comparison
+("Your own model", tested in stage J). The arguments of `fit()` and the layout of
+the table are kept stable within 1.x.
 
 ## License
 

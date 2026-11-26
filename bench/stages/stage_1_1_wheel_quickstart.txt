@@ -1,0 +1,18 @@
+<venv>\Lib\site-packages\equationnet\__init__.py
+equation: u_tt + c*u_t + k*u = 0
+          target u(t); fit c, k
+split: random, 32 points to train, 8 held out
+
+rank model                              held-out error    time   fitted
+-----------------------------------------------------------------------
+1  = Smoothing spline (data only)              0.05551    0.4s   -
+2  = PINN (neural network + equation)           0.0571    3.0s   c=0.3257, k=4.043
+3  = Polynomial + equation                     0.05727    4.8s   c=0.3261, k=4.038
+4  = Equation fit (classical)                  0.05754   12.9s   c=0.324+-0.015, k=4.029+-0.043
+5  = Polynomial (data only)                    0.05869    0.0s   -
+6    Neural network (data only)                 0.2913    1.7s   -
+
+best: Equation fit (classical). Held-out error is the RMS error on data the models never saw.
+=     5 models are within the noise of the lowest error on these 8 held-out points, so the data cannot tell them apart.
+      The one the equation constrains most is returned; pick="lowest" would return Smoothing spline (data only).
++-: one standard error, if the equation is exactly right (a wrong or approximate equation can be off by more).

@@ -1,0 +1,14 @@
+run6_sweep_t120.jsonl: 20 runs, 120 points, 24 held out
+  models marked tied: 1.0.0 113, 1.1 20 (mean 5.65 -> 1.00)
+  runs with fewer tied under 1.1: 20
+  worst tied model, held-out error / lowest: 1.0.0 49.74x, 1.1 1.00x
+  runs where the returned model differs: 0
+  1.1 picks: {'equation_fit': 20}
+  model results not ok: 0
+run6_sweep_t25.jsonl: 20 runs, 25 points, 5 held out
+  models marked tied: 1.0.0 20, 1.1 20 (mean 1.00 -> 1.00)
+  runs with fewer tied under 1.1: 0
+  worst tied model, held-out error / lowest: 1.0.0 1.00x, 1.1 1.00x
+  runs where the returned model differs: 0
+  1.1 picks: {'equation_fit': 20}
+  model results not ok: 0

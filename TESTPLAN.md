@@ -1502,3 +1502,244 @@ corrected in place. One message condition changed: with cv > 1 the out-of-order 
 line now prints only when the model of yours is below a tied built-in model both in the
 table's error (mean over folds) and in the pooled error the ties use, so it never
 contradicts the table. No score, tie or returned model changes, so stage J was not rerun.
+
+## 1.1: the tie rule among built-in models (proposal, 2026-11-25, before any code or run)
+
+Nothing in this section has been built or run. It is the proposal for the maintainer, and
+the definition of stage A run 6, fixed here before any 1.1 code or run under the rules at
+the top. The bars at the top are not changed.
+
+### The weakness (disclosed in the 1.0.0 README, "How models are scored", Ties)
+
+With a built-in model lowest, a built-in model is also tied when its held-out MSE is at
+most chi2_0.975(n)/n times L squared, where L is the smallest training RMS of the
+built-in data-only models (`_noise_floor` with no cap). When every data-only model
+underfits, L is their misfit, not the noise. Reproduced on the 1.0.0 code (diagnosis,
+not a run): `u = 1 + 2t + 0.5 sin(25t)`, noise 0.01, 120 points on t in [0, 5], seed 1,
+`u_t = 2 + 12.5*b*cos(25*t)`, default settings. The classical fit scores 0.0088 held
+out (b = 1.002 +- 0.0025); the polynomial, spline, PINN, physics polynomial and network
+score 0.38 to 0.41 (43 to 46 times worse); the data-only training RMS is 0.34; all six
+are marked `=`. The returned model is still the classical fit here, but the table says
+"6 models are within the noise", and because the PINN and physics polynomial are in the
+tied set, a "models disagree" line reports b from 0.00003 to 1.002 as if the data could
+not choose. With a wrong equation the same inflation can return a classical fit many
+times worse than the lowest model (the 1.0.0 V1 case, there with a model of yours).
+
+### Proposal
+
+A built-in model is tied with the lowest through the noise floor with L capped at the
+generous cap, whichever model is lowest:
+
+L = min(smallest training RMS of the built-in data-only models, B), B = `_noise_bound`
+of the lowest model's held-out residuals = RMS x sqrt(n / chi2_0.025(n)).
+
+This is the cap 1.0.0 already uses for a built-in model against a model of yours that
+is lowest; 1.1 uses it against a built-in lowest too. The two-standard-error test and
+the rule for models of yours (strict cap) are unchanged. The rule then has two noise
+levels instead of three: generous for built-in models, strict for yours.
+
+Properties, before any run:
+- The cap can only lower the noise level, so on the same fit the 1.1 tied set is always
+  a subset of the 1.0.0 tied set. Runs where the cap does not bind are identical.
+- The worst ratio a built-in model can still tie at through the floor is B/RMS x
+  sqrt(chi2_0.975(n)/n) of the lowest: 12.1x on 2 held-out points, 4.8x on 4, 3.9x on
+  5, 2.5x on 10, 1.8x on 24, 1.5x on 50, 1.3x on 100. So on a few held-out points
+  inflated ties remain possible, at most these ratios; on the example above (24
+  points) the five models at 43x are untied and only the classical fit is left.
+- The price is on the lucky-lowest side, as in stage J (second and third rechecks): if
+  the lowest model scored well below the noise by luck, B is small and a model at the
+  noise can be untied. B is a 97.5% bound for one model chosen beforehand, less for the
+  lowest of six. The fourth recheck's 100-seed sweep of that case for models of yours
+  found no model of yours returned while a built-in one was closer to the truth, and a
+  built-in model returned while yours was closer in 5 of 100 (this sentence first said
+  "no model returned while another was closer", corrected after the 1.1 preflight, P5).
+  For built-in models it is not yet measured (run 6 and sweep T below).
+- It does not touch the other disclosed weakness (on very small data the data-only
+  models nearly interpolate, L is far below the noise, and the floor does not fire):
+  the cap only lowers L. That weakness was behind four of the six over-3x picks in run
+  5, so A2 can miss again on any seed draw. Not in scope for 1.1.
+- Downstream: the tied set feeds "models disagree" (the equation models in it). Fewer
+  inflated ties remove false disagreement lines like the one above. "not pinned down"
+  comes from the classical fit's own standard error and profile; the tied set adds to
+  it only when the classical fit has no standard error. So A5 and A6 can move only in
+  that case.
+- Models of yours: unchanged. Stage J's J3 (built-in ties and pick unchanged when none
+  of yours is lowest) holds by construction, since the built-in rule no longer depends
+  on whether a model of yours is lowest except through which model is lowest.
+
+Alternatives considered and not proposed:
+- The strict cap (the lowest held-out RMS itself) for built-in models: the second
+  recheck showed a lucky lowest then unties models at the noise (1 of 100 seeds).
+- The smallest training RMS over all built-in models, equation models included: does
+  not help when the equation is wrong, and an overfitting physics polynomial or PINN
+  would lower L further on small data, worsening the other weakness.
+- A noise estimate from neighbouring points: rejected in the run 2 diagnosis (10 to 15
+  times the true noise on sparse, unevenly spaced oscillations).
+- Leave it disclosed and unfixed (1.0.0).
+
+Code (after the maintainer's go): in `Result.tied`, the built-in branch uses the
+generous noise floor whatever is lowest; `_noise_floor`'s docstring, the out-of-order
+tie-mark line's reason ("the data-only models' training error, which is far too high
+when those fit badly") and the README Ties and "Your own model" text follow. Unit test:
+the example above, built-in models only, tied set = [equation_fit] (fails on 1.0.0).
+
+### Stage A run 6: definition, fixed before running
+
+- Code: the 1.1 rule above, committed before the run; the commit is named in the
+  results.
+- Same 14 problems (`bench/stageA/problems.py`), same harness, default settings, both
+  splits. NEW seeds 61, 62, 63 (`SEEDS_RUN6`); coverage seeds 1200 to 1219
+  (`COVERAGE_SEEDS_RUN6`). Checked before writing this: no stage A, J or diagnosis
+  record in `bench/` uses any of them (seeds used so far run to 1179).
+- Bars A1 to A7 exactly as written at the top, not moved. A4 is rerun although the
+  coverage harness fits only the classical model (the tie rule cannot reach it),
+  because the classical fit's code has changed since run 5 (the standard-error fix
+  after the third recheck, which run 5 was re-scored for, and 1.0.0).
+- Added for 1.1, fixed now. The harness records, from the same fit, the 1.0.0 tied set
+  and pick as well as the 1.1 ones:
+
+| # | bar | proposed |
+|---|---|---|
+| A8 | the 1.1 tied set is a subset of the 1.0.0 tied set computed from the same fit | 100% of runs |
+| A9 | where the returned model differs between the two rules, the 1.1 pick's dense error is at most 1.5x the 1.0.0 pick's | 100% of such runs; every such run reported with both picks and both dense errors; if none differ, reported as not exercised |
+| T | sweep on the example family above, built-in models only: 120 points (24 held out) and 25 points (5 held out), seeds 1300 to 1319 each, noise 0.01; count models marked tied under each rule and runs where the pick differs, and which pick is closer to the exact solution | report only (no bar) |
+
+- Measured cost (current 1.0.0 code, old run-5 seeds, 2026-11-25): five stage A runs
+  took 95 s against 98 s recorded in run 5, with the same picks, so the 84 main runs
+  are about 23 CPU-minutes (run 5: three processes, about 8 minutes wall). Three
+  coverage fits took 32 s (Duffing), 11 s (Burgers), 5 s (Gompertz); run 5's 80
+  coverage fits took about 21 minutes in one process. The example fit takes 16 s, so T
+  (40 fits) is about 10 minutes. In all about 55 CPU-minutes; each piece stays under
+  the 30-minute guide in rule 4.
+- Stage J: not rerun. J2 and J5 do not involve ties; J3 holds by construction (above);
+  J4 compares models of yours through the strict cap, which is unchanged. J1 (the full
+  test suite) is rerun on the 1.1 code.
+
+**Maintainer, 2026-11-25: "Yes, run locally"** (go on the proposal and run 6 on this
+machine).
+
+### Stage A run 6: 2026-11-25, seeds 61-63 and 1200-1219, on the code at feb7d84
+
+feb7d84 is the 1.1 rule above, its unit tests and the run 6 harness, committed before
+the run (proposal and definition: 9e3e8a2). Test suite: 293 passed
+(`bench/stages/stage_a_run6_pytest.log`). It ran on the working tree and finished 12 s
+before feb7d84 was made; `src/` and `tests/` were not edited between its start and that
+commit (only the bench harness files were), so it tested feb7d84's code. The
+maintainer's go (above) was given after the proposal (9e3e8a2) and before any 1.1 code
+was written, and was written here only with the results (724fa91). Report: `bench/stageA/report_run6.txt`
+(main runs `run6_s61..63.jsonl`, coverage `run6_coverage.jsonl`); sweep T
+`report_run6_sweep_t.txt` (`run6_sweep_t120.jsonl`, `run6_sweep_t25.jsonl`). Python
+3.13, local. Wall time: main runs 10.5 minutes (three processes, 29 CPU-minutes),
+coverage 32 minutes in one process (over the 30-minute guide in rule 4; five processes
+ran at once, so it was slower than the measured 21), sweep T 10.5 minutes.
+
+| bar | run 5 | run 6 | |
+|---|---|---|---|
+| A1 every model finishes or says why in words | met | 5 PINN failures (Gompertz), all say why | met |
+| A2 pick within 1.5x of the truly best | 89% | 73/84 = 87% | MISS |
+| A2 no pick worse than 3x | 52.2x | worst 11.66x; six over 3x | MISS |
+| A3 classical constants within 3 SE | 99% | 72/72 = 100% | met |
+| A4 coverage 85% to 98% per family | met | adv-diff 36/40 = 90%, Burgers 20/20 = 100% (rms z 0.77), Duffing 56/60 = 93%, Gompertz 34/40 = 85% | MISS (Burgers above 98%) |
+| A5 no false "not pinned down" | 0 | 0 (3 separate "models disagree" notes, report only) | met |
+| A6 flag on non-identifiable problems | 12/12 | 11/12 (second-order s61 random: c flagged, k not) | MISS |
+| A7 (report) equation model truly best | 84/84 | 83/84 (Gompertz s61 forecast: the network) | |
+| A8 1.1 tied set a subset of the 1.0.0 one | - | 84/84 | met |
+| A9 1.1 pick at most 1.5x the 1.0.0 pick where they differ | - | no run differs | not exercised |
+
+**The 1.1 rule changed nothing in stage A.** In all 84 runs the 1.1 tied set equals the
+1.0.0 one from the same fit (no run has fewer ties), so the returned model is the same in
+every run. The misses above are therefore what 1.0.0 also gives on these seeds; none
+comes from the 1.1 change. In stage A the data-only models fit well enough that their
+training error stays below the generous cap.
+
+**Sweep T (report only), where the cap binds:**
+- 120 points (24 held out), 20 seeds: 1.0.0 marked 113 models tied (all six in 13 runs,
+  five in 7; the worst tied model scored 49.7 times the lowest);
+  1.1 marked 20 (only the classical fit, in every run). The returned model was the
+  classical fit under both rules in all 20, so the change is in the `=` marks and the
+  lines that depend on the tied set, not the pick.
+- 25 points (5 held out), 20 seeds: no difference. Neither rule tied anything with the
+  classical fit, which was lowest, truly best and returned in all 20. The next model's
+  held-out error was 2.3 to 26.5 times the lowest, so no tie was mostly the right
+  outcome. The data-only models' smallest training error was 0.0008 to 0.011 (noise
+  0.01), so the noise level was not inflated, and in some runs it was too low (the other
+  weakness); the record does not show that changing any tie. (Rewritten after the 1.1
+  preflight, P7: it first gave the low noise level as the reason for no tie.)
+
+The misses, diagnosed from the records (and refits of coverage seeds 1203 and 1204,
+`bench/stageA/run6_refit_1204.json`, added after the 1.1 preflight):
+- **A2, six picks over 3x.** Five pick a model tied with the truly best one, chosen by
+  the tie order: quadratic decay forecast s62 11.66x and s63 4.84x (the classical fit
+  against the physics polynomial, 4 held-out points, as in run 5), one exponential
+  second order forecast s61 3.78x (physics polynomial against PINN), Gompertz forecast
+  s61 3.79x (the classical fit against the data-only network, the one run where an
+  equation model was not truly best), Fisher-KPP random s62 3.30x (physics polynomial
+  against PINN). The sixth, microseconds random s61 5.43x on 2 held-out points, is the
+  too-low noise level: the classical fit, truly best, scored 6,478, the physics
+  polynomial 4,057 by luck, and nothing was tied with it. A2 has missed in runs 1, 2, 4,
+  5 and 6.
+- **A4 Burgers 20/20** again (runs 2, 3, 4 and 6 of six). Over the 120 seeds
+  before this run the record showed no sign of error bars too wide (rms z 0.967); this
+  run's rms z is 0.77. Not diagnosed further.
+- **A4 advection-diffusion, seed 1204** (counted as one of the 4 outside, so the bar is
+  met at 90%, but its rms z of 38.5 comes from it): the classical fit returned "ok" with
+  D = -0.00003 +- 0.00008 (true 0.02; z = -244) and a training error of 0.034 against
+  0.0014 on seed 1203. A fit stuck in a wrong valley, returned with no note; the table
+  does say "D: consistent with 0". A defect of the classical PDE fit, older than 1.1; the
+  largest advection-diffusion |z| in the coverage of runs 1 to 5 was 4.0. Not fixed.
+- **A6, second order on one exponential, s61 random:** c is flagged by the profile check,
+  k (-0.847 +- 0.0063) is not, while the equation models give k from -0.85 to 2.94 (a
+  separate "models disagree" line). The same kind of miss as run 4 s43 (a curved valley
+  of equally good fits); not diagnosed further.
+
+Under the rules these misses need fixes rerun on fresh seeds, or the maintainer's
+acceptance. Because 1.1 leaves every stage A run as 1.0.0 had it, the misses are not a
+reason against the 1.1 change itself; they are older weaknesses these seeds exposed.
+
+**Maintainer, 2026-11-25: "Accept, finish 1.1"**, after reading a summary of the table
+above, the misses as described here, and the advection-diffusion seed 1204 defect. A2, A4
+(Burgers) and A6 closed as accepted; stage A closed with run 6. The stuck
+advection-diffusion fit is left as a known defect, stated in the README.
+
+### Finishing 1.1 (2026-11-25)
+
+- **Stage G rerun on the 1.1 code** (`bench/realG/results_g_run5.jsonl`, log
+  `run_g_run5.log`, 1.5 minutes): all 12 NIST runs give the same pick, tied set, "not
+  pinned down" and "models disagree" notes, and held-out errors (difference 0) as
+  `results_g_run4.jsonl`. The soil runs were not rerun: in both, only the lowest model
+  was tied (`results_soil_run2.jsonl`), and the 1.1 cap can only remove ties.
+- **README quick start** (`examples/spring.csv`) refitted on the 1.1 code: the same ties,
+  `=` marks and returned model as the table in the README; the PINN's held-out error
+  differs in the fourth digit and the data-only network's (not tied) in the second, from
+  training, not from the tie rule.
+- **README**: "Ties", "Your own model" (noise level), "How well it works" (now run 6),
+  a new limit (the stuck classical PDE fit), "Real data" (the stage G rerun) and
+  "Status" rewritten from the records above. Version 1.1.0.
+
+### Clean install and the 1.1.0 writing preflight (2026-11-25)
+
+- **Clean install:** wheel and sdist built with `uv build` from 7dada92 (a `git archive`),
+  the wheel installed into a fresh Python 3.12 venv (torch 2.15.0+cpu, scipy 1.18.1,
+  numpy 2.5.5). The test suite run against the installed wheel (tests copied without
+  `src/`): 292 passed, 1 skipped (`test_inputs.py` skips its pandas test when pandas is
+  not installed), `bench/stages/stage_1_1_wheel_pytest.log`. The README quick start on
+  that install reproduces the README table to every digit, the network errors included
+  (`bench/stages/stage_1_1_wheel_quickstart.txt`). The development venv that gave the
+  differences noted above is Python 3.13 with torch 2.6.0+cu124, scipy 1.17.1 and numpy
+  2.2.6.
+- **Writing preflight** (Cogitan's writing preflight rules, unpublished), by a
+  separate reviewer (another Claude session that did not draft the text; report
+  unpublished): 1 blocker, 5 should-fix, 8 minor. The blocker: the README gave the stuck
+  advection-diffusion fit as 1 of 40 fits; the record has 20 fits (40 constants). Should
+  fix: "the cap is new in 1.1" (only its use with a built-in lowest is new); the A6 miss
+  described as a run "not flagged" (one of two constants was); the Status line dropped
+  the few-points limit and implied the bars tested the cap; P5 and P6 in this file (the
+  100-seed sweep sentence; a clean-install check written as done before it was). These
+  and minors P7 to P12 and P14 were fixed (the seed 1203 and 1204 refits are now
+  `bench/stageA/run6_refit_1204.json`). Left as is: P13 (long sentences and semicolons in
+  this file) and the residues V16, V17 and N6.
+- **Recheck** by a further separate reviewer (also Claude; report unpublished): no blocker
+  or should-fix left; P8, P10 and P14 only partly fixed, and nine minor items in the new
+  text (Q1 to Q9). Q1 to Q7 were fixed in the text above and in the README. Q8 said the
+  two environments had the same library versions; they do not (versions above). Q9 (long
+  sentences, semicolons) is left with P13.

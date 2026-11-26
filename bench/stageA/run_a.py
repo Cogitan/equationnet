@@ -6,6 +6,8 @@
     run 3:  --seeds 31 32 33 --out bench/stageA/run3_s31.jsonl ...;  --coverage --run3
     run 4:  --seeds 41 42 43 --out bench/stageA/run4_s41.jsonl ...;  --coverage --run4
     run 5:  --seeds 51 52 53 --out bench/stageA/run5_s51.jsonl ...;  --coverage --run5
+    run 6:  --seeds 61 62 63 --out bench/stageA/run6_s61.jsonl ...;  --coverage --run6
+            (1.1; rows also carry the 1.0.0 tied set and pick from the same fit, bars A8, A9)
 
 Default settings = what a user gets: en.fit(equation, data, split=..., seed=...),
 one 20% split, pick="simplest". "Truly best" = the lowest error against the exact
@@ -29,7 +31,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[1] / "src"))
 sys.path.insert(0, str(HERE))
 import equationnet as en  # noqa: E402
-from problems import COVERAGE_FAMILIES, COVERAGE_SEEDS, COVERAGE_SEEDS_RUN2, COVERAGE_SEEDS_RUN3, COVERAGE_SEEDS_RUN4, COVERAGE_SEEDS_RUN5, P  # noqa: E402
+from problems import COVERAGE_FAMILIES, COVERAGE_SEEDS, COVERAGE_SEEDS_RUN2, COVERAGE_SEEDS_RUN3, COVERAGE_SEEDS_RUN4, COVERAGE_SEEDS_RUN5, COVERAGE_SEEDS_RUN6, P  # noqa: E402
 
 
 def dense_points(X, indep, train, split, time_var):
@@ -41,6 +43,24 @@ def dense_points(X, indep, train, split, time_var):
     n = 400 if X.shape[1] == 1 else 41
     axes = [np.linspace(a, b, n) for a, b in zip(lo, hi)]
     return np.column_stack([g.ravel() for g in np.meshgrid(*axes, indexing="ij")])
+
+
+def tied_100(res):
+    """The 1.0.0 tie rule for built-in models, recomputed from the same fit (no models of
+    yours in stage A): the noise floor with no cap when a built-in model is lowest."""
+    import sys as _s
+    F = _s.modules["equationnet.fit"]
+    r = res.ranked
+    if not r:
+        return []
+    e = r[0].holdout_errors
+    if e is None:
+        return r[:1] + [c for c in r[1:] if F._within_noise(c, r[0])]
+    plain = F._noise_floor(res.candidates.values(), len(e))
+
+    def at_floor(c):
+        return plain is not None and c.holdout_errors is not None and             float(np.mean(c.holdout_errors ** 2)) <= plain
+    return r[:1] + [c for c in r[1:] if F._within_noise(c, r[0]) or at_floor(c)]
 
 
 def one(name, seed, split):
@@ -57,6 +77,11 @@ def one(name, seed, split):
     row = {"problem": name, "seed": seed, "split": split, "seconds": round(time.perf_counter() - t0, 1),
            "pick": res.best.name if res.ranked else None, "tied": [c.name for c in res.tied],
            "notes": res.constant_notes(), "disagree": res.disagreement_notes(), "table_notes": res.notes, "models": {}}
+    if res.ranked:
+        import sys as _s
+        old = tied_100(res)
+        row["tied_100"] = [c.name for c in old]
+        row["pick_100"] = min(old, key=_s.modules["equationnet.fit"]._simplicity).name
     for m, c in res.candidates.items():
         r = {"status": c.status, "seconds": round(c.seconds, 2)}
         if c.ok:
@@ -91,6 +116,8 @@ if __name__ == "__main__":
     ap.add_argument("--run3", action="store_true", help="coverage on the run-3 seeds")
     ap.add_argument("--run4", action="store_true", help="coverage on the run-4 seeds")
     ap.add_argument("--run5", action="store_true", help="coverage on the run-5 seeds")
+    ap.add_argument("--run6", action="store_true", help="coverage on the run-6 seeds")
+    ap.add_argument("--families", nargs="*", default=COVERAGE_FAMILIES, help="coverage families")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     out = Path(a.out)
@@ -101,8 +128,8 @@ if __name__ == "__main__":
             done.add((r["problem"], r["seed"], r.get("split")))
     with out.open("a") as fh:
         if a.coverage:
-            for name in COVERAGE_FAMILIES:
-                for seed in (COVERAGE_SEEDS_RUN5 if a.run5 else COVERAGE_SEEDS_RUN4 if a.run4 else COVERAGE_SEEDS_RUN3 if a.run3 else COVERAGE_SEEDS_RUN2 if a.run2 else COVERAGE_SEEDS):
+            for name in a.families:
+                for seed in (COVERAGE_SEEDS_RUN6 if a.run6 else COVERAGE_SEEDS_RUN5 if a.run5 else COVERAGE_SEEDS_RUN4 if a.run4 else COVERAGE_SEEDS_RUN3 if a.run3 else COVERAGE_SEEDS_RUN2 if a.run2 else COVERAGE_SEEDS):
                     if (name, seed, None) in done:
                         continue
                     fh.write(json.dumps(coverage(name, seed)) + "\n")

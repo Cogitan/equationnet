@@ -232,6 +232,45 @@ def test_tie_rule_returns_the_simplest_model_within_noise():
     assert [c.name for c in r2.tied] == ["pinn"] and r2.best.name == "pinn"
 
 
+def test_underfitting_data_only_models_do_not_tie_with_a_much_better_built_in():
+    """1.1 (TESTPLAN.md, "1.1"): when every data-only model underfits, their training
+    error is their misfit, not the noise; models 40 times worse than the lowest built-in
+    model were marked tied in 1.0.0, with a false "models disagree" line."""
+    t = np.linspace(0, 5, 120)
+    u = 1 + 2 * t + 0.5 * np.sin(25 * t) + np.random.default_rng(1).normal(0, 0.01, 120)
+    r = en.fit("u_t = 2 + 12.5*b*cos(25*t)", {"t": t, "u": u}, seed=1, verbose=False)
+    assert r.ranked[0].name == "equation_fit"
+    assert min(c.train_rmse for c in r.candidates.values() if c.ok and not c.uses_equation) > 0.3
+    assert [c.name for c in r.tied] == ["equation_fit"]
+    assert r.best.name == "equation_fit"
+    assert "within the noise" not in r.table() and not r.disagreement_notes()
+
+
+def test_built_in_ties_use_the_generous_cap_whatever_is_lowest():
+    """A built-in model ties with a built-in lowest through the noise floor capped at the
+    upper bound from the lowest model's held-out residuals (_noise_bound), never above."""
+    from scipy.stats import chi2
+    from equationnet.fit import Candidate, Result, _noise_bound
+    noise = 0.01 * np.random.default_rng(3).standard_normal(24)
+
+    def cand(name, errors, uses, train=float("nan")):
+        c = Candidate(name, name, uses, train_rmse=train)
+        c.fold_errors = [errors]
+        c.holdout_rmse = float(np.sqrt(np.mean(errors ** 2)))
+        return c
+    b = _noise_bound(noise)
+    limit = np.sqrt(chi2.ppf(0.975, 24) / 24) * b        # largest RMS tied through the floor
+    inside, outside = 0.97 * limit / np.sqrt(np.mean(noise ** 2)), 1.03 * limit / np.sqrt(np.mean(noise ** 2))
+    cs = {"equation_fit": cand("equation_fit", noise, True),
+          "poly": cand("poly", inside * noise[::-1], False, train=1.0),     # underfits: train RMS 1.0
+          "spline": cand("spline", outside * noise[::-1], False, train=1.0)}
+    r = Result(None, "random", 96, 24, cs)
+    assert [c.name for c in r.tied] == ["equation_fit", "poly"]
+    # with a data-only training error below the cap, it is the noise level, as in 0.0.1
+    cs["poly"].train_rmse = cs["spline"].train_rmse = 0.5 * b
+    assert [c.name for c in Result(None, "random", 96, 24, cs).tied] == ["equation_fit"]
+
+
 def test_tie_is_explained_in_the_table():
     t = np.linspace(0, 10, 40)
     sol = solve_ivp(lambda tt, s: [s[1], -0.3 * s[1] - 4.0 * s[0]], (0, 10), [1.0, 0.0],

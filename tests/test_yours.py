@@ -310,6 +310,26 @@ def test_marks_out_of_error_order_are_explained():
         assert "worse (yours): not marked tied, though built-in models with larger errors are" in r.table()
 
 
+def test_marks_out_of_error_order_are_explained_with_a_built_in_lowest():
+    """1.1: built-in models tie through the generous cap, yours through the strict one, so
+    yours can be closer than a tied built-in model and still not tied; the table says so."""
+    from equationnet.fit import Candidate, Result
+    from equationnet.parse import parse_equation
+    noise = 0.01 * np.random.default_rng(3).standard_normal(24)
+
+    def cand(name, scale, uses, yours=False):
+        c = Candidate(name, name, uses, train_rmse=1.0, yours=yours)   # data-only models underfit
+        c.fold_errors = [scale * noise[::-1] if scale != 1 else noise]
+        c.holdout_rmse = float(np.sqrt(np.mean(c.fold_errors[0] ** 2)))
+        return c
+    cs = {"equation_fit": cand("equation_fit", 1, True), "poly": cand("poly", 1.6, False),
+          "mine": cand("mine", 1.4, False, yours=True)}
+    r = Result(parse_equation("u_t = -k*u"), "random", 96, 24, cs)
+    assert [c.name for c in r.tied] == ["equation_fit", "poly"], r.table()
+    assert ("mine: not marked tied, though built-in models with larger errors are" in r.table() and
+            "built-in ones against a more generous one" in r.table())
+
+
 def test_on_five_held_out_points_a_much_worse_model_of_yours_is_not_tied():
     """Third recheck M1: on small held-out sets a model of yours at 2-4 times the lowest
     (a built-in) was marked tied; yours now tie only within the strict cap."""

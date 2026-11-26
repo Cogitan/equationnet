@@ -161,16 +161,15 @@ def _noise_floor(candidates, n: int, cap: float | None = None) -> float | None:
     by luck while a model that is right to within the noise scores at the noise, and
     the standard-error test cannot see that both are at the noise floor.
 
-    cap: an RMS error the noise level may not exceed, used wherever a model of yours is
-    involved (Result.tied). When the built-in data-only models all underfit, their
-    training error is their misfit, not the noise, and without a cap models far worse
-    than the lowest would tie with it. A built-in model compared with a model of yours
-    that is lowest gets the generous cap, an upper confidence bound on the noise from
-    the lowest model's held-out residuals (_noise_bound), because on a few held-out
-    points a model can score well below the noise by luck; a model of yours compared
-    with the lowest gets the strict cap, the lowest model's held-out RMS error itself.
-    Both lean toward returning a built-in model. Built-in models compared with a
-    built-in lowest keep the uncapped rule that stages A to I tested."""
+    cap: an RMS error the noise level may not exceed (Result.tied always passes one).
+    When the built-in data-only models all underfit, their training error is their
+    misfit, not the noise, and without a cap models far worse than the lowest would tie
+    with it. A built-in model gets the generous cap, an upper confidence bound on the
+    noise from the lowest model's held-out residuals (_noise_bound), because on a few
+    held-out points a model can score well below the noise by luck; a model of yours
+    gets the strict cap, the lowest model's held-out RMS error itself. Both lean toward
+    returning a built-in model. Since 1.1 the generous cap also applies when a built-in
+    model is lowest (TESTPLAN.md, "1.1"); before, that case had no cap."""
     from scipy.stats import chi2
     # built-in data-only models only: a model of yours that nearly interpolates the
     # training points would pull the estimate toward zero
@@ -212,11 +211,10 @@ class Result:
         cands, n = self.candidates.values(), len(e)
         # Leans toward the built-in models both ways (README, "Your own model"):
         strict = _noise_floor(cands, n, float(np.sqrt(np.mean(e ** 2))))   # yours vs the lowest
-        generous = _noise_floor(cands, n, _noise_bound(e))                 # built-ins vs yours lowest
-        plain = _noise_floor(cands, n)                                     # built-ins vs a built-in
+        generous = _noise_floor(cands, n, _noise_bound(e))                 # built-ins vs the lowest
 
         def at_floor(c):
-            f = strict if c.yours else generous if r[0].yours else plain
+            f = strict if c.yours else generous
             return f is not None and c.holdout_errors is not None and \
                 float(np.mean(c.holdout_errors ** 2)) <= f
         return r[:1] + [c for c in r[1:] if _within_noise(c, r[0]) or at_floor(c)]
@@ -369,12 +367,10 @@ class Result:
                        and pooled(c) < max(map(pooled, built_tied))
                        and c.holdout_rmse < max(b.holdout_rmse for b in built_tied)]
             if skipped:
-                why = ("a more generous one, so that a tie goes to a built-in model" if self.ranked[0].yours
-                       else "the data-only models' training error, which is far too high when those "
-                            "fit badly")
                 lines.append(f"      {', '.join(c.title for c in skipped)}: not marked tied, though "
                              "built-in models with larger errors are. Your models are judged against "
-                             f"a noise level capped at the lowest error; built-in ones against {why}.")
+                             "a noise level capped at the lowest error; built-in ones against a more "
+                             "generous one, so that a tie goes to a built-in model.")
         lines += [f"note ({c.title}): {c.note}" for c in order if c.ok and c.note]
         lines += [f"note: {n}" for n in self.notes]
         mine = [c for c in self.candidates.values() if c.yours]
