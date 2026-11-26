@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use equationnet, please cite it as below."
+title: "equationnet"
+abstract: >-
+  Type a differential equation and give it your data. equationnet trains six
+  simple models: three that use the equation and three data-only baselines. It
+  ranks them by their error on points they never saw, and gives you each model
+  as a standalone script. You can add models of your own to the comparison.
+type: software
+authors:
+  - family-names: Henderson
+    given-names: Dylan
+    affiliation: Cogitan
+    orcid: "https://orcid.org/0009-0009-7022-4986"
+version: 1.1.1
+date-released: 2026-11-26
+license: MIT
+repository-code: "https://github.com/Cogitan/equationnet"
+url: "https://github.com/Cogitan/equationnet"
+keywords:
+  - differential equations
+  - physics-informed neural networks
+  - model selection
+  - parameter estimation
+  - scientific machine learning

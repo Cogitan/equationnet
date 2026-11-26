@@ -1,0 +1,20 @@
+{
+  "title": "equationnet: is your equation better than no equation?",
+  "upload_type": "software",
+  "description": "<p>Type a differential equation and give it your data. equationnet trains six simple models: three that use the equation and three data-only baselines. It ranks them by their error on points they never saw, and gives you each model as a standalone script. You can add models of your own to the comparison. The README states the tool's limits and the test bars it missed.</p><p>Installation: <code>pip install equationnet</code>. Testing records (stages A to J) are in TESTPLAN.md in the archive. Code and documentation: MIT. The data tables in bench/real/datasets.py and bench/realG/datasets_g.py are third-party measurements, not covered by the MIT license (see the README).</p>",
+  "creators": [
+    {
+      "name": "Henderson, Dylan",
+      "affiliation": "Cogitan",
+      "orcid": "0009-0009-7022-4986"
+    }
+  ],
+  "license": "mit",
+  "keywords": [
+    "differential equations",
+    "physics-informed neural networks",
+    "model selection",
+    "parameter estimation",
+    "scientific machine learning"
+  ]
+}

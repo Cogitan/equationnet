@@ -453,7 +453,7 @@ can see.
 
 ## Status
 
-1.1.0. New since 1.0.0: the tie rule caps the noise level for built-in models
+1.1.1 (1.1.0 plus citation files for Zenodo). New in 1.1.0: the tie rule caps the noise level for built-in models
 whichever model is lowest. Data-only models that all fit badly no longer make
 models many times worse than the lowest tie with it, except on few held-out points
 (up to about 4 times on 5, 4.8 times on 4 and 12 times on 2; see "Ties"). In `TESTPLAN.md` stage A run 6 the cap

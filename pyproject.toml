@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "equationnet"
-version = "1.1.0"
+version = "1.1.1"
 description = "Type an equation: six simple models (three that use it, three data-only baselines), plus any of your own, are trained on your data and ranked on held-out points."
 readme = "README.md"
 requires-python = ">=3.10"

@@ -9,7 +9,7 @@ from . import templates as T
 from .codegen import explicit_function, residual_function
 from .parse import Equation, EquationError
 
-VERSION = "1.1.0"
+VERSION = "1.1.1"
 
 
 class NotApplicable(Exception):
